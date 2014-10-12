@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "BackendService.h"
+#import "ViewController.h"
+#import "LocationViewController.h"
 
 @interface AppDelegate ()
 
@@ -132,6 +134,58 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
         }
+    }
+}
+
++ (void) registerMainController:(ViewController *)viewController {
+    mainController = viewController;
+}
+
++ (void) registerLocationController:(LocationViewController *)locationViewController {
+    locationController = locationViewController;
+}
+
++ (void) unregisterMainController {
+    mainController = nil;
+}
+
++ (void) unregisterLocationController {
+    locationController = nil;
+}
+
++ (void) updateInfo:(NSArray *)info {
+    LocationInfo *regattasInfo = nil;
+    LocationInfo *commonsInfo = nil;
+    LocationInfo *einsteinsInfo = nil;
+    NSUInteger count = [info count];
+    if (count > 0) {
+        for(int i=0;i<count;i++) {
+            LocationInfo *val = [info objectAtIndex:i];
+            if ([[val getLocation] isEqualToString:@"Regattas"]) {
+                regattasInfo = val;
+            }
+            if ([[val getLocation] isEqualToString:@"Commons"]) {
+                commonsInfo = val;
+            }
+            if ([[val getLocation] isEqualToString:@"Einsteins"]) {
+                einsteinsInfo = val;
+            }
+        }
+    }
+    if (!regattasInfo) {
+        regattasInfo = [[LocationInfo alloc] initWithName:@"Regattas"];
+    }
+    if (!commonsInfo) {
+        commonsInfo = [[LocationInfo alloc] initWithName:@"Commons"];
+    }
+    if (!einsteinsInfo) {
+        einsteinsInfo = [[LocationInfo alloc] initWithName:@"Einsteins"];
+    }
+    if (mainController) {
+        [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
+    }
+    if (locationController) {
+        [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
 }
 

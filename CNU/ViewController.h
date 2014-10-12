@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h> 
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
-#import "LocationViewController.h"
+
+@class AppDelegate;
+@class LocationViewController;
+@class LocationInfo;
 
 @interface ViewController : UIViewController
 
@@ -22,8 +25,12 @@
 @property(nonatomic, strong) IBOutlet UIImageView  *einsteinsView;
 @property(nonatomic, retain) IBOutlet UILabel  *einsteinsTitle;
 @property(nonatomic, retain) IBOutlet UILabel  *einsteinsInfo;
-@property (nonatomic, strong) IBOutlet UITapGestureRecognizer *tapRecognizer;
-//-(IBAction)fetchLocations;
 
+@property(nonatomic, retain) LocationInfo  *lastRegattasInfo;
+@property(nonatomic, retain) LocationInfo  *lastCommonsInfo;
+@property(nonatomic, retain) LocationInfo  *lastEinsteinsInfo;
+
+-(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
+-(void) updateView: (UIImageView *)view andTitle:(UILabel *)title andInfo:(UILabel *)info withLocationInfo:(LocationInfo *)locationInfo;
 @end
 

@@ -59,13 +59,19 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6T-WJ-f3P">
-                                <rect key="frame" x="269" y="211" width="62" height="16"/>
+                                <rect key="frame" x="175" y="211" width="250" height="16"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Bpk-bk-v6O"/>
                                     <constraint firstAttribute="width" constant="62" id="pi2-Sw-3eT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="pi2-Sw-3eT"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="337" y="172" width="62" height="21"/>
                                 </variation>
@@ -86,13 +92,19 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aG-sZ-sKz">
-                                <rect key="frame" x="269" y="576" width="62" height="16"/>
+                                <rect key="frame" x="175" y="576" width="250" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="62" id="DGb-D0-qTd"/>
+                                    <constraint firstAttribute="width" constant="250" id="Nrg-ok-rma"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="DGb-D0-qTd"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
                                     <rect key="frame" x="176" y="595" width="62" height="21"/>
                                 </variation>
@@ -115,13 +127,19 @@
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6z-iU-BOk">
-                                <rect key="frame" x="269" y="371" width="62" height="16"/>
+                                <rect key="frame" x="175" y="371" width="250" height="16"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="FqD-bk-Llb"/>
                                     <constraint firstAttribute="width" constant="62" id="w8L-Mr-F2z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="w8L-Mr-F2z"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="337" y="328" width="62" height="21"/>
                                 </variation>
@@ -270,13 +288,19 @@
                                 </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NJ-At-EdL">
-                                <rect key="frame" x="269" y="194" width="62" height="16"/>
+                                <rect key="frame" x="175" y="194" width="250" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="62" id="6PV-Fr-hsh"/>
+                                    <constraint firstAttribute="width" constant="250" id="oWe-yE-MSa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6PV-Fr-hsh"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="337" y="172" width="62" height="21"/>
                                 </variation>
@@ -521,6 +545,7 @@
                         <outlet property="feedbackResponseDetail" destination="Tn9-ko-yj9" id="yXt-fq-fGp"/>
                         <outlet property="feedbackResponseTitle" destination="lEN-fq-Bhn" id="2ra-Ec-sk5"/>
                         <outlet property="imageView" destination="Xmw-2g-Yn5" id="q7A-Hd-ZjY"/>
+                        <outlet property="infoLabel" destination="7NJ-At-EdL" id="fb6-TA-0YQ"/>
                         <outlet property="locationLabel" destination="GLd-ix-gDH" id="nDs-8L-zJ2"/>
                         <outlet property="minutesField" destination="Xh3-wj-5n4" id="FxG-sI-rjb"/>
                         <outlet property="minutesLabel" destination="gQx-eB-sJb" id="YKY-DF-lIn"/>

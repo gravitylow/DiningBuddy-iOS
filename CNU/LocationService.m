@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "LocationService.h"
 #import "Locator.h"
 #import "Location.h"
 #import "SettingsService.h"
 #import "Api.h"
-
 
 #pragma mark - CLLocationManagerDelegate
 
@@ -63,7 +63,7 @@
 }
 
 -(void)setInfo: (NSArray *) info {
-    // TODO update UI
+    [AppDelegate updateInfo:info];
 }
 
 -(void)updateInfo {

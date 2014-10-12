@@ -10,6 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
+@class AppDelegate;
 @class Locator;
 @class Location;
 @class SettingsService;

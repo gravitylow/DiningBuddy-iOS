@@ -7,6 +7,8 @@
 //
 
 #import "LocationViewController.h"
+#import "AppDelegate.h"
+#import "LocationInfo.h"
 
 @interface LocationViewController ()
 
@@ -14,10 +16,14 @@
 
 @implementation LocationViewController
 
+@synthesize crowdedValue;
+@synthesize minutesValue;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.locationLabel.textAlignment = NSTextAlignmentCenter;
     self.locationLabel.text = self.label;
+    self.infoLabel.textAlignment = NSTextAlignmentCenter;
     
     self.tabBarController.selectedIndex = 0;
     
@@ -43,6 +49,8 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
     
+    self.feedbackField.delegate = self;
+    
     UIImage *image = [UIImage imageNamed: self.photo];
     [self.imageView setImage:image];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
@@ -51,9 +59,11 @@
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10.0;
     self.imageView.layer.borderWidth = 1.0;
-    self.imageView.layer.borderColor = [[UIColor greenColor] CGColor];
-    
-    self.feedbackField.delegate = self;
+    if (self.initialInfo) {
+        [self updateInfoWithRegattas:self.initialInfo withCommons:self.initialInfo withEinsteins:self.initialInfo];
+    } else {
+        self.imageView.layer.borderColor = [[UIColor grayColor] CGColor];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,7 +115,7 @@
         self.feedbackField.hidden = NO;
         self.submitButton.hidden = NO;
         
-        // TODO
+        // TODO feedback implementation
         //self.feedbackResponseTitle.hidden = YES;
         //self.feedbackResponseDetail.hidden = YES;
     }
@@ -149,7 +159,32 @@
     return YES;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [AppDelegate registerLocationController:self];
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [AppDelegate unregisterLocationController];
+}
 
+-(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
+    LocationInfo *locationInfo;
+    if ([self.label isEqualToString:@"Regattas"]) {
+        locationInfo = regattas;
+    } else if ([self.label isEqualToString:@"Commons"]) {
+        locationInfo = commons;
+    } else if ([self.label isEqualToString:@"Einsteins"]) {
+        locationInfo = einsteins;
+    }
+    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+    self.imageView.layer.borderColor = [color CGColor];
+    self.locationLabel.textColor = color;
+    self.infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
+}
 
 @end

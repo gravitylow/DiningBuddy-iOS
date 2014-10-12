@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class ViewController;
+@class LocationViewController;
 @class BackendService;
+
+static ViewController *mainController = nil;
+static LocationViewController *locationController = nil;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -24,6 +29,11 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
++ (void)registerMainController: (ViewController *)viewController;
++ (void)registerLocationController: (LocationViewController *)locationViewController;
++ (void)unregisterMainController;
++ (void)unregisterLocationController;
++ (void)updateInfo: (NSArray *)info;
 
 @end
 

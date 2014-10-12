@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
+#import "LocationViewController.h"
+#import "LocationInfo.h"
 
 @interface ViewController ()
 
@@ -24,6 +27,10 @@
 @synthesize einsteinsTitle;
 @synthesize einsteinsInfo;
 
+@synthesize lastRegattasInfo;
+@synthesize lastCommonsInfo;
+@synthesize lastEinsteinsInfo;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"CNU Dining";
@@ -38,6 +45,9 @@
         view.layer.borderWidth = 1.0;
         view.layer.borderColor = [[UIColor grayColor] CGColor];
     }
+    self.regattasInfo.textAlignment = NSTextAlignmentCenter;
+    self.commonsInfo.textAlignment = NSTextAlignmentCenter;
+    self.einsteinsInfo.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,29 +62,58 @@
         c.location = @"Regattas";
         c.label = @"Regattas";
         c.photo = @"regattas_full.jpg";
+        if (lastRegattasInfo) {
+            c.initialInfo = lastRegattasInfo;
+        }
     } else if ([segue.identifier isEqualToString:@"Commons"]) {
         LocationViewController *c = [segue destinationViewController];
         c.location = @"Commons";
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
+        if (lastCommonsInfo) {
+            c.initialInfo = lastCommonsInfo;
+        }
     } else if ([segue.identifier isEqualToString:@"Einsteins"]) {
         LocationViewController *c = [segue destinationViewController];
         c.location = @"Einsteins";
         c.label = @"Einstein's";
         c.photo = @"einsteins_full.jpg";
+        if (lastEinsteinsInfo) {
+            c.initialInfo = lastEinsteinsInfo;
+        }
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [AppDelegate registerMainController:self];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
+    [AppDelegate unregisterMainController];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+-(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
+    lastRegattasInfo = regattas;
+    lastCommonsInfo = commons;
+    lastEinsteinsInfo = einsteins;
+    [self updateView:regattasView andTitle:regattasTitle andInfo:regattasInfo withLocationInfo:regattas];
+    [self updateView:commonsView andTitle:commonsTitle andInfo:commonsInfo withLocationInfo:commons];
+    [self updateView:einsteinsView andTitle:einsteinsTitle andInfo:einsteinsInfo withLocationInfo:einsteins];
+    
+}
+
+-(void) updateView: (UIImageView *)view andTitle:(UILabel *)title andInfo:(UILabel *)info withLocationInfo:(LocationInfo *)locationInfo {
+    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+    view.layer.borderColor = [color CGColor];
+    title.textColor = color;
+    info.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
 
 @end

@@ -9,16 +9,21 @@
 #import <UIKit/UIKit.h>
 #import "LocationInfo.h"
 
-@interface LocationViewController : UIViewController <UITabBarControllerDelegate, UIWebViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
-    int crowdedValue;
-    int minutesValue;
-}
+@class AppDelegate;
+@class LocationInfo;
+
+@interface LocationViewController : UIViewController <UITabBarControllerDelegate, UIWebViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+
+@property(nonatomic) int crowdedValue;
+@property(nonatomic) int minutesValue;
 
 @property(nonatomic, retain) NSString  *location;
 @property(nonatomic, retain) NSString  *label;
 @property(nonatomic, retain) NSString  *photo;
+@property(nonatomic, retain) LocationInfo *initialInfo;
 
 @property(nonatomic, retain) IBOutlet UILabel  *locationLabel;
+@property(nonatomic, retain) IBOutlet UILabel  *infoLabel;
 @property(nonatomic, retain) IBOutlet UIImageView  *imageView;
 @property(nonatomic, retain) IBOutlet UIWebView  *webView;
 @property(nonatomic, retain) IBOutlet UITabBar  *tabBar;
@@ -36,5 +41,7 @@
 @property(nonatomic, retain) IBOutlet UILabel  *feedbackResponseDetail;
 @property(nonatomic, strong) NSArray *crowdedArray;
 @property(nonatomic, strong) NSArray *minutesArray;
+
+-(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 
 @end
