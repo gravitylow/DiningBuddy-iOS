@@ -10,6 +10,8 @@
 #import "BackendService.h"
 #import "ViewController.h"
 #import "LocationViewController.h"
+#import "Location.h"
+#import "LocationInfo.h"
 
 @interface AppDelegate ()
 
@@ -142,6 +144,7 @@
 }
 
 + (void) registerLocationController:(LocationViewController *)locationViewController {
+    NSLog(@"Location controller registered");
     locationController = locationViewController;
 }
 
@@ -150,17 +153,19 @@
 }
 
 + (void) unregisterLocationController {
+    NSLog(@"Location controller unregistered");
     locationController = nil;
 }
 
 + (void) updateInfo:(NSArray *)info {
+    NSLog(@"Info updated");
     LocationInfo *regattasInfo = nil;
     LocationInfo *commonsInfo = nil;
     LocationInfo *einsteinsInfo = nil;
     NSUInteger count = [info count];
     if (count > 0) {
         for(int i=0;i<count;i++) {
-            LocationInfo *val = [info objectAtIndex:i];
+            LocationInfo *val = (LocationInfo *)[info objectAtIndex:i];
             if ([[val getLocation] isEqualToString:@"Regattas"]) {
                 regattasInfo = val;
             }
@@ -182,10 +187,21 @@
         einsteinsInfo = [[LocationInfo alloc] initWithName:@"Einsteins"];
     }
     if (mainController) {
+        NSLog(@"... to main view");
         [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
     if (locationController) {
+        NSLog(@"... to location view");
         [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
+    }
+}
+
++ (void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+    if (mainController) {
+        [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    }
+    if (locationController) {
+        [locationController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
 }
 

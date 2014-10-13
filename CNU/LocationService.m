@@ -17,6 +17,8 @@
 
 @implementation LocationService
 
+long const MIN_UPDATE = 60 * 1000;
+
 @synthesize locationManager;
 @synthesize locator;
 @synthesize hasLocation;
@@ -27,6 +29,7 @@
 @synthesize settingsService;
 @synthesize dieFlag;
 @synthesize timerSource;
+@synthesize lastPublishedUpdate;
 
 -(id)initWithSettings:(SettingsService *) settings {
     self = [super init];
@@ -63,6 +66,7 @@
 }
 
 -(void)setInfo: (NSArray *) info {
+    lastLocationInfo = info;
     [AppDelegate updateInfo:info];
 }
 
@@ -92,10 +96,32 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     
-    CLLocationCoordinate2D currentCoordinates = newLocation.coordinate;
+    if (![locator isSetup] || ![settingsService getShouldConnect]) {
+        NSLog(@"Locator isSetup: %i", [locator isSetup]);
+        NSLog(@"Settings shouldConnect: %i", [settingsService getShouldConnect]);
+        return;
+    }
     
-    //NSLog(@"Entered new Location with the coordinates Latitude: %f Longitude: %f", currentCoordinates.latitude, currentCoordinates.longitude);
-    // TODO send location updates
+    CLLocationCoordinate2D currentCoordinates = newLocation.coordinate;
+
+    hasLocation = true;
+    lastLatitude = currentCoordinates.latitude;
+    lastLongitude = currentCoordinates.longitude;
+    Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
+    lastLocation = location;
+    
+    [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
+    
+    long currentTime = [SettingsService getTime];
+    NSLog(@"Current time: %li", currentTime);
+    NSLog(@"Last update: %li", lastPublishedUpdate);
+    NSLog(@"Diff: %li", currentTime - lastPublishedUpdate);
+    
+    if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
+        NSLog(@"Posting location");
+        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
+        lastPublishedUpdate = currentTime;
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

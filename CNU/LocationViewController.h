@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LocationInfo.h"
 
 @class AppDelegate;
+@class Location;
 @class LocationInfo;
 
 @interface LocationViewController : UIViewController <UITabBarControllerDelegate, UIWebViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 
 @property(nonatomic) int crowdedValue;
 @property(nonatomic) int minutesValue;
+@property(nonatomic) id feedbackTab;
 
 @property(nonatomic, retain) NSString  *location;
 @property(nonatomic, retain) NSString  *label;
@@ -43,5 +44,5 @@
 @property(nonatomic, strong) NSArray *minutesArray;
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
-
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end

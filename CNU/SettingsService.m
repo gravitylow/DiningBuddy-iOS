@@ -34,8 +34,12 @@
     return self;
 }
 
--(NSString *) getUUID {
++(NSString *) getUUID {
     return [[[NSUUID UUID] UUIDString] lowercaseString];
+}
+
++(long) getTime {
+    return [@(floor([[NSDate date] timeIntervalSince1970] * 1000)) longValue];
 }
 
 -(void) cacheLocations: (NSString *) json {

@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         settingsService = [[SettingsService alloc] init];
-        NSLog(@"Device UUID: %@", [settingsService getUUID]);
+        NSLog(@"Device UUID: %@", [SettingsService getUUID]);
         NSLog(@"Wifi Only: %i", [settingsService getWifiOnly]);
         NSLog(@"Wifi Connected: %i", [settingsService isWifiConnected]);
         NSLog(@"Should connect: %i", [settingsService getShouldConnect]);

@@ -85,7 +85,8 @@ NSString * const API_CONTENT_TYPE = @"application/json";
 }
 
 +(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long)time withUUID:(NSString *)uuid {
-    //TODO
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"time\" : %li }", uuid, latitude, longitude, [location getName], time];
+    NSLog(@"Update: %@", json);
 }
 
 +(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long)time withUUID:(NSString *)uuid {

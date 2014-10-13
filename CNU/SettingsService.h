@@ -18,7 +18,8 @@
 @property(nonatomic) long lastFeedbackCommons;
 @property(nonatomic) long lastFeedbackEinsteins;
 
--(NSString *) getUUID;
++(NSString *) getUUID;
++(long) getTime;
 -(void) cacheLocations: (NSString *) json;
 -(NSString *) getCachedLocations;
 -(bool) getWifiOnly;

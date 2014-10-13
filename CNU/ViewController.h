@@ -12,6 +12,7 @@
 
 @class AppDelegate;
 @class LocationViewController;
+@class Location;
 @class LocationInfo;
 
 @interface ViewController : UIViewController
@@ -32,5 +33,6 @@
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 -(void) updateView: (UIImageView *)view andTitle:(UILabel *)title andInfo:(UILabel *)info withLocationInfo:(LocationInfo *)locationInfo;
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end
 

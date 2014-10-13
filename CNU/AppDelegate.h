@@ -12,6 +12,8 @@
 @class ViewController;
 @class LocationViewController;
 @class BackendService;
+@class Location;
+@class LocationInfo;
 
 static ViewController *mainController = nil;
 static LocationViewController *locationController = nil;
@@ -34,6 +36,7 @@ static LocationViewController *locationController = nil;
 + (void)unregisterMainController;
 + (void)unregisterLocationController;
 + (void)updateInfo: (NSArray *)info;
++ (void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 
 @end
 

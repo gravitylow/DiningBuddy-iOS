@@ -116,7 +116,7 @@ withCoordinatePairs:(NSMutableArray *)coordinatePairs
     return value;
 }
 - (NSString *) jsonValue {
-    return [NSString stringWithFormat:@"%@%@\", \"coordinatePairs\" : %@, \"subLocations\" : %@}", @"{\"name\" : \"", name, [self coordinatePairsJsonValue], [self subLocationsJsonValue]];
+    return [NSString stringWithFormat:@"{\"name\" : \"%@\", \"coordinatePairs\" : %@, \"subLocations\" : %@}", name, [self coordinatePairsJsonValue], [self subLocationsJsonValue]];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class SettingsService;
 @class Location;
 @class Api;
 
@@ -19,7 +20,7 @@
 - (id) init;
 - (id) initWithJson: (NSString *) json;
 - (Location *) getLocation: (double) latitude : (double) longitude;
-- (Location *) getApplicableLocation: (Location *) base : (double) latitude : (double) longitude;
++ (Location *) getApplicableLocation: (Location *) base : (double) latitude : (double) longitude;
 - (void) setLocations: (NSArray *)array;
 - (void) updateLocations;
 - (void) postLocation: (double) latitude : (double) longitude : (Location *) location : (NSString *) uuid;

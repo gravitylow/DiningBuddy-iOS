@@ -9,6 +9,7 @@
 #import "LocationViewController.h"
 #import "AppDelegate.h"
 #import "LocationInfo.h"
+#import "Location.h"
 
 @interface LocationViewController ()
 
@@ -18,6 +19,7 @@
 
 @synthesize crowdedValue;
 @synthesize minutesValue;
+@synthesize feedbackTab;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,7 +27,7 @@
     self.locationLabel.text = self.label;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
     
-    self.tabBarController.selectedIndex = 0;
+    feedbackTab = [[self.tabBarController viewControllers] objectAtIndex:1];
     
     self.crowdedArray  = [[NSArray alloc] initWithObjects:@"Not crowded at all",@"Somewhat crowded",@"Very crowded",nil];
     self.minutesArray  = [[NSArray alloc] initWithObjects:@"1 Minute",@"2 Minutes",@"3 Minutes",@"4 Minutes",@"5 Minutes",@"6 Minutes",@"7 Minutes",@"8 Minutes",@"9 Minutes",@"10 Minutes", nil];
@@ -95,30 +97,38 @@
     if ([item.title isEqualToString:@"Activity"]) {
         self.webView.hidden = NO;
         
-        self.crowdedLabel.hidden = YES;
-        self.crowdedField.hidden = YES;
-        self.minutesLabel.hidden = YES;
-        self.minutesField.hidden = YES;
-        self.feedbackLabel.hidden = YES;
-        self.feedbackField.hidden = YES;
-        self.submitButton.hidden = YES;
+        [self setFeedbackHidden:true];
         self.feedbackResponseTitle.hidden = YES;
         self.feedbackResponseDetail.hidden = YES;
     } else if ([item.title isEqualToString:@"Feedback"]) {
         self.webView.hidden = YES;
         
-        self.crowdedLabel.hidden = NO;
-        self.crowdedField.hidden = NO;
-        self.minutesLabel.hidden = NO;
-        self.minutesField.hidden = NO;
-        self.feedbackLabel.hidden = NO;
-        self.feedbackField.hidden = NO;
-        self.submitButton.hidden = NO;
+        [self setFeedbackHidden:false];
         
         // TODO feedback implementation
         //self.feedbackResponseTitle.hidden = YES;
         //self.feedbackResponseDetail.hidden = YES;
     }
+}
+
+- (void) setFeedbackHidden: (bool) hidden {
+    self.crowdedLabel.hidden = hidden;
+    self.crowdedField.hidden = hidden;
+    self.minutesLabel.hidden = hidden;
+    self.minutesField.hidden = hidden;
+    self.feedbackLabel.hidden = hidden;
+    self.feedbackField.hidden = hidden;
+    self.submitButton.hidden = hidden;
+}
+
+- (void) setFeedbackTabHidden: (bool) hidden {
+    NSMutableArray * vcs = [NSMutableArray arrayWithArray:[self.tabBarController viewControllers]];
+    if (hidden) {
+        [vcs removeObject:feedbackTab];
+    } else {
+        [vcs addObject:feedbackTab];
+    }
+    [self.tabBarController setViewControllers:vcs];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -185,6 +195,9 @@
     self.imageView.layer.borderColor = [color CGColor];
     self.locationLabel.textColor = color;
     self.infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
+}
+
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {[self setFeedbackHidden:![[location getName] isEqualToString:self.label]];
 }
 
 @end

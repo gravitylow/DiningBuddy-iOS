@@ -7,6 +7,7 @@
 //
 
 #import "Locator.h"
+#import "SettingsService.h"
 #import "Location.h"
 #import "Api.h"
 
@@ -36,14 +37,18 @@
     NSUInteger count = [locations count];
     for (int i=0;i<count;i++) {
         Location *val = [locations objectAtIndex:i];
-        Location *applicable = [self getApplicableLocation:val :latitude :longitude];
+        NSLog(@"getLocation: %@", [val getName]);
+        NSLog(@"getLocation: %i", [val hasSubLocations]);
+        Location *applicable = [Locator getApplicableLocation:val :latitude :longitude];
         if (applicable != nil) {
             return applicable;
         }
     }
     return nil;
 }
-- (Location *) getApplicableLocation: (Location *) base : (double) latitude : (double) longitude {
++ (Location *) getApplicableLocation: (Location *) __weak base : (double) latitude : (double) longitude {
+    NSLog(@"getApplicableLocation: %@", [base getName]);
+    NSLog(@"getApplicableLocation: %i", [base hasSubLocations]);
     if (![base hasSubLocations]) {
         if ([base isInsideLocation:latitude :longitude]) {
             return base;
@@ -51,10 +56,11 @@
             return nil;
         }
     }
+    
     NSUInteger count = [[base getSubLocations] count];
     for (int i=0;i<count;i++) {
-        Location *val = [locations objectAtIndex:i];
-        Location *applicable = [self getApplicableLocation:val :latitude :longitude];
+        Location *val = [[base getSubLocations] objectAtIndex:i];
+        Location *applicable = [Locator getApplicableLocation:val :latitude :longitude];
         if (applicable != nil) {
             return applicable;
         }
@@ -64,6 +70,7 @@
 - (void) setLocations: (NSArray *)array {
     NSLog(@"Locations set to size %i", [array count]);
     locations = array;
+    setup = true;
 }
 
 - (void) updateLocations {
@@ -73,7 +80,7 @@
     });
 }
 - (void) postLocation: (double) latitude : (double) longitude : (Location *) location : (NSString *) uuid {
-    [Api sendUpdateWithLatitude:latitude withLongitude:longitude withLocation:location withTime:[[NSDate date] timeIntervalSince1970] withUUID:uuid];
+    [Api sendUpdateWithLatitude:latitude withLongitude:longitude withLocation:location withTime:[SettingsService getTime] withUUID:uuid];
 }
 - (NSArray *) getLocations {
     return locations;

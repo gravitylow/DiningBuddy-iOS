@@ -28,7 +28,7 @@
 }
 
 - (NSString *)jsonValue {
-    return [NSString stringWithFormat:@"%@%f, \"lon\" : %f}", @"{\"lat\" : ", self.latitude, self.longitude];
+    return [NSString stringWithFormat:@"{\"lat\" %f, \"lon\" : %f}", self.latitude, self.longitude];
 }
 
 @end

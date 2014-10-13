@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "LocationViewController.h"
+#import "Location.h"
 #import "LocationInfo.h"
 
 @interface ViewController ()
@@ -114,6 +115,10 @@
     view.layer.borderColor = [color CGColor];
     title.textColor = color;
     info.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
+}
+
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+    
 }
 
 @end
