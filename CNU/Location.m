@@ -17,27 +17,27 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.coordinatePairs = [NSMutableArray alloc];
-        self.subLocations = [NSMutableArray alloc];
+        self.coordinatePairs = [NSArray alloc];
+        self.subLocations = [NSArray alloc];
     }
     return self;
 }
-- (id) initWithName:(NSString *)name
-withCoordinatePairs:(NSMutableArray *)coordinatePairs {
+- (id) initWithName:(NSString *)nameValue
+withCoordinatePairs:(NSArray *)coordinatePairsValue {
     if (self = [super init]) {
-        self.name = name;
-        self.coordinatePairs = coordinatePairs;
-        self.subLocations = [NSMutableArray alloc];
+        self.name = nameValue;
+        self.coordinatePairs = coordinatePairsValue;
+        self.subLocations = [[NSArray alloc] init];
     }
     return self;
 }
-- (id) initWithName:(NSString *)name
-withCoordinatePairs:(NSMutableArray *)coordinatePairs
-   withSubLocations:(NSMutableArray *)subLocations {
+- (id) initWithName:(NSString *)nameValue
+withCoordinatePairs:(NSArray *)coordinatePairsValue
+   withSubLocations:(NSArray *)subLocationsValue {
     if (self = [super init]) {
-        self.name = name;
-        self.coordinatePairs = coordinatePairs;
-        self.subLocations = subLocations;
+        self.name = nameValue;
+        self.coordinatePairs = coordinatePairsValue;
+        self.subLocations = subLocationsValue;
     }
     return self;
 }
@@ -60,12 +60,13 @@ withCoordinatePairs:(NSMutableArray *)coordinatePairs
     
     for(int i=0;i<n;i++) {
         CoordinatePair *pair1 = [coordinatePairs objectAtIndex:i];
-        CoordinatePair *pair2 = [coordinatePairs objectAtIndex:(i+1)%n];
+        CoordinatePair *pair2 = [coordinatePairs objectAtIndex:((i+1)%n)];
         point1lat = [pair1 getLatitude] - latitude;
         point1long = [pair1 getLongitude] - longitude;
         point2lat = [pair2 getLatitude] - latitude;
         point2long = [pair2 getLongitude] - longitude;
-        angle += [self angle2D:point1lat :point1long :point1lat :point2long];
+        
+        angle += [self angle2D:point1lat :point1long :point2lat :point2long];
     }
     
     if (abs(angle) < M_PI) {

@@ -17,19 +17,14 @@
 
 @implementation LocationService
 
+long const MIN_LOCAL_UPDATE = 30 * 1000;
 long const MIN_UPDATE = 60 * 1000;
 
-@synthesize locationManager;
-@synthesize locator;
-@synthesize hasLocation;
-@synthesize lastLatitude;
-@synthesize lastLongitude;
-@synthesize lastLocation;
-@synthesize lastLocationInfo;
+@synthesize locationManager, locator, hasLocation;
+@synthesize lastLatitude, lastLongitude, lastLocation, lastLocationInfo;
 @synthesize settingsService;
-@synthesize dieFlag;
-@synthesize timerSource;
-@synthesize lastPublishedUpdate;
+@synthesize timerSource, dieFlag;
+@synthesize lastPublishedUpdate, lastUpdate;
 
 -(id)initWithSettings:(SettingsService *) settings {
     self = [super init];
@@ -40,7 +35,8 @@ long const MIN_UPDATE = 60 * 1000;
         NSString *cache = [settingsService getCachedLocations];
         NSLog(@"Location cache: %@", cache);
         if (cache) {
-            locator = [[Locator alloc] initWithJson:cache];
+            //locator = [[Locator alloc] initWithJson:cache];
+            locator = [[Locator alloc] init];
             NSLog(@"Setup from cache");
         } else {
             locator = [[Locator alloc] init];
@@ -102,6 +98,14 @@ long const MIN_UPDATE = 60 * 1000;
         return;
     }
     
+    long currentTime = [SettingsService getTime];
+    
+    if (lastUpdate != 0 && (currentTime - lastUpdate) < MIN_LOCAL_UPDATE) {
+        return;
+    }
+    
+    lastUpdate = currentTime;
+    
     CLLocationCoordinate2D currentCoordinates = newLocation.coordinate;
 
     hasLocation = true;
@@ -112,13 +116,7 @@ long const MIN_UPDATE = 60 * 1000;
     
     [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
     
-    long currentTime = [SettingsService getTime];
-    NSLog(@"Current time: %li", currentTime);
-    NSLog(@"Last update: %li", lastPublishedUpdate);
-    NSLog(@"Diff: %li", currentTime - lastPublishedUpdate);
-    
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
-        NSLog(@"Posting location");
         [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
         lastPublishedUpdate = currentTime;
     }

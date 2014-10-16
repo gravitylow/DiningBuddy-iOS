@@ -37,8 +37,6 @@
     NSUInteger count = [locations count];
     for (int i=0;i<count;i++) {
         Location *val = [locations objectAtIndex:i];
-        NSLog(@"getLocation: %@", [val getName]);
-        NSLog(@"getLocation: %i", [val hasSubLocations]);
         Location *applicable = [Locator getApplicableLocation:val :latitude :longitude];
         if (applicable != nil) {
             return applicable;
@@ -46,9 +44,7 @@
     }
     return nil;
 }
-+ (Location *) getApplicableLocation: (Location *) __weak base : (double) latitude : (double) longitude {
-    NSLog(@"getApplicableLocation: %@", [base getName]);
-    NSLog(@"getApplicableLocation: %i", [base hasSubLocations]);
++ (Location *) getApplicableLocation: (Location *) base : (double) latitude : (double) longitude {
     if (![base hasSubLocations]) {
         if ([base isInsideLocation:latitude :longitude]) {
             return base;
@@ -59,8 +55,8 @@
     
     NSUInteger count = [[base getSubLocations] count];
     for (int i=0;i<count;i++) {
-        Location *val = [[base getSubLocations] objectAtIndex:i];
-        Location *applicable = [Locator getApplicableLocation:val :latitude :longitude];
+        Location *value = (Location *)[[base getSubLocations] objectAtIndex:i];
+        Location *applicable = [Locator getApplicableLocation:value :latitude :longitude];
         if (applicable != nil) {
             return applicable;
         }
@@ -68,9 +64,16 @@
     return [base isInsideLocation:latitude :longitude] ? base : nil;
 }
 - (void) setLocations: (NSArray *)array {
-    NSLog(@"Locations set to size %i", [array count]);
-    locations = array;
-    setup = true;
+    if ([array count] == 0) {
+        NSLog(@"Detected no locations recieved, trying again soon...");
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 30), ^{
+            [self updateLocations];
+        });
+    } else {
+        NSLog(@"Locations set to size %i", [array count]);
+        locations = array;
+        setup = true;
+    }
 }
 
 - (void) updateLocations {

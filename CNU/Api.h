@@ -12,6 +12,7 @@
 @class Locator;
 @class LocationService;
 @class LocationInfo;
+@class CoordinatePair;
 
 @interface Api : NSObject
 

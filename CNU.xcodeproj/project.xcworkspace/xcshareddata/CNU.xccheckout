@@ -12,7 +12,7 @@
 	<dict>
 		<key>2D03D2FA5373085E9A412AB82037C1A161608EB6</key>
 		<string>github.com:gravitylow/CNU-Android.git</string>
-		<key>4572A21A065E524EE469FD5D3D80F4A0E5B7DC06</key>
+		<key>6127B68133F51A8613CBE16E49DA5FA9588607C6</key>
 		<string>github.com:gravitylow/CNU-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
@@ -20,8 +20,8 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>2D03D2FA5373085E9A412AB82037C1A161608EB6</key>
-		<string>../../../../AndroidStudioProjects/CNU</string>
-		<key>4572A21A065E524EE469FD5D3D80F4A0E5B7DC06</key>
+		<string>../../../AndroidStudioProjects/CNU</string>
+		<key>6127B68133F51A8613CBE16E49DA5FA9588607C6</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -29,14 +29,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4572A21A065E524EE469FD5D3D80F4A0E5B7DC06</string>
+	<string>6127B68133F51A8613CBE16E49DA5FA9588607C6</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4572A21A065E524EE469FD5D3D80F4A0E5B7DC06</string>
+			<string>6127B68133F51A8613CBE16E49DA5FA9588607C6</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CNU</string>
 		</dict>

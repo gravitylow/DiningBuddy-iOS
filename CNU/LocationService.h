@@ -18,6 +18,7 @@
 
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
+extern long const MIN_LOCAL_UPDATE;
 extern long const MIN_UPDATE;
 
 @property (nonatomic) double lastLatitude;
@@ -29,6 +30,7 @@ extern long const MIN_UPDATE;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) SettingsService *settingsService;
 @property (nonatomic) bool dieFlag;
+@property (nonatomic) long lastUpdate;
 @property (nonatomic) long lastPublishedUpdate;
 @property (nonatomic) dispatch_source_t timerSource;
 

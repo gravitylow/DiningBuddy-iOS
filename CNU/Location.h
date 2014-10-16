@@ -17,11 +17,11 @@
 @property(nonatomic, retain) NSArray *subLocations;
 
 - (id) init;
-- (id) initWithName:(NSString *)name
-            withCoordinatePairs:(NSArray *)coordinatePairs;
-- (id) initWithName:(NSString *)name
-            withCoordinatePairs:(NSArray *)coordinatePairs
-            withSubLocations:(NSArray *)subLocations;
+- (id) initWithName:(NSString *)nameValue
+            withCoordinatePairs:(NSArray *)coordinatePairsValue;
+- (id) initWithName:(NSString *)nameValue
+            withCoordinatePairs:(NSArray *)coordinatePairsValue
+            withSubLocations:(NSArray *)subLocationsValue;
 - (NSString *) getName;
 - (NSArray *) getSubLocations;
 - (bool) hasSubLocations;
