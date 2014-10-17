@@ -66,9 +66,7 @@
 - (void) setLocations: (NSArray *)array {
     if ([array count] == 0) {
         NSLog(@"Detected no locations recieved, trying again soon...");
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 30), ^{
-            [self updateLocations];
-        });
+        [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(updateLocations) userInfo:nil repeats:NO];
     } else {
         NSLog(@"Locations set to size %i", [array count]);
         locations = array;

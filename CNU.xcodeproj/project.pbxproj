@@ -23,6 +23,10 @@
 		66AB536819C6176800F4877A /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB536719C6176800F4877A /* LocationService.m */; };
 		66AB536E19C63D9500F4877A /* commons_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66AB536C19C63D9500F4877A /* commons_full.jpg */; };
 		66AB536F19C63D9500F4877A /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66AB536D19C63D9500F4877A /* regattas_full.jpg */; };
+		66C214F119F0830F00BECC96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F019F0830F00BECC96 /* BannerViewController.m */; };
+		66C214F419F08D7300BECC96 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F319F08D7300BECC96 /* FeedbackViewController.m */; };
+		66C214F819F08DB100BECC96 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F719F08DB100BECC96 /* GraphViewController.m */; };
+		66C2150019F0AC2000BECC96 /* TabsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214FF19F0AC2000BECC96 /* TabsController.m */; };
 		66C793BC19DDE1B4007AC4BC /* CoordinatePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793BB19DDE1B4007AC4BC /* CoordinatePair.m */; };
 		66C793BF19DDE3BA007AC4BC /* LocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793BE19DDE3BA007AC4BC /* LocationInfo.m */; };
 		66C793C219DDE575007AC4BC /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793C119DDE575007AC4BC /* Location.m */; };
@@ -70,6 +74,14 @@
 		66AB536719C6176800F4877A /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
 		66AB536C19C63D9500F4877A /* commons_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = commons_full.jpg; path = ../../Downloads/commons_full.jpg; sourceTree = "<group>"; };
 		66AB536D19C63D9500F4877A /* regattas_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = regattas_full.jpg; path = ../../Downloads/regattas_full.jpg; sourceTree = "<group>"; };
+		66C214EF19F0830F00BECC96 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
+		66C214F019F0830F00BECC96 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
+		66C214F219F08D7300BECC96 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		66C214F319F08D7300BECC96 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		66C214F619F08DB100BECC96 /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
+		66C214F719F08DB100BECC96 /* GraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphViewController.m; sourceTree = "<group>"; };
+		66C214FE19F0AC2000BECC96 /* TabsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabsController.h; sourceTree = "<group>"; };
+		66C214FF19F0AC2000BECC96 /* TabsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabsController.m; sourceTree = "<group>"; };
 		66C793BA19DDE1B4007AC4BC /* CoordinatePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinatePair.h; sourceTree = "<group>"; };
 		66C793BB19DDE1B4007AC4BC /* CoordinatePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinatePair.m; sourceTree = "<group>"; };
 		66C793BD19DDE3BA007AC4BC /* LocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfo.h; sourceTree = "<group>"; };
@@ -126,6 +138,7 @@
 		66AB532819C5104D00F4877A /* CNU */ = {
 			isa = PBXGroup;
 			children = (
+				66C214F519F08D9900BECC96 /* view */,
 				6614D17219E7587600E2AB53 /* Reachability.h */,
 				6614D17319E7587600E2AB53 /* Reachability.m */,
 				66AB536519C6175A00F4877A /* service */,
@@ -139,8 +152,6 @@
 				66AB533B19C5104D00F4877A /* LaunchScreen.xib */,
 				66AB533019C5104D00F4877A /* CNU.xcdatamodeld */,
 				66AB532919C5104D00F4877A /* Supporting Files */,
-				6614D16C19E6DFA900E2AB53 /* LocationViewController.h */,
-				6614D16D19E6DFA900E2AB53 /* LocationViewController.m */,
 				6614D17819EA2BC300E2AB53 /* Api.h */,
 				6614D17919EA2BC300E2AB53 /* Api.m */,
 			);
@@ -199,6 +210,23 @@
 				6614D17619EA239A00E2AB53 /* BackendService.m */,
 			);
 			name = service;
+			sourceTree = "<group>";
+		};
+		66C214F519F08D9900BECC96 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6614D16C19E6DFA900E2AB53 /* LocationViewController.h */,
+				6614D16D19E6DFA900E2AB53 /* LocationViewController.m */,
+				66C214EF19F0830F00BECC96 /* BannerViewController.h */,
+				66C214F019F0830F00BECC96 /* BannerViewController.m */,
+				66C214F219F08D7300BECC96 /* FeedbackViewController.h */,
+				66C214F319F08D7300BECC96 /* FeedbackViewController.m */,
+				66C214F619F08DB100BECC96 /* GraphViewController.h */,
+				66C214F719F08DB100BECC96 /* GraphViewController.m */,
+				66C214FE19F0AC2000BECC96 /* TabsController.h */,
+				66C214FF19F0AC2000BECC96 /* TabsController.m */,
+			);
+			name = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,17 +341,21 @@
 				66AB532F19C5104D00F4877A /* AppDelegate.m in Sources */,
 				66AB533219C5104D00F4877A /* CNU.xcdatamodeld in Sources */,
 				6614D17A19EA2BC300E2AB53 /* Api.m in Sources */,
+				66C2150019F0AC2000BECC96 /* TabsController.m in Sources */,
 				66C793C519DDE727007AC4BC /* Locator.m in Sources */,
 				66AB533519C5104D00F4877A /* ViewController.m in Sources */,
 				66AB536819C6176800F4877A /* LocationService.m in Sources */,
 				66AB532C19C5104D00F4877A /* main.m in Sources */,
+				66C214F419F08D7300BECC96 /* FeedbackViewController.m in Sources */,
 				66C793BC19DDE1B4007AC4BC /* CoordinatePair.m in Sources */,
 				66C793C219DDE575007AC4BC /* Location.m in Sources */,
+				66C214F819F08DB100BECC96 /* GraphViewController.m in Sources */,
 				66C793BF19DDE3BA007AC4BC /* LocationInfo.m in Sources */,
 				6614D17719EA239A00E2AB53 /* BackendService.m in Sources */,
 				6614D17119E7543A00E2AB53 /* SettingsService.m in Sources */,
 				6614D17419E7587600E2AB53 /* Reachability.m in Sources */,
 				6614D16E19E6DFA900E2AB53 /* LocationViewController.m in Sources */,
+				66C214F119F0830F00BECC96 /* BannerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

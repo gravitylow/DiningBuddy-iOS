@@ -57,30 +57,28 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue: %@", segue.identifier);
+    NSLog(@"prepareForSegue: %@ (viewcontroller)", segue.identifier);
+    LocationViewController *c = [segue destinationViewController];
     if ([segue.identifier isEqualToString:@"Regattas"]) {
-        LocationViewController *c = [segue destinationViewController];
         c.location = @"Regattas";
         c.label = @"Regattas";
         c.photo = @"regattas_full.jpg";
         if (lastRegattasInfo) {
-            c.initialInfo = lastRegattasInfo;
+            c.info = lastRegattasInfo;
         }
     } else if ([segue.identifier isEqualToString:@"Commons"]) {
-        LocationViewController *c = [segue destinationViewController];
         c.location = @"Commons";
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
         if (lastCommonsInfo) {
-            c.initialInfo = lastCommonsInfo;
+            c.info = lastCommonsInfo;
         }
     } else if ([segue.identifier isEqualToString:@"Einsteins"]) {
-        LocationViewController *c = [segue destinationViewController];
         c.location = @"Einsteins";
         c.label = @"Einstein's";
         c.photo = @"einsteins_full.jpg";
         if (lastEinsteinsInfo) {
-            c.initialInfo = lastEinsteinsInfo;
+            c.info = lastEinsteinsInfo;
         }
     }
 }
