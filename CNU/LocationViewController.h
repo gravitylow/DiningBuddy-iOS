@@ -21,6 +21,8 @@
 @property(nonatomic, retain) NSString  *photo;
 @property(nonatomic, retain) LocationInfo *info;
 @property(nonatomic, retain) IBOutlet UITabBar  *tabBar;
+@property(nonatomic, retain) BannerViewController *banner;
+@property(nonatomic, retain) TabsController *tabs;
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;

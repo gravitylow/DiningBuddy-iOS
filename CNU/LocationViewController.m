@@ -19,7 +19,7 @@
 
 @implementation LocationViewController
 
-@synthesize location, label, photo, info;
+@synthesize location, label, photo, info, banner, tabs;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,6 +52,7 @@
         if (self.info) {
             c.info = self.info;
         }
+        banner = c;
     } else if ([segue.identifier isEqualToString:@"Tabs"]) {
         TabsController *c = [segue destinationViewController];
         c.location = self.location;
@@ -60,6 +61,7 @@
         if (self.info) {
             c.info = self.info;
         }
+        tabs = c;
     }
 }
 
@@ -72,12 +74,11 @@
     } else if ([self.label isEqualToString:@"Einsteins"]) {
         locationInfo = einsteins;
     }
-    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+    [banner updateViewWithLocationInfo:locationInfo];
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    bool shouldShowFeedback = [[location getName] isEqualToString:self.label];
+    [tabs updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 
 @end

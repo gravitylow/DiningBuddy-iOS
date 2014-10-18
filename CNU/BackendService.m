@@ -12,9 +12,6 @@
 
 @implementation BackendService
 
-@synthesize settingsService;
-@synthesize locationService;
-
 -(id)init {
     self = [super init];
     if (self) {
@@ -30,11 +27,11 @@
     return self;
 }
 
--(SettingsService *) getSettingsService {
++(SettingsService *) getSettingsService {
     return settingsService;
 }
 
--(LocationService *) getLocationService {
++(LocationService *) getLocationService {
     return locationService;
 }
 

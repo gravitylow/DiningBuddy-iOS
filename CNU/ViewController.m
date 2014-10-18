@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "LocationViewController.h"
+#import "BannerViewController.h"
 #import "Location.h"
 #import "LocationInfo.h"
 
@@ -19,14 +20,8 @@
 @implementation ViewController
 
 @synthesize regattasView;
-@synthesize regattasTitle;
-@synthesize regattasInfo;
 @synthesize commonsView;
-@synthesize commonsTitle;
-@synthesize commonsInfo;
 @synthesize einsteinsView;
-@synthesize einsteinsTitle;
-@synthesize einsteinsInfo;
 
 @synthesize lastRegattasInfo;
 @synthesize lastCommonsInfo;
@@ -35,20 +30,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"CNU Dining";
-    
-    for (int i=1;i<=3;i++) {
-        UIImageView *view = (UIImageView *)[self.view viewWithTag:i];
-        view.contentMode = UIViewContentModeScaleToFill;
-        view.center = self.view.center;
-        
-        view.layer.masksToBounds = YES;
-        view.layer.cornerRadius = 10.0;
-        view.layer.borderWidth = 1.0;
-        view.layer.borderColor = [[UIColor grayColor] CGColor];
-    }
-    self.regattasInfo.textAlignment = NSTextAlignmentCenter;
-    self.commonsInfo.textAlignment = NSTextAlignmentCenter;
-    self.einsteinsInfo.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,26 +40,35 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSLog(@"prepareForSegue: %@ (viewcontroller)", segue.identifier);
     LocationViewController *c = [segue destinationViewController];
-    if ([segue.identifier isEqualToString:@"Regattas"]) {
+    if ([segue.identifier hasSuffix:@"Regattas"]) {
         c.location = @"Regattas";
         c.label = @"Regattas";
         c.photo = @"regattas_full.jpg";
         if (lastRegattasInfo) {
             c.info = lastRegattasInfo;
         }
-    } else if ([segue.identifier isEqualToString:@"Commons"]) {
+        if ([segue.identifier hasPrefix:@"embed"]) {
+            regattasView = [segue destinationViewController];
+        }
+    } else if ([segue.identifier hasSuffix:@"Commons"]) {
         c.location = @"Commons";
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
         if (lastCommonsInfo) {
             c.info = lastCommonsInfo;
         }
-    } else if ([segue.identifier isEqualToString:@"Einsteins"]) {
+        if ([segue.identifier hasPrefix:@"embed"]) {
+            commonsView = [segue destinationViewController];
+        }
+    } else if ([segue.identifier hasSuffix:@"Einsteins"]) {
         c.location = @"Einsteins";
         c.label = @"Einstein's";
         c.photo = @"einsteins_full.jpg";
         if (lastEinsteinsInfo) {
             c.info = lastEinsteinsInfo;
+        }
+        if ([segue.identifier hasPrefix:@"embed"]) {
+            einsteinsView = [segue destinationViewController];
         }
     }
 }
@@ -101,22 +91,16 @@
     lastRegattasInfo = regattas;
     lastCommonsInfo = commons;
     lastEinsteinsInfo = einsteins;
-    [self updateView:regattasView andTitle:regattasTitle andInfo:regattasInfo withLocationInfo:regattas];
-    [self updateView:commonsView andTitle:commonsTitle andInfo:commonsInfo withLocationInfo:commons];
-    [self updateView:einsteinsView andTitle:einsteinsTitle andInfo:einsteinsInfo withLocationInfo:einsteins];
+    [regattasView updateViewWithLocationInfo:regattas];
+    [commonsView updateViewWithLocationInfo:commons];
+    [einsteinsView updateViewWithLocationInfo:einsteins];
     
-}
-
--(void) updateView: (UIImageView *)view andTitle:(UILabel *)title andInfo:(UILabel *)info withLocationInfo:(LocationInfo *)locationInfo {
-    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
-    view.layer.borderColor = [color CGColor];
-    title.textColor = color;
-    info.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    
+    [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 
 @end

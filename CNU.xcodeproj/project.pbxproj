@@ -12,6 +12,9 @@
 		6614D17419E7587600E2AB53 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17319E7587600E2AB53 /* Reachability.m */; };
 		6614D17719EA239A00E2AB53 /* BackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17619EA239A00E2AB53 /* BackendService.m */; };
 		6614D17A19EA2BC300E2AB53 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17919EA2BC300E2AB53 /* Api.m */; };
+		664C69A519F2CE9C00C75EEA /* image-graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A219F2CE9C00C75EEA /* image-graph.png */; };
+		664C69A619F2CE9C00C75EEA /* image-message.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A319F2CE9C00C75EEA /* image-message.png */; };
+		664C69A719F2CE9C00C75EEA /* image-location-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A419F2CE9C00C75EEA /* image-location-marker.png */; };
 		66AB532C19C5104D00F4877A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB532B19C5104D00F4877A /* main.m */; };
 		66AB532F19C5104D00F4877A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB532E19C5104D00F4877A /* AppDelegate.m */; };
 		66AB533219C5104D00F4877A /* CNU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66AB533019C5104D00F4877A /* CNU.xcdatamodeld */; };
@@ -56,6 +59,9 @@
 		6614D17619EA239A00E2AB53 /* BackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackendService.m; sourceTree = "<group>"; };
 		6614D17819EA2BC300E2AB53 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
 		6614D17919EA2BC300E2AB53 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
+		664C69A219F2CE9C00C75EEA /* image-graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-graph.png"; sourceTree = "<group>"; };
+		664C69A319F2CE9C00C75EEA /* image-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-message.png"; sourceTree = "<group>"; };
+		664C69A419F2CE9C00C75EEA /* image-location-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-location-marker.png"; sourceTree = "<group>"; };
 		66AB532619C5104D00F4877A /* CNU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB532A19C5104D00F4877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AB532B19C5104D00F4877A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -116,10 +122,13 @@
 		66AB531D19C5104D00F4877A = {
 			isa = PBXGroup;
 			children = (
-				66C793C819DE162A007AC4BC /* CoreLocation.framework */,
+				664C69A219F2CE9C00C75EEA /* image-graph.png */,
+				664C69A319F2CE9C00C75EEA /* image-message.png */,
+				664C69A419F2CE9C00C75EEA /* image-location-marker.png */,
 				66C793C619DDF2A9007AC4BC /* einsteins_full.jpg */,
 				66AB536C19C63D9500F4877A /* commons_full.jpg */,
 				66AB536D19C63D9500F4877A /* regattas_full.jpg */,
+				66C793C819DE162A007AC4BC /* CoreLocation.framework */,
 				66AB532819C5104D00F4877A /* CNU */,
 				66AB534519C5104D00F4877A /* CNUTests */,
 				66AB532719C5104D00F4877A /* Products */,
@@ -315,12 +324,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				664C69A519F2CE9C00C75EEA /* image-graph.png in Resources */,
 				66AB533819C5104D00F4877A /* Main.storyboard in Resources */,
 				66C793C719DDF2A9007AC4BC /* einsteins_full.jpg in Resources */,
 				66AB536E19C63D9500F4877A /* commons_full.jpg in Resources */,
 				66AB536F19C63D9500F4877A /* regattas_full.jpg in Resources */,
 				66AB533D19C5104D00F4877A /* LaunchScreen.xib in Resources */,
+				664C69A719F2CE9C00C75EEA /* image-location-marker.png in Resources */,
 				66AB533A19C5104D00F4877A /* Images.xcassets in Resources */,
+				664C69A619F2CE9C00C75EEA /* image-message.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

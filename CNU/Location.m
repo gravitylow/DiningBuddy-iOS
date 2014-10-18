@@ -89,7 +89,7 @@ withCoordinatePairs:(NSArray *)coordinatePairsValue
     return dtheta;
 }
 - (NSString *) coordinatePairsJsonValue {
-    NSMutableString *value = [NSMutableString alloc];
+    NSMutableString *value = [[NSMutableString alloc] init];
     [value appendString:@"["];
     NSUInteger count = [coordinatePairs count];
     if (count > 0) {
@@ -103,7 +103,7 @@ withCoordinatePairs:(NSArray *)coordinatePairsValue
     return value;
 }
 - (NSString *) subLocationsJsonValue {
-    NSMutableString *value = [NSMutableString alloc];
+    NSMutableString *value = [[NSMutableString alloc] init];
     [value appendString:@"["];
     NSUInteger count = [subLocations count];
     if (count > 0) {

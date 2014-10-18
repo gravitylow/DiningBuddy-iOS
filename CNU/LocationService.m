@@ -17,11 +17,11 @@
 
 @implementation LocationService
 
-long const MIN_LOCAL_UPDATE = 30 * 1000;
+long const MIN_LOCAL_UPDATE = 10 * 1000;
 long const MIN_UPDATE = 60 * 1000;
 
-@synthesize locationManager, locator, hasLocation;
-@synthesize lastLatitude, lastLongitude, lastLocation, lastLocationInfo;
+@synthesize locationManager, locator;
+@synthesize lastLocationInfo;
 @synthesize settingsService;
 @synthesize timerSource, dieFlag;
 @synthesize lastPublishedUpdate, lastUpdate;
@@ -35,8 +35,7 @@ long const MIN_UPDATE = 60 * 1000;
         NSString *cache = [settingsService getCachedLocations];
         NSLog(@"Location cache: %@", cache);
         if (cache) {
-            //locator = [[Locator alloc] initWithJson:cache];
-            locator = [[Locator alloc] init];
+            locator = [[Locator alloc] initWithJson:cache];
             NSLog(@"Setup from cache");
         } else {
             locator = [[Locator alloc] init];
@@ -114,6 +113,8 @@ long const MIN_UPDATE = 60 * 1000;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
     lastLocation = location;
     
+    NSLog(@"Location update pushed to AppDelegate");
+    
     [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
     
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
@@ -126,16 +127,16 @@ long const MIN_UPDATE = 60 * 1000;
     NSLog(@"Unable to start location manager. Error:%@", [error description]);
 }
 
--(bool)hasLocation {
++(bool)hasLocation {
     return hasLocation;
 }
--(double)getLastLatitude {
++(double)getLastLatitude {
     return lastLatitude;
 }
--(double)getLastLongitude {
++(double)getLastLongitude {
     return lastLongitude;
 }
--(Location *)getLastLocation {
++(Location *)getLastLocation {
     return lastLocation;
 }
 -(void) die {

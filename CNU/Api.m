@@ -80,7 +80,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
              id response = [NSJSONSerialization JSONObjectWithData:data
                                                             options:0
                                                               error:NULL];
-             NSLog(@"Response: %@", response);
+             //NSLog(@"Response: %@", response);
              NSArray *array = [self locationsFromJson:response];
              [locator setLocations:array];
          }
@@ -110,7 +110,11 @@ NSString * const API_CONTENT_TYPE = @"application/json";
 }
 
 +(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long)time withUUID:(NSString *)uuid {
-    //TODO
+    if (crowded == -1 || minutes == -1) {
+        return;
+    }
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %li }", uuid, target, crowded, minutes, feedback, [location getName], time];
+    NSLog(@"Feedback: %@", json);
 }
 
 @end

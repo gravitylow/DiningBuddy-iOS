@@ -11,12 +11,12 @@
 @class SettingsService;
 @class LocationService;
 
+static SettingsService *settingsService;
+static LocationService *locationService;
+
 @interface BackendService : NSObject
 
-@property (nonatomic, retain) SettingsService *settingsService;
-@property (nonatomic, retain) LocationService *locationService;
-
--(SettingsService *) getSettingsService;
--(LocationService *) getLocationService;
++(SettingsService *) getSettingsService;
++(LocationService *) getLocationService;
 
 @end

@@ -20,8 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"Loading graph");
+    
     TabsController *parent = (TabsController *)self.tabBarController;
     self.location = parent.location;
+    
+    NSLog(@"Parent location: %@", parent.location);
     NSString *urlAddress = @"https://api.gravitydevelopment.net/cnu/api/v1.0/graphs/";
     urlAddress = [urlAddress stringByAppendingString:location];
     NSURL *url = [NSURL URLWithString:urlAddress];
@@ -36,14 +39,8 @@
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-    /*CGSize contentSize = webView.scrollView.contentSize;
-    CGSize viewSize = self.view.bounds.size;
-    
-    float rw = viewSize.width / contentSize.width;
-    
-    webView.scrollView.minimumZoomScale = rw;
-    webView.scrollView.maximumZoomScale = rw;
-    webView.scrollView.zoomScale = rw;*/
+    //self.webView.scalesPageToFit = YES;
+    //self.webView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

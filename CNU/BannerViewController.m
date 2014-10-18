@@ -7,6 +7,7 @@
 //
 
 #import "BannerViewController.h"
+#import "Location.h"
 #import "LocationInfo.h"
 
 @interface BannerViewController ()
@@ -15,7 +16,7 @@
 
 @implementation BannerViewController
 
-@synthesize locationLabel, infoLabel, imageView, info, shouldOpenInfo;
+@synthesize locationLabel, infoLabel, imageView, info, shouldOpenInfo, badgeImageView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,14 +62,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void) updateViewWithLocationInfo: (LocationInfo *)locationInfo {
+    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+    imageView.layer.borderColor = [color CGColor];
+    locationLabel.textColor = color;
+    infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
-*/
+
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+    if ([[location getName] isEqualToString:self.location]) {
+        [badgeImageView setHidden:FALSE];
+    } else {
+        [badgeImageView setHidden:TRUE];
+    }
+}
 
 @end

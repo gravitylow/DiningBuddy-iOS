@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class Location;
 @class LocationInfo;
 
 @interface BannerViewController : UIViewController
@@ -20,9 +21,11 @@
 @property(nonatomic, retain) IBOutlet UILabel  *locationLabel;
 @property(nonatomic, retain) IBOutlet UILabel  *infoLabel;
 @property(nonatomic, retain) IBOutlet UIImageView  *imageView;
+@property(nonatomic, retain) IBOutlet UIImageView  *badgeImageView;
 
 @property(nonatomic) bool *shouldOpenInfo;
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
-
+-(void) updateViewWithLocationInfo: (LocationInfo *)locationInfo;
+-(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end

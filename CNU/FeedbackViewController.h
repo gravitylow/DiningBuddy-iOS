@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class TabsController;
+@class Api;
+@class SettingsService;
+@class LocationService;
+
 @interface FeedbackViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+
+@property(nonatomic, retain) NSString  *location;
+@property(nonatomic) bool submitted;
 
 @property(nonatomic, retain) IBOutlet UILabel  *crowdedLabel;
 @property(nonatomic, retain) IBOutlet UILabel  *minutesLabel;
@@ -26,6 +34,8 @@
 @property(nonatomic, strong) NSArray *minutesArray;
 @property(nonatomic) int crowdedValue;
 @property(nonatomic) int minutesValue;
+
+-(IBAction)submit;
 
 
 @end

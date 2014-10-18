@@ -7,6 +7,7 @@
 //
 
 #import "Locator.h"
+#import "BackendService.h"
 #import "SettingsService.h"
 #import "Location.h"
 #import "Api.h"
@@ -71,6 +72,7 @@
         NSLog(@"Locations set to size %i", [array count]);
         locations = array;
         setup = true;
+        [[BackendService getSettingsService] cacheLocations:[self jsonValue]];
     }
 }
 
@@ -106,7 +108,7 @@
     return setup;
 }
 - (NSString *) jsonValue {
-    NSMutableString *value = [NSMutableString alloc];
+    NSMutableString *value = [[NSMutableString alloc] init];
     [value appendString:@"["];
     NSUInteger count = [locations count];
     if (count > 0) {

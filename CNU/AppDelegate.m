@@ -201,6 +201,7 @@
         [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
     if (locationController) {
+        NSLog(@"Location updated to locationController");
         [locationController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
 }

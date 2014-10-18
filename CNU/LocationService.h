@@ -16,16 +16,17 @@
 @class SettingsService;
 @class Api;
 
+static double lastLatitude;
+static double lastLongitude;
+static Location *lastLocation;
+static bool hasLocation;
+
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
 extern long const MIN_LOCAL_UPDATE;
 extern long const MIN_UPDATE;
 
-@property (nonatomic) double lastLatitude;
-@property (nonatomic) double lastLongitude;
-@property (nonatomic) bool hasLocation;
 @property (nonatomic, retain) Locator *locator;
-@property (nonatomic, retain) Location *lastLocation;
 @property (nonatomic, retain) NSArray *lastLocationInfo;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) SettingsService *settingsService;
@@ -38,10 +39,10 @@ extern long const MIN_UPDATE;
 -(void)setInfo:(NSArray *) info;
 -(void)updateInfo;
 -(void)startUpdatingLocation;
--(double) getLastLatitude;
--(double) getLastLongitude;
--(Location *)getLastLocation;
--(bool)hasLocation;
++(double) getLastLatitude;
++(double) getLastLongitude;
++(Location *)getLastLocation;
++(bool)hasLocation;
 -(void)die;
 
 @end
