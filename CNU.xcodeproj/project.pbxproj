@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		6614D16E19E6DFA900E2AB53 /* LocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D16D19E6DFA900E2AB53 /* LocationViewController.m */; };
 		6614D17119E7543A00E2AB53 /* SettingsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17019E7543A00E2AB53 /* SettingsService.m */; };
-		6614D17419E7587600E2AB53 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17319E7587600E2AB53 /* Reachability.m */; };
 		6614D17719EA239A00E2AB53 /* BackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17619EA239A00E2AB53 /* BackendService.m */; };
 		6614D17A19EA2BC300E2AB53 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17919EA2BC300E2AB53 /* Api.m */; };
 		664C69A519F2CE9C00C75EEA /* image-graph.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A219F2CE9C00C75EEA /* image-graph.png */; };
 		664C69A619F2CE9C00C75EEA /* image-message.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A319F2CE9C00C75EEA /* image-message.png */; };
 		664C69A719F2CE9C00C75EEA /* image-location-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 664C69A419F2CE9C00C75EEA /* image-location-marker.png */; };
+		664C69AA19F2D89600C75EEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69A919F2D89500C75EEA /* Reachability.m */; };
+		664C69AC19F2D8BF00C75EEA /* einsteins_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664C69AB19F2D8BF00C75EEA /* einsteins_full.jpg */; };
+		664C69AE19F2D8CA00C75EEA /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664C69AD19F2D8CA00C75EEA /* regattas_full.jpg */; };
+		664C69B019F2D8D200C75EEA /* commons_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664C69AF19F2D8D200C75EEA /* commons_full.jpg */; };
 		66AB532C19C5104D00F4877A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB532B19C5104D00F4877A /* main.m */; };
 		66AB532F19C5104D00F4877A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB532E19C5104D00F4877A /* AppDelegate.m */; };
 		66AB533219C5104D00F4877A /* CNU.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66AB533019C5104D00F4877A /* CNU.xcdatamodeld */; };
@@ -24,8 +27,6 @@
 		66AB533D19C5104D00F4877A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66AB533B19C5104D00F4877A /* LaunchScreen.xib */; };
 		66AB534919C5104D00F4877A /* CNUTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB534819C5104D00F4877A /* CNUTests.m */; };
 		66AB536819C6176800F4877A /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AB536719C6176800F4877A /* LocationService.m */; };
-		66AB536E19C63D9500F4877A /* commons_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66AB536C19C63D9500F4877A /* commons_full.jpg */; };
-		66AB536F19C63D9500F4877A /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66AB536D19C63D9500F4877A /* regattas_full.jpg */; };
 		66C214F119F0830F00BECC96 /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F019F0830F00BECC96 /* BannerViewController.m */; };
 		66C214F419F08D7300BECC96 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F319F08D7300BECC96 /* FeedbackViewController.m */; };
 		66C214F819F08DB100BECC96 /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C214F719F08DB100BECC96 /* GraphViewController.m */; };
@@ -34,7 +35,6 @@
 		66C793BF19DDE3BA007AC4BC /* LocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793BE19DDE3BA007AC4BC /* LocationInfo.m */; };
 		66C793C219DDE575007AC4BC /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793C119DDE575007AC4BC /* Location.m */; };
 		66C793C519DDE727007AC4BC /* Locator.m in Sources */ = {isa = PBXBuildFile; fileRef = 66C793C419DDE727007AC4BC /* Locator.m */; };
-		66C793C719DDF2A9007AC4BC /* einsteins_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66C793C619DDF2A9007AC4BC /* einsteins_full.jpg */; };
 		66C793C919DE162A007AC4BC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C793C819DE162A007AC4BC /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -53,8 +53,6 @@
 		6614D16D19E6DFA900E2AB53 /* LocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationViewController.m; sourceTree = "<group>"; };
 		6614D16F19E7543A00E2AB53 /* SettingsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsService.h; sourceTree = "<group>"; };
 		6614D17019E7543A00E2AB53 /* SettingsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsService.m; sourceTree = "<group>"; };
-		6614D17219E7587600E2AB53 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Downloads/Reachability/Reachability/Reachability.h; sourceTree = "<group>"; };
-		6614D17319E7587600E2AB53 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Downloads/Reachability/Reachability/Reachability.m; sourceTree = "<group>"; };
 		6614D17519EA239A00E2AB53 /* BackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendService.h; sourceTree = "<group>"; };
 		6614D17619EA239A00E2AB53 /* BackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackendService.m; sourceTree = "<group>"; };
 		6614D17819EA2BC300E2AB53 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
@@ -62,6 +60,11 @@
 		664C69A219F2CE9C00C75EEA /* image-graph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-graph.png"; sourceTree = "<group>"; };
 		664C69A319F2CE9C00C75EEA /* image-message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-message.png"; sourceTree = "<group>"; };
 		664C69A419F2CE9C00C75EEA /* image-location-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-location-marker.png"; sourceTree = "<group>"; };
+		664C69A819F2D89500C75EEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		664C69A919F2D89500C75EEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		664C69AB19F2D8BF00C75EEA /* einsteins_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = einsteins_full.jpg; sourceTree = "<group>"; };
+		664C69AD19F2D8CA00C75EEA /* regattas_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = regattas_full.jpg; sourceTree = "<group>"; };
+		664C69AF19F2D8D200C75EEA /* commons_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commons_full.jpg; sourceTree = "<group>"; };
 		66AB532619C5104D00F4877A /* CNU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNU.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB532A19C5104D00F4877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AB532B19C5104D00F4877A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,8 +81,6 @@
 		66AB534819C5104D00F4877A /* CNUTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNUTests.m; sourceTree = "<group>"; };
 		66AB536619C6176800F4877A /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
 		66AB536719C6176800F4877A /* LocationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationService.m; sourceTree = "<group>"; };
-		66AB536C19C63D9500F4877A /* commons_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = commons_full.jpg; path = ../../Downloads/commons_full.jpg; sourceTree = "<group>"; };
-		66AB536D19C63D9500F4877A /* regattas_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = regattas_full.jpg; path = ../../Downloads/regattas_full.jpg; sourceTree = "<group>"; };
 		66C214EF19F0830F00BECC96 /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		66C214F019F0830F00BECC96 /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
 		66C214F219F08D7300BECC96 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		66C793C119DDE575007AC4BC /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		66C793C319DDE727007AC4BC /* Locator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Locator.h; sourceTree = "<group>"; };
 		66C793C419DDE727007AC4BC /* Locator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Locator.m; sourceTree = "<group>"; };
-		66C793C619DDF2A9007AC4BC /* einsteins_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = einsteins_full.jpg; path = ../../AndroidStudioProjects/CNU/app/src/main/res/drawable/einsteins_full.jpg; sourceTree = "<group>"; };
 		66C793C819DE162A007AC4BC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -122,12 +122,12 @@
 		66AB531D19C5104D00F4877A = {
 			isa = PBXGroup;
 			children = (
+				664C69AF19F2D8D200C75EEA /* commons_full.jpg */,
+				664C69AD19F2D8CA00C75EEA /* regattas_full.jpg */,
+				664C69AB19F2D8BF00C75EEA /* einsteins_full.jpg */,
 				664C69A219F2CE9C00C75EEA /* image-graph.png */,
 				664C69A319F2CE9C00C75EEA /* image-message.png */,
 				664C69A419F2CE9C00C75EEA /* image-location-marker.png */,
-				66C793C619DDF2A9007AC4BC /* einsteins_full.jpg */,
-				66AB536C19C63D9500F4877A /* commons_full.jpg */,
-				66AB536D19C63D9500F4877A /* regattas_full.jpg */,
 				66C793C819DE162A007AC4BC /* CoreLocation.framework */,
 				66AB532819C5104D00F4877A /* CNU */,
 				66AB534519C5104D00F4877A /* CNUTests */,
@@ -147,9 +147,9 @@
 		66AB532819C5104D00F4877A /* CNU */ = {
 			isa = PBXGroup;
 			children = (
+				664C69A819F2D89500C75EEA /* Reachability.h */,
+				664C69A919F2D89500C75EEA /* Reachability.m */,
 				66C214F519F08D9900BECC96 /* view */,
-				6614D17219E7587600E2AB53 /* Reachability.h */,
-				6614D17319E7587600E2AB53 /* Reachability.m */,
 				66AB536519C6175A00F4877A /* service */,
 				66AB536419C5E65600F4877A /* geo */,
 				66AB532D19C5104D00F4877A /* AppDelegate.h */,
@@ -325,12 +325,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				664C69A519F2CE9C00C75EEA /* image-graph.png in Resources */,
+				664C69AC19F2D8BF00C75EEA /* einsteins_full.jpg in Resources */,
 				66AB533819C5104D00F4877A /* Main.storyboard in Resources */,
-				66C793C719DDF2A9007AC4BC /* einsteins_full.jpg in Resources */,
-				66AB536E19C63D9500F4877A /* commons_full.jpg in Resources */,
-				66AB536F19C63D9500F4877A /* regattas_full.jpg in Resources */,
 				66AB533D19C5104D00F4877A /* LaunchScreen.xib in Resources */,
+				664C69B019F2D8D200C75EEA /* commons_full.jpg in Resources */,
 				664C69A719F2CE9C00C75EEA /* image-location-marker.png in Resources */,
+				664C69AE19F2D8CA00C75EEA /* regattas_full.jpg in Resources */,
 				66AB533A19C5104D00F4877A /* Images.xcassets in Resources */,
 				664C69A619F2CE9C00C75EEA /* image-message.png in Resources */,
 			);
@@ -360,12 +360,12 @@
 				66AB532C19C5104D00F4877A /* main.m in Sources */,
 				66C214F419F08D7300BECC96 /* FeedbackViewController.m in Sources */,
 				66C793BC19DDE1B4007AC4BC /* CoordinatePair.m in Sources */,
+				664C69AA19F2D89600C75EEA /* Reachability.m in Sources */,
 				66C793C219DDE575007AC4BC /* Location.m in Sources */,
 				66C214F819F08DB100BECC96 /* GraphViewController.m in Sources */,
 				66C793BF19DDE3BA007AC4BC /* LocationInfo.m in Sources */,
 				6614D17719EA239A00E2AB53 /* BackendService.m in Sources */,
 				6614D17119E7543A00E2AB53 /* SettingsService.m in Sources */,
-				6614D17419E7587600E2AB53 /* Reachability.m in Sources */,
 				6614D16E19E6DFA900E2AB53 /* LocationViewController.m in Sources */,
 				66C214F119F0830F00BECC96 /* BannerViewController.m in Sources */,
 			);
