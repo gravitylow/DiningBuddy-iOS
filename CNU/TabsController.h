@@ -11,7 +11,12 @@
 @class LocationInfo;
 @class FeedbackViewController;
 @class GraphViewController;
+@class BackendService;
+@class LocationService;
+@class SettingsService;
 @class Location;
+@class MenuViewController;
+@class FeedViewController;
 
 @interface TabsController : UITabBarController <UITabBarDelegate>
 

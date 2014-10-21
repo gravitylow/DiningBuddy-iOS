@@ -12,6 +12,10 @@
 #import "LocationService.h"
 #import "LocationInfo.h"
 #import "CoordinatePair.h"
+#import "MenuViewController.h"
+#import "FeedViewController.h"
+#import "LocationMenuItem.h"
+#import "LocationFeedItem.h"
 
 @implementation Api
 
@@ -101,6 +105,66 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     }];
 }
 
++(NSArray *)menuFromJson: (id)json {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSDictionary* value in json) {
+        NSString *startTime = [value objectForKey:@"start"];
+        NSString *endTime = [value objectForKey:@"end"];
+        NSString *summary = [value objectForKey:@"summary"];
+        NSString *description = [value objectForKey:@"description"];
+        
+        LocationMenuItem *item = [[LocationMenuItem alloc] initWithStart:startTime withEnd:endTime withSummary:summary withDescription:description ];
+        NSLog(@"Added menu for %@", summary);
+        [array addObject:item];
+    }
+    
+    return array;
+}
+
++(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller {
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@", location]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (data.length > 0 && error == nil) {
+            id response = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0
+                                                            error:NULL];
+            NSArray *array = [self menuFromJson:response];
+            [controller setMenu:array];
+        }
+    }];
+}
+
++(NSArray *)feedFromJson: (id)json {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSDictionary* value in json) {
+        NSString *message = [value objectForKey:@"feedback"];
+        int minutes = [[value objectForKey:@"minutes"] integerValue];
+        int crowded = [[value objectForKey:@"crowded"] integerValue];
+        long time = [[value objectForKey:@"time"] longValue];
+        bool pinned = [[value objectForKey:@"pinned"] boolValue];
+        NSString *detail = [value objectForKey:@"detail"];
+        
+        LocationFeedItem *item = [[LocationFeedItem alloc] initWithMessage:message withMinutes:minutes withCrowded:crowded withTime:time withPinned:pinned withDetail:detail];
+        [array addObject:item];
+    }
+    return array;
+}
+
++(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller {
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"feed/%@", location]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (data.length > 0 && error == nil) {
+            id response = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0
+                                                            error:NULL];
+            NSArray *array = [self feedFromJson:response];
+            [controller setFeed:array];
+        }
+    }];
+}
+
 +(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long)time withUUID:(NSString *)uuid {
     if (location == nil) {
         //return;
@@ -113,7 +177,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     if (crowded == -1 || minutes == -1) {
         return;
     }
-    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %li }", uuid, target, crowded, minutes, feedback, [location getName], time];
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %li, \"pinned\" : false }", uuid, target, crowded, minutes, feedback, [location getName], time];
     NSLog(@"Feedback: %@", json);
 }
 

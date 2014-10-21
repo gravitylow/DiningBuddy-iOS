@@ -23,9 +23,6 @@ static bool hasLocation;
 
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
-extern long const MIN_LOCAL_UPDATE;
-extern long const MIN_UPDATE;
-
 @property (nonatomic, retain) Locator *locator;
 @property (nonatomic, retain) NSArray *lastLocationInfo;
 @property (nonatomic, retain) CLLocationManager *locationManager;

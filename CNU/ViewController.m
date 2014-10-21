@@ -48,7 +48,7 @@
             c.info = lastRegattasInfo;
         }
         if ([segue.identifier hasPrefix:@"embed"]) {
-            regattasView = [segue destinationViewController];
+            regattasView = (BannerViewController *)[segue destinationViewController];
         }
     } else if ([segue.identifier hasSuffix:@"Commons"]) {
         c.location = @"Commons";
@@ -58,7 +58,7 @@
             c.info = lastCommonsInfo;
         }
         if ([segue.identifier hasPrefix:@"embed"]) {
-            commonsView = [segue destinationViewController];
+            commonsView = (BannerViewController *)[segue destinationViewController];
         }
     } else if ([segue.identifier hasSuffix:@"Einsteins"]) {
         c.location = @"Einsteins";
@@ -68,7 +68,7 @@
             c.info = lastEinsteinsInfo;
         }
         if ([segue.identifier hasPrefix:@"embed"]) {
-            einsteinsView = [segue destinationViewController];
+            einsteinsView = (BannerViewController *)[segue destinationViewController];
         }
     }
 }
