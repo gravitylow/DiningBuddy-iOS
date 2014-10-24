@@ -23,9 +23,9 @@
 @property(nonatomic, retain) IBOutlet UIImageView  *imageView;
 @property(nonatomic, retain) IBOutlet UIImageView  *badgeImageView;
 
-@property(nonatomic) bool *shouldOpenInfo;
+@property(nonatomic) bool hasBadge;
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 -(void) updateViewWithLocationInfo: (LocationInfo *)locationInfo;
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
+-(bool) updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end

@@ -82,8 +82,8 @@ int const TAB_SIZE_FULL = 4;
     } else {
         if ([tabbarViewControllers count] == TAB_SIZE_FULL) {
             NSLog(@"Removing item...");
-            self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK];
-            [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK];
+            self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK - 1];
+            [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK - 1];
         }
     }
     [self setViewControllers: tabbarViewControllers];

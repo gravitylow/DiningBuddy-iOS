@@ -31,6 +31,7 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [webView loadRequest:requestObj];
     NSLog(@"Done loading graph");
+    [webView setScalesPageToFit:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,8 +40,13 @@
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
-    //self.webView.scalesPageToFit = YES;
-    //self.webView.contentMode = UIViewContentModeScaleAspectFit;
+    if (self.navigationController.navigationBar.translucent == YES) {
+        //webView.scrollView.contentOffset = CGPointMake(webView.frame.origin.x, webView.frame.origin.y + 100);
+    }
+    CGRect frame = webView.frame;
+    CGSize fittingSize = [webView sizeThatFits:webView.scrollView.contentSize];
+    frame.size = fittingSize;
+    webView.frame = frame;
 }
 
 -(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {

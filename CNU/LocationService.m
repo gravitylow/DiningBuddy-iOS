@@ -92,8 +92,6 @@ long const MIN_UPDATE = 60 * 1000;
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
     
     if (![locator isSetup] || ![settingsService getShouldConnect]) {
-        NSLog(@"Locator isSetup: %i", [locator isSetup]);
-        NSLog(@"Settings shouldConnect: %i", [settingsService getShouldConnect]);
         return;
     }
     
@@ -111,6 +109,7 @@ long const MIN_UPDATE = 60 * 1000;
     lastLatitude = currentCoordinates.latitude;
     lastLongitude = currentCoordinates.longitude;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
+    //location.name = @"Einsteins";
     lastLocation = location;
     
     NSLog(@"Location update pushed to AppDelegate");

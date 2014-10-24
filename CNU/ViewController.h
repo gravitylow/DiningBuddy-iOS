@@ -26,6 +26,10 @@
 @property(nonatomic, retain) LocationInfo  *lastCommonsInfo;
 @property(nonatomic, retain) LocationInfo  *lastEinsteinsInfo;
 
+@property(nonatomic) bool regattasHasBadge;
+@property(nonatomic) bool commonsHasBadge;
+@property(nonatomic) bool einsteinsHasBadge;
+
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end

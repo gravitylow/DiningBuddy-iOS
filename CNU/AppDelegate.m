@@ -192,12 +192,13 @@
     }
     if (locationController) {
         NSLog(@"... to location view");
-        [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
+        [locationController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
 }
 
 + (void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     if (mainController) {
+        NSLog(@"Location updated to mainontroller");
         [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
     if (locationController) {

@@ -16,7 +16,7 @@
 
 @implementation BannerViewController
 
-@synthesize locationLabel, infoLabel, imageView, info, shouldOpenInfo, badgeImageView;
+@synthesize locationLabel, infoLabel, imageView, info, badgeImageView, hasBadge;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +33,8 @@
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10.0;
     self.imageView.layer.borderWidth = 1.0;
+    
+    [badgeImageView setHidden:!hasBadge];
     if (self.info) {
         [self updateInfoWithRegattas:info withCommons:info withEinsteins:info];
     } else {
@@ -70,11 +72,15 @@
     infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
 
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+-(bool)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     if ([[location getName] isEqualToString:self.location]) {
+        NSLog(@"Badge shown: true (%@, %@)",[location getName], self.location);
         [badgeImageView setHidden:FALSE];
+        return true;
     } else {
+        NSLog(@"Badge shown: false (%@, %@)",[location getName], self.location);
         [badgeImageView setHidden:TRUE];
+        return false;
     }
 }
 

@@ -54,6 +54,7 @@
         }
     }
     
+    NSLog(@"Get applicable location: %@", [base getName]);
     NSUInteger count = [[base getSubLocations] count];
     for (int i=0;i<count;i++) {
         Location *value = (Location *)[[base getSubLocations] objectAtIndex:i];
@@ -89,14 +90,12 @@
     return locations;
 }
 - (NSArray *) getAllLocations {
-    NSLog(@"Get all locatons");
     return [self recursiveGetLocations:[NSMutableArray alloc] :locations];
 }
 - (NSArray *) recursiveGetLocations: (NSMutableArray *) build : (NSArray *) locs {
     NSUInteger count = [locs count];
     for (int i=0;i<count;i++) {
         Location *val = [locations objectAtIndex:i];
-        NSLog(@"loc: %@", [val getName]);
         [build addObject:val];
         if ([val hasSubLocations]) {
             [self recursiveGetLocations:build :[val getSubLocations]];

@@ -27,6 +27,10 @@
 @synthesize lastCommonsInfo;
 @synthesize lastEinsteinsInfo;
 
+@synthesize regattasHasBadge;
+@synthesize commonsHasBadge;
+@synthesize einsteinsHasBadge;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"CNU Dining";
@@ -44,6 +48,7 @@
         c.location = @"Regattas";
         c.label = @"Regattas";
         c.photo = @"regattas_full.jpg";
+        c.hasBadge = regattasHasBadge;
         if (lastRegattasInfo) {
             c.info = lastRegattasInfo;
         }
@@ -54,6 +59,7 @@
         c.location = @"Commons";
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
+        c.hasBadge = commonsHasBadge;
         if (lastCommonsInfo) {
             c.info = lastCommonsInfo;
         }
@@ -64,6 +70,7 @@
         c.location = @"Einsteins";
         c.label = @"Einstein's";
         c.photo = @"einsteins_full.jpg";
+        c.hasBadge = einsteinsHasBadge;
         if (lastEinsteinsInfo) {
             c.info = lastEinsteinsInfo;
         }
@@ -98,9 +105,10 @@
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
-    [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
-    [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    NSLog(@"Updating all embeded views...");
+    regattasHasBadge = [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    commonsHasBadge = [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    einsteinsHasBadge = [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 
 @end
