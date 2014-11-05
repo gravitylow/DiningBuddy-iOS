@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Loading banner");
     self.locationLabel.textAlignment = NSTextAlignmentCenter;
     self.locationLabel.text = self.label;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
@@ -40,7 +39,6 @@
     } else {
         self.imageView.layer.borderColor = [[UIColor grayColor] CGColor];
     }
-    NSLog(@"Done loading banner");
 }
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {

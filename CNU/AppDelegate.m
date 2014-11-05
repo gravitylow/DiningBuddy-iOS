@@ -144,7 +144,6 @@
 }
 
 + (void) registerLocationController:(LocationViewController *)locationViewController {
-    NSLog(@"Location controller registered");
     locationController = locationViewController;
 }
 
@@ -153,12 +152,10 @@
 }
 
 + (void) unregisterLocationController {
-    NSLog(@"Location controller unregistered");
     locationController = nil;
 }
 
 + (void) updateInfo:(NSArray *)info {
-    NSLog(@"Info updated");
     LocationInfo *regattasInfo = nil;
     LocationInfo *commonsInfo = nil;
     LocationInfo *einsteinsInfo = nil;
@@ -187,11 +184,9 @@
         einsteinsInfo = [[LocationInfo alloc] initWithName:@"Einsteins"];
     }
     if (mainController) {
-        NSLog(@"... to main view");
         [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
     if (locationController) {
-        NSLog(@"... to location view");
         [locationController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
 }

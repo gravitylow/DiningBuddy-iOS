@@ -42,7 +42,6 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue: %@ (viewcontroller)", segue.identifier);
     LocationViewController *c = [segue destinationViewController];
     if ([segue.identifier hasSuffix:@"Regattas"]) {
         c.location = @"Regattas";

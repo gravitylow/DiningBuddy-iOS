@@ -30,10 +30,8 @@ long const MIN_UPDATE = 60 * 1000;
     self = [super init];
     if (self) {
         dieFlag = false;
-        NSLog(@"Initializing location service");
         settingsService = settings;
         NSString *cache = [settingsService getCachedLocations];
-        NSLog(@"Location cache: %@", cache);
         if (cache) {
             locator = [[Locator alloc] initWithJson:cache];
             NSLog(@"Setup from cache");
@@ -70,26 +68,18 @@ long const MIN_UPDATE = 60 * 1000;
 }
 
 -(void)startUpdatingLocation {
-    NSLog(@"startLocationTracking");
-    if ([CLLocationManager locationServicesEnabled] == NO) {
-        NSLog(@"locationServicesEnabled false");
-        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" message:@"You currently have all location services for this device disabled" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [servicesDisabledAlert show];
-    } else {
-        CLAuthorizationStatus authorizationStatus= [CLLocationManager authorizationStatus];
-        if(authorizationStatus == kCLAuthorizationStatusDenied || authorizationStatus == kCLAuthorizationStatusRestricted){
-            NSLog(@"authorizationStatus failed");
-        } else {
-            NSLog(@"authorizationStatus authorized");
-            locationManager = [[CLLocationManager alloc] init];
-            [locationManager setDelegate:self];
-            [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-            [locationManager startUpdatingLocation];
-        }
+    self.locationManager = [[CLLocationManager alloc] init];
+    if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+        [self.locationManager requestAlwaysAuthorization];
     }
+    [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+    [locationManager setPausesLocationUpdatesAutomatically:NO];
+    [self.locationManager setDelegate:self];
+    [self.locationManager startUpdatingLocation];
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation * currentLocation = (CLLocation *)[locations lastObject];
     
     if (![locator isSetup] || ![settingsService getShouldConnect]) {
         return;
@@ -103,7 +93,7 @@ long const MIN_UPDATE = 60 * 1000;
     
     lastUpdate = currentTime;
     
-    CLLocationCoordinate2D currentCoordinates = newLocation.coordinate;
+    CLLocationCoordinate2D currentCoordinates = currentLocation.coordinate;
 
     hasLocation = true;
     lastLatitude = currentCoordinates.latitude;

@@ -43,7 +43,7 @@
 }
 
 -(void) cacheLocations: (NSString *) json {
-    [preferences setObject:json forKey:@"pref_wifi_only"];
+    [preferences setObject:json forKey:@"pref_locations"];
     [preferences synchronize];
     locations = json;
 }

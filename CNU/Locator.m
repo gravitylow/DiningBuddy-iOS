@@ -30,7 +30,6 @@
         NSMutableArray *array = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
         locations = [Api locationsFromJson:array];
         setup = true;
-        [self getAllLocations];
     }
     return self;
 }

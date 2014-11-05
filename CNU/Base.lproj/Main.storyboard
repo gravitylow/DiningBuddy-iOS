@@ -320,8 +320,8 @@
                                     <action selector="submit" destination="w24-SP-woi" eventType="touchUpInside" id="bFv-hV-CfL"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Accurate feedback helps improve the data provided to you." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvK-LB-58T">
-                                <rect key="frame" x="16" y="29" width="568" height="132"/>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accurate feedback helps improve the data provided to you." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FvK-LB-58T">
+                                <rect key="frame" x="16" y="29" width="568" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -409,8 +409,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="388"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00p-Hn-vxf">
-                                <rect key="frame" x="134" y="101" width="332" height="187"/>
+                            <webView userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00p-Hn-vxf">
+                                <rect key="frame" x="16" y="0.0" width="568" height="339"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="GZ7-HD-Nt9"/>
@@ -431,6 +431,9 @@
                                         <exclude reference="y2Y-VN-yyN"/>
                                     </mask>
                                 </variation>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                    <rect key="frame" x="16" y="0.0" width="368" height="539"/>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="bci-Z6-wPw" id="VtA-OD-r6a"/>
                                 </connections>
@@ -438,21 +441,39 @@
                         </subviews>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.87450987099999999" blue="0.84313732389999996" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="te2-5b-CS8" firstAttribute="top" secondItem="00p-Hn-vxf" secondAttribute="bottom" id="3gp-ND-xqW"/>
                             <constraint firstItem="te2-5b-CS8" firstAttribute="top" secondItem="00p-Hn-vxf" secondAttribute="bottom" constant="14" id="4gD-ms-5Xp"/>
+                            <constraint firstItem="00p-Hn-vxf" firstAttribute="top" secondItem="w05-0E-ROA" secondAttribute="bottom" id="8t0-3z-3Za"/>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="top" secondItem="w05-0E-ROA" secondAttribute="bottom" id="9bX-5C-Rzp"/>
-                            <constraint firstAttribute="centerY" secondItem="00p-Hn-vxf" secondAttribute="centerY" constant="20" id="AiT-yA-4nD"/>
+                            <constraint firstAttribute="centerY" secondItem="00p-Hn-vxf" secondAttribute="centerY" id="AiT-yA-4nD">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="00p-Hn-vxf" firstAttribute="leading" secondItem="DEF-zR-Pe9" secondAttribute="leadingMargin" id="DTe-1y-0gQ"/>
                             <constraint firstItem="te2-5b-CS8" firstAttribute="top" secondItem="00p-Hn-vxf" secondAttribute="bottom" id="ETR-fT-6B9"/>
                             <constraint firstAttribute="centerX" secondItem="00p-Hn-vxf" secondAttribute="centerX" id="FOE-0l-pvw"/>
+                            <constraint firstItem="00p-Hn-vxf" firstAttribute="top" secondItem="w05-0E-ROA" secondAttribute="bottom" constant="20" id="Ki0-rj-5ac">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="top" secondItem="w05-0E-ROA" secondAttribute="bottom" id="MMv-He-gAN"/>
                             <constraint firstAttribute="centerY" secondItem="00p-Hn-vxf" secondAttribute="centerY" id="MgS-Vn-Y6r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="00p-Hn-vxf" secondAttribute="trailing" constant="18" id="QqW-7y-4oF">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
+                            <constraint firstItem="00p-Hn-vxf" firstAttribute="leading" secondItem="DEF-zR-Pe9" secondAttribute="leadingMargin" constant="18" id="S5k-fU-5mo">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="trailing" secondItem="DEF-zR-Pe9" secondAttribute="trailingMargin" id="VwB-cC-l3v"/>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="trailing" secondItem="DEF-zR-Pe9" secondAttribute="trailing" id="WZU-8h-KIM"/>
                             <constraint firstAttribute="width" secondItem="00p-Hn-vxf" secondAttribute="width" id="Z7S-pC-OpH"/>
+                            <constraint firstItem="te2-5b-CS8" firstAttribute="top" secondItem="00p-Hn-vxf" secondAttribute="bottom" constant="332" id="cEn-LL-V6F">
+                                <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="top" secondItem="w05-0E-ROA" secondAttribute="bottom" id="cIZ-gS-EFv"/>
                             <constraint firstItem="te2-5b-CS8" firstAttribute="top" secondItem="00p-Hn-vxf" secondAttribute="bottom" id="ipN-m5-z6p"/>
                             <constraint firstAttribute="centerY" secondItem="00p-Hn-vxf" secondAttribute="centerY" constant="21.5" id="jfN-EL-KTb"/>
                             <constraint firstAttribute="centerX" secondItem="00p-Hn-vxf" secondAttribute="centerX" id="kFH-7h-LKY"/>
                             <constraint firstAttribute="height" secondItem="00p-Hn-vxf" secondAttribute="height" id="ksB-q4-Y5c"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="00p-Hn-vxf" secondAttribute="trailing" id="ocw-UE-Pep"/>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="leading" secondItem="DEF-zR-Pe9" secondAttribute="leading" id="x8N-IA-Nvi"/>
                             <constraint firstItem="00p-Hn-vxf" firstAttribute="leading" secondItem="DEF-zR-Pe9" secondAttribute="leadingMargin" id="yTI-gP-KUZ"/>
                             <constraint firstAttribute="centerX" secondItem="00p-Hn-vxf" secondAttribute="centerX" id="zdB-bY-yTr"/>
@@ -460,9 +481,13 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="9bX-5C-Rzp"/>
+                                <exclude reference="AiT-yA-4nD"/>
                                 <exclude reference="FOE-0l-pvw"/>
+                                <exclude reference="Ki0-rj-5ac"/>
                                 <exclude reference="MMv-He-gAN"/>
                                 <exclude reference="MgS-Vn-Y6r"/>
+                                <exclude reference="QqW-7y-4oF"/>
+                                <exclude reference="S5k-fU-5mo"/>
                                 <exclude reference="VwB-cC-l3v"/>
                                 <exclude reference="WZU-8h-KIM"/>
                                 <exclude reference="Z7S-pC-OpH"/>
@@ -474,7 +499,18 @@
                                 <exclude reference="zdB-bY-yTr"/>
                                 <exclude reference="4gD-ms-5Xp"/>
                                 <exclude reference="ETR-fT-6B9"/>
+                                <exclude reference="cEn-LL-V6F"/>
                                 <exclude reference="ipN-m5-z6p"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <exclude reference="AiT-yA-4nD"/>
+                                <exclude reference="Ki0-rj-5ac"/>
+                                <exclude reference="QqW-7y-4oF"/>
+                                <exclude reference="S5k-fU-5mo"/>
+                                <exclude reference="kFH-7h-LKY"/>
+                                <exclude reference="cEn-LL-V6F"/>
                             </mask>
                         </variation>
                     </view>
@@ -496,7 +532,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.87450987099999999" blue="0.84313732389999996" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="ekv-vZ-Daq" detailTextLabel="0Qt-Xi-uji" style="IBUITableViewCellStyleSubtitle" id="4U1-iy-648">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="menucell" textLabel="ekv-vZ-Daq" detailTextLabel="0Qt-Xi-uji" style="IBUITableViewCellStyleSubtitle" id="4U1-iy-648">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4U1-iy-648" id="dkc-bd-L92">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -723,7 +759,7 @@ Sunday: 1PM - 1AM</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.87450987099999999" green="0.87450987099999999" blue="0.84313732389999996" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="w39-Im-DCa" detailTextLabel="dlr-BE-926" style="IBUITableViewCellStyleSubtitle" id="Mfa-vD-lhS">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="feedcell" textLabel="w39-Im-DCa" detailTextLabel="dlr-BE-926" style="IBUITableViewCellStyleSubtitle" id="Mfa-vD-lhS">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mfa-vD-lhS" id="Jzf-sm-4Rb">
                                     <autoresizingMask key="autoresizingMask"/>
