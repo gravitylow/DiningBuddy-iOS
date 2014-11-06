@@ -165,20 +165,40 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     }];
 }
 
-+(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long)time withUUID:(NSString *)uuid {
++(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid {
     if (location == nil) {
-        //return;
+        return;
     }
-    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"time\" : %li }", uuid, latitude, longitude, [location getName], time];
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"time\" : %lli }", uuid, latitude, longitude, [location getName], time];
     NSLog(@"Update: %@", json);
+    
+    
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"update"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:API_CONTENT_TYPE forHTTPHeaderField:@"Content-Type"];
+    [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
+    [request setHTTPBody: requestData];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:nil];
 }
 
-+(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long)time withUUID:(NSString *)uuid {
++(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid {
     if (crowded == -1 || minutes == -1) {
         return;
     }
-    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %li, \"pinned\" : false }", uuid, target, crowded, minutes, feedback, [location getName], time];
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %lli, \"pinned\" : false }", uuid, target, crowded, minutes, feedback, [location getName], time];
     NSLog(@"Feedback: %@", json);
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"feedback"]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [request setHTTPMethod:@"POST"];
+    [request setValue:API_CONTENT_TYPE forHTTPHeaderField:@"Content-Type"];
+    [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
+    [request setHTTPBody: requestData];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:nil];
 }
 
 @end

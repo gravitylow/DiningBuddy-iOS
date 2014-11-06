@@ -9,6 +9,7 @@
 #import "FeedbackViewController.h"
 #import "TabsController.h"
 #import "Api.h"
+#import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
 
@@ -108,6 +109,15 @@
         NSLog(@"SENT");
         [Api sendFeedbackWithTarget:self.location withLocation:[LocationService getLastLocation] withCrowded:crowdedValue withMinutes:minutesValue withFeedback:[feedbackField text] withTime:[SettingsService getTime] withUUID:[SettingsService getUUID]];
         self.submitted = true;
+        NSString *location = ((TabsController *)self.tabBarController).location;
+        SettingsService *settings = [BackendService getSettingsService];
+        if ([location isEqualToString:@"Regattas"]) {
+            [settings setLastFeedbackRegattas:[SettingsService getTime]];
+        } else if ([location isEqualToString:@"Commons"]) {
+            [settings setLastFeedbackCommons:[SettingsService getTime]];
+        } else if ([location isEqualToString:@"Einsteins"]) {
+            [settings setLastFeedbackEinsteins:[SettingsService getTime]];
+        }
         [self setHidden];
     }
 }

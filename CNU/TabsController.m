@@ -33,25 +33,10 @@ int const TAB_SIZE_FULL = 4;
     [super viewDidLoad];
     NSLog(@"Loading tab controller");
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
-    
-    Location *loc = [LocationService getLastLocation];
-    bool add = false;
-    if ([[loc getName] isEqualToString:location]) {
-        long last;
-        SettingsService *settings = [BackendService getSettingsService];
-        if ([location isEqualToString:@"Regattas"]) {
-            last = [settings getLastFeedbackRegattas];
-        } else if ([location isEqualToString:@"Commons"]) {
-            last = [settings getLastFeedbackCommons];
-        } else if ([location isEqualToString:@"Einsteins"]) {
-            last = [settings getLastFeedbackEinsteins];
-        }
-        add = last == -1 || ([SettingsService getTime] - last) > MIN_FEEDBACK;
-    }
-    NSLog(@"Add: %i", add);
+
     FeedViewController *c = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEED];
     c.location = self.location;
-    if (!add) {
+    if (![self shouldShowFeedback:[LocationService getLastLocation]]) {
         self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK];
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK];
     }
@@ -65,15 +50,30 @@ int const TAB_SIZE_FULL = 4;
     [self setViewControllers: tabbarViewControllers];
 }
 
+-(bool)shouldShowFeedback:(Location *)loc {
+    bool add = false;
+    if ([[loc getName] isEqualToString:location]) {
+        long last;
+        SettingsService *settings = [BackendService getSettingsService];
+        if ([location isEqualToString:@"Regattas"]) {
+            last = [settings getLastFeedbackRegattas];
+        } else if ([location isEqualToString:@"Commons"]) {
+            last = [settings getLastFeedbackCommons];
+        } else if ([location isEqualToString:@"Einsteins"]) {
+            last = [settings getLastFeedbackEinsteins];
+        }
+        add = last == -1 || last == 0 || ([SettingsService getTime] - last) > MIN_FEEDBACK;
+    }
+    return add;
+}
+
 - (void) tabBarController:(UITabBarController *) tabBarController
  didSelectViewController:(UIViewController *) viewController {
     NSLog(@"Selected: %@", [viewController description]);
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    NSLog(@"Location updated to tabsController");
-    bool shouldShowFeedback = [[location getName] isEqualToString:self.label];
-    NSLog(@"Should show feedback: %i", shouldShowFeedback);
+    bool shouldShowFeedback = [self shouldShowFeedback:location];
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
     if (shouldShowFeedback/*[tabbarViewControllers count] != TAB_SIZE_FULL*/) {
         if ([tabbarViewControllers count] != TAB_SIZE_FULL && self.feedbackTabItem) {
@@ -87,10 +87,6 @@ int const TAB_SIZE_FULL = 4;
         }
     }
     [self setViewControllers: tabbarViewControllers];
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue: %@ (locationviewcontroller)", segue.identifier);
 }
 
 @end

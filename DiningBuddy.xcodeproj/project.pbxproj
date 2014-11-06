@@ -11,6 +11,10 @@
 		6614D17119E7543A00E2AB53 /* SettingsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17019E7543A00E2AB53 /* SettingsService.m */; };
 		6614D17719EA239A00E2AB53 /* BackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17619EA239A00E2AB53 /* BackendService.m */; };
 		6614D17A19EA2BC300E2AB53 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 6614D17919EA2BC300E2AB53 /* Api.m */; };
+		664BC9791A0C1BCF00E5D83C /* location-marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 664BC9781A0C1BCF00E5D83C /* location-marker@3x.png */; };
+		664BC97D1A0C1CA400E5D83C /* einsteins_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664BC97A1A0C1CA400E5D83C /* einsteins_full.jpg */; };
+		664BC97E1A0C1CA400E5D83C /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664BC97B1A0C1CA400E5D83C /* regattas_full.jpg */; };
+		664BC97F1A0C1CA400E5D83C /* commons_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 664BC97C1A0C1CA400E5D83C /* commons_full.jpg */; };
 		664C69AA19F2D89600C75EEA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69A919F2D89500C75EEA /* Reachability.m */; };
 		664C69BF19F4A48700C75EEA /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69BE19F4A48700C75EEA /* MenuViewController.m */; };
 		664C69C319F4A75400C75EEA /* LocationMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69C219F4A75400C75EEA /* LocationMenuItem.m */; };
@@ -27,7 +31,6 @@
 		66A6587919F9F0D900847E45 /* ic_list_black_48dp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6587419F9F0D900847E45 /* ic_list_black_48dp@2x.png */; };
 		66A6587A19F9F0D900847E45 /* ic_comment_black_48dp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6587519F9F0D900847E45 /* ic_comment_black_48dp@2x.png */; };
 		66A6587E19FAE3D000847E45 /* location-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6587B19FAE3D000847E45 /* location-marker.png */; };
-		66A6587F19FAE3D000847E45 /* location-maker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6587C19FAE3D000847E45 /* location-maker@3x.png */; };
 		66A6588019FAE3D000847E45 /* location-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6587D19FAE3D000847E45 /* location-marker@2x.png */; };
 		66A6588519FAEB0700847E45 /* ic_comment_black_48dp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6588119FAEB0700847E45 /* ic_comment_black_48dp@3x.png */; };
 		66A6588619FAEB0700847E45 /* ic_list_black_48dp@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6588219FAEB0700847E45 /* ic_list_black_48dp@3x.png */; };
@@ -74,6 +77,10 @@
 		6614D17619EA239A00E2AB53 /* BackendService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackendService.m; sourceTree = "<group>"; };
 		6614D17819EA2BC300E2AB53 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
 		6614D17919EA2BC300E2AB53 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
+		664BC9781A0C1BCF00E5D83C /* location-marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker@3x.png"; sourceTree = "<group>"; };
+		664BC97A1A0C1CA400E5D83C /* einsteins_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = einsteins_full.jpg; sourceTree = "<group>"; };
+		664BC97B1A0C1CA400E5D83C /* regattas_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = regattas_full.jpg; sourceTree = "<group>"; };
+		664BC97C1A0C1CA400E5D83C /* commons_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = commons_full.jpg; sourceTree = "<group>"; };
 		664C69A819F2D89500C75EEA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		664C69A919F2D89500C75EEA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		664C69BD19F4A48700C75EEA /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -95,7 +102,6 @@
 		66A6587419F9F0D900847E45 /* ic_list_black_48dp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_list_black_48dp@2x.png"; sourceTree = "<group>"; };
 		66A6587519F9F0D900847E45 /* ic_comment_black_48dp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_comment_black_48dp@2x.png"; sourceTree = "<group>"; };
 		66A6587B19FAE3D000847E45 /* location-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker.png"; sourceTree = "<group>"; };
-		66A6587C19FAE3D000847E45 /* location-maker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-maker@3x.png"; sourceTree = "<group>"; };
 		66A6587D19FAE3D000847E45 /* location-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker@2x.png"; sourceTree = "<group>"; };
 		66A6588119FAEB0700847E45 /* ic_comment_black_48dp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_comment_black_48dp@3x.png"; sourceTree = "<group>"; };
 		66A6588219FAEB0700847E45 /* ic_list_black_48dp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_list_black_48dp@3x.png"; sourceTree = "<group>"; };
@@ -103,7 +109,7 @@
 		66A6588419FAEB0700847E45 /* ic_schedule_black_48dp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_schedule_black_48dp@3x.png"; sourceTree = "<group>"; };
 		66A6588919FAEB6A00847E45 /* ic_trending_up_black_48dp@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_trending_up_black_48dp@3x.png"; sourceTree = "<group>"; };
 		66A6588B19FAEBBF00847E45 /* ic_trending_up_black_48dp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_trending_up_black_48dp@2x.png"; sourceTree = "<group>"; };
-		66AB532619C5104D00F4877A /* CNU.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CNU.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		66AB532619C5104D00F4877A /* DiningBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB532A19C5104D00F4877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AB532B19C5104D00F4877A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		66AB532D19C5104D00F4877A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -114,7 +120,7 @@
 		66AB533719C5104D00F4877A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		66AB533919C5104D00F4877A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		66AB533C19C5104D00F4877A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		66AB534219C5104D00F4877A /* CNUTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CNUTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		66AB534219C5104D00F4877A /* DiningBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiningBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB534719C5104D00F4877A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66AB534819C5104D00F4877A /* CNUTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CNUTests.m; sourceTree = "<group>"; };
 		66AB536619C6176800F4877A /* LocationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationService.h; sourceTree = "<group>"; };
@@ -160,12 +166,15 @@
 		66A6582619F9E21500847E45 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				664BC97A1A0C1CA400E5D83C /* einsteins_full.jpg */,
+				664BC97B1A0C1CA400E5D83C /* regattas_full.jpg */,
+				664BC97C1A0C1CA400E5D83C /* commons_full.jpg */,
+				664BC9781A0C1BCF00E5D83C /* location-marker@3x.png */,
 				668751FC1A0992D900564D67 /* ic_launch.png */,
 				66A6588119FAEB0700847E45 /* ic_comment_black_48dp@3x.png */,
 				66A6588219FAEB0700847E45 /* ic_list_black_48dp@3x.png */,
 				66A6588319FAEB0700847E45 /* ic_poll_black_48dp@3x.png */,
 				66A6588419FAEB0700847E45 /* ic_schedule_black_48dp@3x.png */,
-				66A6587C19FAE3D000847E45 /* location-maker@3x.png */,
 				66A6588919FAEB6A00847E45 /* ic_trending_up_black_48dp@3x.png */,
 				66A6587519F9F0D900847E45 /* ic_comment_black_48dp@2x.png */,
 				66A6587419F9F0D900847E45 /* ic_list_black_48dp@2x.png */,
@@ -197,8 +206,8 @@
 		66AB532719C5104D00F4877A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				66AB532619C5104D00F4877A /* CNU.app */,
-				66AB534219C5104D00F4877A /* CNUTests.xctest */,
+				66AB532619C5104D00F4877A /* DiningBuddy.app */,
+				66AB534219C5104D00F4877A /* DiningBuddyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -308,9 +317,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		66AB532519C5104D00F4877A /* CNU */ = {
+		66AB532519C5104D00F4877A /* DiningBuddy */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66AB534C19C5104D00F4877A /* Build configuration list for PBXNativeTarget "CNU" */;
+			buildConfigurationList = 66AB534C19C5104D00F4877A /* Build configuration list for PBXNativeTarget "DiningBuddy" */;
 			buildPhases = (
 				66AB532219C5104D00F4877A /* Sources */,
 				66AB532319C5104D00F4877A /* Frameworks */,
@@ -320,14 +329,14 @@
 			);
 			dependencies = (
 			);
-			name = CNU;
+			name = DiningBuddy;
 			productName = CNU;
-			productReference = 66AB532619C5104D00F4877A /* CNU.app */;
+			productReference = 66AB532619C5104D00F4877A /* DiningBuddy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		66AB534119C5104D00F4877A /* CNUTests */ = {
+		66AB534119C5104D00F4877A /* DiningBuddyTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 66AB534F19C5104D00F4877A /* Build configuration list for PBXNativeTarget "CNUTests" */;
+			buildConfigurationList = 66AB534F19C5104D00F4877A /* Build configuration list for PBXNativeTarget "DiningBuddyTests" */;
 			buildPhases = (
 				66AB533E19C5104D00F4877A /* Sources */,
 				66AB533F19C5104D00F4877A /* Frameworks */,
@@ -338,9 +347,9 @@
 			dependencies = (
 				66AB534419C5104D00F4877A /* PBXTargetDependency */,
 			);
-			name = CNUTests;
+			name = DiningBuddyTests;
 			productName = CNUTests;
-			productReference = 66AB534219C5104D00F4877A /* CNUTests.xctest */;
+			productReference = 66AB534219C5104D00F4877A /* DiningBuddyTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -367,7 +376,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 66AB532119C5104D00F4877A /* Build configuration list for PBXProject "CNU" */;
+			buildConfigurationList = 66AB532119C5104D00F4877A /* Build configuration list for PBXProject "DiningBuddy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -380,8 +389,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				66AB532519C5104D00F4877A /* CNU */,
-				66AB534119C5104D00F4877A /* CNUTests */,
+				66AB532519C5104D00F4877A /* DiningBuddy */,
+				66AB534119C5104D00F4877A /* DiningBuddyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -396,23 +405,26 @@
 				66AB533819C5104D00F4877A /* Main.storyboard in Resources */,
 				66A6588519FAEB0700847E45 /* ic_comment_black_48dp@3x.png in Resources */,
 				66A6587A19F9F0D900847E45 /* ic_comment_black_48dp@2x.png in Resources */,
-				66A6587F19FAE3D000847E45 /* location-maker@3x.png in Resources */,
 				66A6587919F9F0D900847E45 /* ic_list_black_48dp@2x.png in Resources */,
 				66A6583D19F9E7A700847E45 /* ic_poll_black_48dp.png in Resources */,
 				66AB533D19C5104D00F4877A /* LaunchScreen.xib in Resources */,
 				66A6588619FAEB0700847E45 /* ic_list_black_48dp@3x.png in Resources */,
+				664BC97F1A0C1CA400E5D83C /* commons_full.jpg in Resources */,
 				66A6588819FAEB0700847E45 /* ic_schedule_black_48dp@3x.png in Resources */,
 				66A6583F19F9E7A700847E45 /* ic_schedule_black_48dp.png in Resources */,
 				66A6587E19FAE3D000847E45 /* location-marker.png in Resources */,
 				66A6588719FAEB0700847E45 /* ic_poll_black_48dp@3x.png in Resources */,
+				664BC97E1A0C1CA400E5D83C /* regattas_full.jpg in Resources */,
 				66A6588A19FAEB6A00847E45 /* ic_trending_up_black_48dp@3x.png in Resources */,
 				66A6584019F9E7A700847E45 /* ic_trending_up_black_48dp.png in Resources */,
 				66A6588C19FAEBBF00847E45 /* ic_trending_up_black_48dp@2x.png in Resources */,
 				66A6587819F9F0D900847E45 /* ic_poll_black_48dp@2x.png in Resources */,
+				664BC97D1A0C1CA400E5D83C /* einsteins_full.jpg in Resources */,
 				66AB533A19C5104D00F4877A /* Images.xcassets in Resources */,
 				66A6583B19F9E7A700847E45 /* ic_comment_black_48dp.png in Resources */,
 				668751FD1A0992D900564D67 /* ic_launch.png in Resources */,
 				66A6587619F9F0D900847E45 /* ic_schedule_black_48dp@2x.png in Resources */,
+				664BC9791A0C1BCF00E5D83C /* location-marker@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +480,7 @@
 /* Begin PBXTargetDependency section */
 		66AB534419C5104D00F4877A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 66AB532519C5104D00F4877A /* CNU */;
+			target = 66AB532519C5104D00F4877A /* DiningBuddy */;
 			targetProxy = 66AB534319C5104D00F4877A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -583,7 +595,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DiningBuddy;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CNU/CNU-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -602,7 +614,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DiningBuddy;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CNU/CNU-Bridging-Header.h";
 			};
@@ -622,7 +634,7 @@
 				);
 				INFOPLIST_FILE = CNUTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DiningBuddyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CNU.app/CNU";
 			};
 			name = Debug;
@@ -637,7 +649,7 @@
 				);
 				INFOPLIST_FILE = CNUTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = DiningBuddyTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CNU.app/CNU";
 			};
 			name = Release;
@@ -645,7 +657,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		66AB532119C5104D00F4877A /* Build configuration list for PBXProject "CNU" */ = {
+		66AB532119C5104D00F4877A /* Build configuration list for PBXProject "DiningBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66AB534A19C5104D00F4877A /* Debug */,
@@ -654,7 +666,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66AB534C19C5104D00F4877A /* Build configuration list for PBXNativeTarget "CNU" */ = {
+		66AB534C19C5104D00F4877A /* Build configuration list for PBXNativeTarget "DiningBuddy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66AB534D19C5104D00F4877A /* Debug */,
@@ -663,7 +675,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		66AB534F19C5104D00F4877A /* Build configuration list for PBXNativeTarget "CNUTests" */ = {
+		66AB534F19C5104D00F4877A /* Build configuration list for PBXNativeTarget "DiningBuddyTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				66AB535019C5104D00F4877A /* Debug */,

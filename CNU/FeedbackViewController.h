@@ -10,6 +10,7 @@
 
 @class TabsController;
 @class Api;
+@class BackendService;
 @class SettingsService;
 @class LocationService;
 

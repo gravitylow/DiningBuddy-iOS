@@ -17,7 +17,7 @@
 
 @implementation LocationService
 
-long const MIN_LOCAL_UPDATE = 10 * 1000;
+long const MIN_LOCAL_UPDATE = 5 * 1000;
 long const MIN_UPDATE = 60 * 1000;
 
 @synthesize locationManager, locator;
@@ -101,6 +101,8 @@ long const MIN_UPDATE = 60 * 1000;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
     //location.name = @"Einsteins";
     lastLocation = location;
+    
+    NSLog(@"Updated with %f,%f", lastLatitude, lastLongitude);
     
     NSLog(@"Location update pushed to AppDelegate");
     

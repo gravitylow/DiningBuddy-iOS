@@ -23,7 +23,7 @@
     self.locationLabel.textAlignment = NSTextAlignmentCenter;
     self.locationLabel.text = self.label;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
-    
+
     UIImage *image = [UIImage imageNamed: self.photo];
     [self.imageView setImage:image];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
