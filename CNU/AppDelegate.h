@@ -12,6 +12,7 @@
 @class ViewController;
 @class LocationViewController;
 @class BackendService;
+@class SettingsService;
 @class Location;
 @class LocationInfo;
 

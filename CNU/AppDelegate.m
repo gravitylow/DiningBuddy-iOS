@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "BackendService.h"
+#import "SettingsService.h"
 #import "ViewController.h"
 #import "LocationViewController.h"
 #import "Location.h"
@@ -25,12 +26,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [NSNumber numberWithBool:false], @"pref_wifi_only",
+                                          [NSNumber numberWithBool:false], @"pref_first_user_alert",
                                           [NSNumber numberWithInt:-1], @"pref_last_feedback_regattas",
                                           @"pref_last_feedback_commons",
                                           @"pref_last_feedback_einsteins",
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     backendService = [[BackendService alloc] init];
+    if (![[BackendService getSettingsService] getFirstUserAlert]) {
+        NSString *text = @"Thanks for being one of the first users to try out the app. There's still heavy testing going on, so please feel free to contact me personally with any issues you notice when using the app. You can email me at ad@mfendley.com or tweet me @gravity_low.\n\nTo help grow the app and make predictions more accurate, be sure to tell people about it and get them using it: the more users there are, the better calculations become about how crowded the dining halls are. Be sure to also leave feedback when you're in a dining hall via the feedback tab that will appear; it helps let everyone else know what's going on!\n\nHave a great day and please enjoy!";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hey there!"
+                                                        message:text
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+        [[BackendService getSettingsService] setFirstUserAlert:true];
+    }
     // Override point for customization after application launch.
     return YES;
 }

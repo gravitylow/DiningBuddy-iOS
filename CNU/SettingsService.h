@@ -14,6 +14,7 @@
 @property(nonatomic, retain) NSUserDefaults *preferences;
 @property(nonatomic, retain) NSString *locations;
 @property(nonatomic) bool wifiOnly;
+@property(nonatomic) bool firstUserAlert;
 @property(nonatomic) long long lastFeedbackRegattas;
 @property(nonatomic) long long lastFeedbackCommons;
 @property(nonatomic) long long lastFeedbackEinsteins;
@@ -24,6 +25,8 @@
 -(NSString *) getCachedLocations;
 -(bool) getWifiOnly;
 -(void) setWifiOnly: (bool) value;
+-(bool) getFirstUserAlert;
+-(void) setFirstUserAlert: (bool) value;
 -(bool) isWifiConnected;
 -(bool) getShouldConnect;
 -(long long) getLastFeedbackRegattas;

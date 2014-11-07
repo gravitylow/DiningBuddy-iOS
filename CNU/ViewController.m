@@ -33,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"CNU Dining";
+    self.navigationItem.title = @"DiningBuddy";
 }
 
 - (void)didReceiveMemoryWarning {
