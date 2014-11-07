@@ -99,6 +99,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
             id response = [NSJSONSerialization JSONObjectWithData:data
                                                            options:0
                                                              error:NULL];
+            //NSLog(@"Response: %@", response);
             NSArray *array = [self infoFromJson:response];
             [locationService setInfo:array];
         }
@@ -114,7 +115,6 @@ NSString * const API_CONTENT_TYPE = @"application/json";
         NSString *description = [value objectForKey:@"description"];
         
         LocationMenuItem *item = [[LocationMenuItem alloc] initWithStart:startTime withEnd:endTime withSummary:summary withDescription:description ];
-        NSLog(@"Added menu for %@", summary);
         [array addObject:item];
     }
     

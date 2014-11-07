@@ -56,9 +56,9 @@
 
 - (id) initWithName:(NSString *)name {
     if (self = [super init]) {
-        location = name;
-        people = 0;
-        crowdedRating = 0;
+        self.location = name;
+        self.people = 0;
+        self.crowdedRating = 0;
     }
     return self;
 }
@@ -67,8 +67,8 @@
          withPeople:(int)number
   withCrowdedRating:(CrowdedRating)rating {
     if (self = [super init]) {
-        location = name;
-        self.people = people;
+        self.location = name;
+        self.people = number;
         self.crowdedRating = rating;
     }
     return self;

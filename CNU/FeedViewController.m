@@ -23,8 +23,6 @@
 }
 
 -(void)setFeed:(NSArray *)array {
-    NSLog(@"Feed set");
-    NSLog(@"Array size: %i", [array count]);
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (LocationFeedItem *item in array) {
         if (item.pinned) {
@@ -34,7 +32,6 @@
         }
     }
     self.data = temp;
-    NSLog(@"Temp size: %i", [temp count]);
     [self.tableView reloadData];
 }
 
@@ -54,7 +51,7 @@
     }
     
     NSLog(@"Item time: %li", item.time);
-    NSLog(@"Current time: %li", [SettingsService getTime]);
+    NSLog(@"Current time: %lli", [SettingsService getTime]);
     NSLog(@"Message: %@", item.message);
     cell.textLabel.text = item.message;
     cell.detailTextLabel.text = [self minutesAgo:item.time];
@@ -62,7 +59,7 @@
 }
 
 -(NSString *) minutesAgo:(long)time {
-    long diff = [SettingsService getTime] - time;
+    long long diff = [SettingsService getTime] - time;
     double mins = (diff / 1000) / 60;
     if (mins < 1) {
         return @"< 1 minute ago";

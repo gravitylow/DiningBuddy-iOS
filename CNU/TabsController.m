@@ -53,7 +53,7 @@ int const TAB_SIZE_FULL = 4;
 -(bool)shouldShowFeedback:(Location *)loc {
     bool add = false;
     if ([[loc getName] isEqualToString:location]) {
-        long last;
+        long long last;
         SettingsService *settings = [BackendService getSettingsService];
         if ([location isEqualToString:@"Regattas"]) {
             last = [settings getLastFeedbackRegattas];

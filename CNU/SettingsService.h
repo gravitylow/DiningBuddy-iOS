@@ -14,9 +14,9 @@
 @property(nonatomic, retain) NSUserDefaults *preferences;
 @property(nonatomic, retain) NSString *locations;
 @property(nonatomic) bool wifiOnly;
-@property(nonatomic) long lastFeedbackRegattas;
-@property(nonatomic) long lastFeedbackCommons;
-@property(nonatomic) long lastFeedbackEinsteins;
+@property(nonatomic) long long lastFeedbackRegattas;
+@property(nonatomic) long long lastFeedbackCommons;
+@property(nonatomic) long long lastFeedbackEinsteins;
 
 +(NSString *) getUUID;
 +(long long) getTime;
@@ -26,10 +26,10 @@
 -(void) setWifiOnly: (bool) value;
 -(bool) isWifiConnected;
 -(bool) getShouldConnect;
--(long) getLastFeedbackRegattas;
--(long) getLastFeedbackCommons;
--(long) getLastFeedbackEinsteins;
--(void) setLastFeedbackRegattas: (long) time;
--(void) setLastFeedbackCommons: (long) time;
--(void) setLastFeedbackEinsteins: (long) time;
+-(long long) getLastFeedbackRegattas;
+-(long long) getLastFeedbackCommons;
+-(long long) getLastFeedbackEinsteins;
+-(void) setLastFeedbackRegattas: (long long) time;
+-(void) setLastFeedbackCommons: (long long) time;
+-(void) setLastFeedbackEinsteins: (long long) time;
 @end

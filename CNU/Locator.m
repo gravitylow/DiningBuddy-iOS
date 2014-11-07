@@ -69,7 +69,6 @@
         NSLog(@"Detected no locations recieved, trying again soon...");
         [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(updateLocations) userInfo:nil repeats:NO];
     } else {
-        NSLog(@"Locations set to size %i", [array count]);
         locations = array;
         setup = true;
         [[BackendService getSettingsService] cacheLocations:[self jsonValue]];

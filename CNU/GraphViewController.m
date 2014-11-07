@@ -15,8 +15,6 @@
 
 @implementation GraphViewController
 
-@synthesize webView, location;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"Loading graph");
@@ -26,12 +24,12 @@
     
     NSLog(@"Parent location: %@", parent.location);
     NSString *urlAddress = @"https://api.gravitydevelopment.net/cnu/api/v1.0/graphs/";
-    urlAddress = [urlAddress stringByAppendingString:location];
+    urlAddress = [urlAddress stringByAppendingString:self.location];
     NSURL *url = [NSURL URLWithString:urlAddress];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];
+    [self.webView loadRequest:requestObj];
     NSLog(@"Done loading graph");
-    [webView setScalesPageToFit:YES];
+    [self.webView setScalesPageToFit:YES];
 }
 
 - (void)didReceiveMemoryWarning {

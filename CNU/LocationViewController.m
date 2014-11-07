@@ -19,8 +19,6 @@
 
 @implementation LocationViewController
 
-@synthesize location, label, photo, info, banner, tabs, hasBadge;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -53,7 +51,7 @@
         if (self.info) {
             c.info = self.info;
         }
-        banner = c;
+        self.banner = c;
     } else if ([segue.identifier isEqualToString:@"Tabs"]) {
         TabsController *c = [segue destinationViewController];
         c.location = self.location;
@@ -62,7 +60,7 @@
         if (self.info) {
             c.info = self.info;
         }
-        tabs = c;
+        self.tabs = c;
     }
 }
 
@@ -75,11 +73,11 @@
     } else if ([self.label isEqualToString:@"Einsteins"]) {
         locationInfo = einsteins;
     }
-    [banner updateViewWithLocationInfo:locationInfo];
+    [self.banner updateViewWithLocationInfo:locationInfo];
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    [tabs updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+    [self.tabs updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 
 @end

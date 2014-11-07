@@ -27,9 +27,9 @@
         preferences = [NSUserDefaults standardUserDefaults];
         locations = [preferences stringForKey:@"pref_locations"];
         wifiOnly = [preferences boolForKey:@"pref_wifi_only"];
-        lastFeedbackRegattas = [preferences integerForKey:@"pref_last_feedback_regattas"];
-        lastFeedbackCommons = [preferences integerForKey:@"pref_last_feedback_commons"];
-        lastFeedbackEinsteins = [preferences integerForKey:@"pref_last_feedback_einsteins"];
+        lastFeedbackRegattas = [[preferences objectForKey:@"pref_last_feedback_regattas"] longLongValue];
+        lastFeedbackCommons = [[preferences objectForKey:@"pref_last_feedback_commons"] longLongValue];
+        lastFeedbackEinsteins = [[preferences objectForKey:@"pref_last_feedback_einsteins"] longLongValue];
     }
     return self;
 }
@@ -77,32 +77,32 @@
     }
 }
 
--(long) getLastFeedbackRegattas {
+-(long long) getLastFeedbackRegattas {
     return lastFeedbackRegattas;
 }
 
--(long) getLastFeedbackCommons {
+-(long long) getLastFeedbackCommons {
     return lastFeedbackCommons;
 }
 
--(long) getLastFeedbackEinsteins {
+-(long long) getLastFeedbackEinsteins {
     return lastFeedbackEinsteins;
 }
 
--(void) setLastFeedbackRegattas: (long) time {
-    [preferences setInteger:time forKey:@"pref_last_feedback_regattas"];
+-(void) setLastFeedbackRegattas: (long long) time {
+    [preferences setValue:@(time) forKey:@"pref_last_feedback_regattas"];
     [preferences synchronize];
     lastFeedbackRegattas = time;
 }
 
--(void) setLastFeedbackCommons: (long) time {
-    [preferences setInteger:time forKey:@"pref_last_feedback_commons"];
+-(void) setLastFeedbackCommons: (long long) time {
+    [preferences setValue:@(time) forKey:@"pref_last_feedback_commons"];
     [preferences synchronize];
     lastFeedbackCommons = time;
 }
 
--(void) setLastFeedbackEinsteins: (long) time {
-    [preferences setInteger:time forKey:@"pref_last_feedback_einsteins"];
+-(void) setLastFeedbackEinsteins: (long long) time {
+    [preferences setValue:@(time) forKey:@"pref_last_feedback_einsteins"];
     [preferences synchronize];
     lastFeedbackEinsteins = time;
 }

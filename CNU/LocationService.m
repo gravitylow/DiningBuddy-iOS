@@ -60,6 +60,7 @@ long const MIN_UPDATE = 60 * 1000;
 
 -(void)setInfo: (NSArray *) info {
     lastLocationInfo = info;
+    NSLog(@"Info: %@", info);
     [AppDelegate updateInfo:info];
 }
 
@@ -85,7 +86,7 @@ long const MIN_UPDATE = 60 * 1000;
         return;
     }
     
-    long currentTime = [SettingsService getTime];
+    long long currentTime = [SettingsService getTime];
     
     if (lastUpdate != 0 && (currentTime - lastUpdate) < MIN_LOCAL_UPDATE) {
         return;
@@ -101,8 +102,6 @@ long const MIN_UPDATE = 60 * 1000;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
     //location.name = @"Einsteins";
     lastLocation = location;
-    
-    NSLog(@"Updated with %f,%f", lastLatitude, lastLongitude);
     
     NSLog(@"Location update pushed to AppDelegate");
     
