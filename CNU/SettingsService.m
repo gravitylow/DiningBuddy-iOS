@@ -40,6 +40,7 @@
 }
 
 +(long long) getTime {
+    NSLog(@"Time: %lli", (long long)([[NSDate date] timeIntervalSince1970] * 1000.0));
     return (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
 }
 

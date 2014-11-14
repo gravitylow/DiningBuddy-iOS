@@ -68,6 +68,13 @@ long const MIN_UPDATE = 60 * 1000;
     [Api getInfoForService:self];
 }
 
+-(void)requestFullUpdate {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self updateInfo];
+        
+    });
+}
+
 -(void)startUpdatingLocation {
     self.locationManager = [[CLLocationManager alloc] init];
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
@@ -88,10 +95,6 @@ long const MIN_UPDATE = 60 * 1000;
     
     long long currentTime = [SettingsService getTime];
     
-    if (lastUpdate != 0 && (currentTime - lastUpdate) < MIN_LOCAL_UPDATE) {
-        return;
-    }
-    
     lastUpdate = currentTime;
     
     CLLocationCoordinate2D currentCoordinates = currentLocation.coordinate;
@@ -103,7 +106,7 @@ long const MIN_UPDATE = 60 * 1000;
     //location.name = @"Einsteins";
     lastLocation = location;
     
-    NSLog(@"Location update pushed to AppDelegate");
+    NSLog(@"Location update (%@) pushed to AppDelegate", location.name);
     
     [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
     

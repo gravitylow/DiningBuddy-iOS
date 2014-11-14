@@ -29,7 +29,7 @@
     crowdedValue = -1;
     minutesValue = -1;
     self.crowdedArray  = [[NSArray alloc] initWithObjects:@"Not crowded at all",@"Somewhat crowded",@"Very crowded",nil];
-    self.minutesArray  = [[NSArray alloc] initWithObjects:@"1 Minute",@"2 Minutes",@"3 Minutes",@"4 Minutes",@"5 Minutes",@"6 Minutes",@"7 Minutes",@"8 Minutes",@"9 Minutes",@"10 Minutes", nil];
+    self.minutesArray  = [[NSArray alloc] initWithObjects:@"0 Minutes",@"1 Minute",@"2 Minutes",@"3 Minutes",@"4 Minutes",@"5 Minutes",@"6 Minutes",@"7 Minutes",@"8 Minutes",@"9 Minutes",@"10+ Minutes", nil];
     
     self.crowdedPickerView = [[UIPickerView alloc]init];
     self.minutesPickerView = [[UIPickerView alloc]init];

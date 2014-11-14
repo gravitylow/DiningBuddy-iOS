@@ -15,6 +15,8 @@
 @class BannerViewController;
 @class Location;
 @class LocationInfo;
+@class BackendService;
+@class LocationService;
 
 @interface ViewController : UIViewController
 
@@ -30,6 +32,11 @@
 @property(nonatomic) bool commonsHasBadge;
 @property(nonatomic) bool einsteinsHasBadge;
 
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+
+-(void)refresh;
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 @end

@@ -14,12 +14,20 @@
 @implementation FeedViewController
 
 @synthesize data;
+@synthesize refreshControl;
 
 -(void)viewDidLoad {
     [super viewDidLoad];
     self.data = [[NSArray alloc]init];
     [Api getFeedForLocation:self.location forFeedController:self];
-    NSLog(@"Requesting feed");
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+}
+
+-(void)refresh {
+    [Api getFeedForLocation:self.location forFeedController:self];
 }
 
 -(void)setFeed:(NSArray *)array {
@@ -33,6 +41,9 @@
     }
     self.data = temp;
     [self.tableView reloadData];
+    if ([refreshControl isRefreshing]) {
+        [refreshControl endRefreshing];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -50,7 +61,7 @@
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
     }
     
-    NSLog(@"Item time: %li", item.time);
+    NSLog(@"Item time: %lli", item.time);
     NSLog(@"Current time: %lli", [SettingsService getTime]);
     NSLog(@"Message: %@", item.message);
     cell.textLabel.text = item.message;
@@ -58,7 +69,7 @@
     return cell;
 }
 
--(NSString *) minutesAgo:(long)time {
+-(NSString *) minutesAgo:(long long)time {
     long long diff = [SettingsService getTime] - time;
     double mins = (diff / 1000) / 60;
     if (mins < 1) {
@@ -72,6 +83,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [data count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([data count] > 0) {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        return 1;
+    } else {
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        
+        messageLabel.text = @"No recent updates";
+        messageLabel.textColor = [UIColor grayColor];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        [messageLabel sizeToFit];
+        
+        self.tableView.backgroundView = messageLabel;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -12,6 +12,8 @@
 #import "BannerViewController.h"
 #import "Location.h"
 #import "LocationInfo.h"
+#import "BackendService.h"
+#import "LocationService.h"
 
 @interface ViewController ()
 
@@ -31,14 +33,24 @@
 @synthesize commonsHasBadge;
 @synthesize einsteinsHasBadge;
 
+@synthesize refreshControl;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"DiningBuddy";
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    [self.scrollView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)refresh {
+    [[BackendService getLocationService] requestFullUpdate];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -100,6 +112,10 @@
     [regattasView updateViewWithLocationInfo:regattas];
     [commonsView updateViewWithLocationInfo:commons];
     [einsteinsView updateViewWithLocationInfo:einsteins];
+    
+    if ([refreshControl isRefreshing]) {
+        [refreshControl endRefreshing];
+    }
     
 }
 

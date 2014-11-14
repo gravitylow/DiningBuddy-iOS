@@ -141,7 +141,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
         NSString *message = [value objectForKey:@"feedback"];
         int minutes = [[value objectForKey:@"minutes"] integerValue];
         int crowded = [[value objectForKey:@"crowded"] integerValue];
-        long time = [[value objectForKey:@"time"] longValue];
+        long long time = [[value objectForKey:@"time"] longLongValue];
         bool pinned = [[value objectForKey:@"pinned"] boolValue];
         NSString *detail = [value objectForKey:@"detail"];
         

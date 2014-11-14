@@ -35,6 +35,7 @@ static bool hasLocation;
 -(id)initWithSettings:(SettingsService *) settings;
 -(void)setInfo:(NSArray *) info;
 -(void)updateInfo;
+-(void)requestFullUpdate;
 -(void)startUpdatingLocation;
 +(double) getLastLatitude;
 +(double) getLastLongitude;
