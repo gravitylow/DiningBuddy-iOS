@@ -43,11 +43,11 @@
 
 -(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
     LocationInfo *locationInfo;
-    if ([self.label isEqualToString:@"Regattas"]) {
+    if ([self.location isEqualToString:@"Regattas"]) {
         locationInfo = regattas;
-    } else if ([self.label isEqualToString:@"Commons"]) {
+    } else if ([self.location isEqualToString:@"Commons"]) {
         locationInfo = commons;
-    } else if ([self.label isEqualToString:@"Einsteins"]) {
+    } else if ([self.location isEqualToString:@"Einsteins"]) {
         locationInfo = einsteins;
     }
     CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
@@ -72,11 +72,9 @@
 
 -(bool)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     if ([[location getName] isEqualToString:self.location]) {
-        NSLog(@"Badge shown: true (%@, %@)",[location getName], self.location);
         [badgeImageView setHidden:FALSE];
         return true;
     } else {
-        NSLog(@"Badge shown: false (%@, %@)",[location getName], self.location);
         [badgeImageView setHidden:TRUE];
         return false;
     }

@@ -41,7 +41,6 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue: %@ (locationviewcontroller)", segue.identifier);
     if ([segue.identifier isEqualToString:@"Banner"]) {
         BannerViewController *c = [segue destinationViewController];
         c.location = self.location;

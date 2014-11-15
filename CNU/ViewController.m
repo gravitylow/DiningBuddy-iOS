@@ -71,7 +71,9 @@
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
         c.hasBadge = commonsHasBadge;
+        NSLog(@"Commons info: %@", lastCommonsInfo);
         if (lastCommonsInfo) {
+            NSLog(@"Passed");
             c.info = lastCommonsInfo;
         }
         if ([segue.identifier hasPrefix:@"embed"]) {
