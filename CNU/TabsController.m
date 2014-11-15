@@ -72,13 +72,12 @@ int const TAB_SIZE_FULL = 4;
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     bool shouldShowFeedback = [self shouldShowFeedback:location];
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
-    if (shouldShowFeedback/*[tabbarViewControllers count] != TAB_SIZE_FULL*/) {
+    if (shouldShowFeedback) {
         if ([tabbarViewControllers count] != TAB_SIZE_FULL && self.feedbackTabItem) {
             [tabbarViewControllers addObject:self.feedbackTabItem];
         }
     } else {
         if ([tabbarViewControllers count] == TAB_SIZE_FULL) {
-            NSLog(@"Removing item...");
             self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK - 1];
             [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK - 1];
         }
