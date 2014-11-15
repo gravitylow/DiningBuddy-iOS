@@ -31,7 +31,6 @@ int const TAB_SIZE_FULL = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Loading tab controller");
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
 
     FeedViewController *c = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEED];
@@ -64,13 +63,10 @@ int const TAB_SIZE_FULL = 4;
         }
         add = last == -1 || last == 0 || ([SettingsService getTime] - last) > MIN_FEEDBACK;
     }
-    //return add;
-    return true;
+    return add;
 }
 
-- (void) tabBarController:(UITabBarController *) tabBarController
- didSelectViewController:(UIViewController *) viewController {
-    NSLog(@"Selected: %@", [viewController description]);
+- (void) tabBarController:(UITabBarController *) tabBarController didSelectViewController:(UIViewController *) viewController {
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {

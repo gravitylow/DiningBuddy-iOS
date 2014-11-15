@@ -106,7 +106,7 @@ long const MIN_UPDATE = 60 * 1000;
     //location.name = @"Einsteins";
     lastLocation = location;
     
-    NSLog(@"Location update (%@) pushed to AppDelegate", location.name);
+    NSLog(@"Location updated: %f, %f", lastLatitude, lastLongitude);
     
     [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
     

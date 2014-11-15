@@ -12,7 +12,9 @@
 @class Api;
 @class SettingsService;
 
-@interface FeedViewController : UITableViewController <UITableViewDelegate, UITableViewDelegate>
+@interface FeedViewController : UITableViewController <UITableViewDelegate, UITableViewDelegate> {
+    bool dataLoaded;
+}
 
 @property(nonatomic, retain) NSString  *location;
 @property(nonatomic, retain) NSArray *data;

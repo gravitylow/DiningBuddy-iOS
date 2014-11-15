@@ -31,6 +31,7 @@
 }
 
 -(void)setFeed:(NSArray *)array {
+    dataLoaded = true;
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (LocationFeedItem *item in array) {
         if (item.pinned) {
@@ -88,11 +89,12 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if ([data count] > 0) {
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.backgroundView = nil;
         return 1;
     } else {
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         
-        messageLabel.text = @"No recent updates";
+        messageLabel.text = dataLoaded ? @"No recent updates" : @"Loading...";
         messageLabel.textColor = [UIColor grayColor];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
