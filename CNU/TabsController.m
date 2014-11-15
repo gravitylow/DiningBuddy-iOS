@@ -64,7 +64,8 @@ int const TAB_SIZE_FULL = 4;
         }
         add = last == -1 || last == 0 || ([SettingsService getTime] - last) > MIN_FEEDBACK;
     }
-    return add;
+    //return add;
+    return true;
 }
 
 - (void) tabBarController:(UITabBarController *) tabBarController

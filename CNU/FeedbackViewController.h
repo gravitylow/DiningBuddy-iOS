@@ -14,7 +14,10 @@
 @class SettingsService;
 @class LocationService;
 
-@interface FeedbackViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+@interface FeedbackViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
+    CGFloat animatedDistance;
+    CGFloat currentKeyboardHeight;
+}
 
 @property(nonatomic, retain) NSString  *location;
 @property(nonatomic) bool submitted;
@@ -37,6 +40,7 @@
 @property(nonatomic) int minutesValue;
 
 -(IBAction)submit;
+-(void)keyboardDidShow:(NSNotification*)notification;
 
 
 @end
