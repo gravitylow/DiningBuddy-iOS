@@ -15,21 +15,12 @@
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSArray *coordinatePairs;
 @property(nonatomic, retain) NSArray *subLocations;
+@property(nonatomic) NSInteger priority;
 
-- (id) init;
-- (id) initWithName:(NSString *)nameValue
-            withCoordinatePairs:(NSArray *)coordinatePairsValue;
 - (id) initWithName:(NSString *)nameValue
             withCoordinatePairs:(NSArray *)coordinatePairsValue
-            withSubLocations:(NSArray *)subLocationsValue;
+            withPriority:(NSInteger)priorityValue;
 - (NSString *) getName;
-- (NSArray *) getSubLocations;
-- (bool) hasSubLocations;
 - (bool) isInsideLocation:(double) latitude :(double) longitude;
-- (double) angle2D:(double) y1 :(double) x1 :(double) y2 :(double) x2;
-- (NSString *) coordinatePairsJsonValue;
-- (NSString *) subLocationsJsonValue;
-- (NSString *) jsonValue;
-
 
 @end

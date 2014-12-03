@@ -15,19 +15,16 @@
 
 @interface Locator : NSObject
 
-@property(nonatomic, retain) NSArray *locations;
+@property(nonatomic, retain) NSArray *locationsList;
+@property(nonatomic, retain) NSString *jsonValue;
 @property(nonatomic) bool setup;
 
-- (id) init;
 - (id) initWithJson: (NSString *) json;
 - (Location *) getLocation: (double) latitude : (double) longitude;
-+ (Location *) getApplicableLocation: (Location *) base : (double) latitude : (double) longitude;
-- (void) setLocations: (NSArray *)array;
+- (void) setLocations: (NSString *)value;
 - (void) updateLocations;
 - (void) postLocation: (double) latitude : (double) longitude : (Location *) location : (NSString *) uuid;
 - (NSArray *) getLocations;
-- (NSArray *) getAllLocations;
-- (NSArray *) recursiveGetLocations: (NSMutableArray *) build : (NSArray *) locs;
 - (bool) isSetup;
 - (NSString *) jsonValue;
 

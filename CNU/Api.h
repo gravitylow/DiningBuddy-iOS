@@ -23,15 +23,14 @@
 extern NSString * const API_HOST;
 extern NSString * const API_VERSION;
 extern NSString * const API_QUERY;
-extern NSString * const API_USER_AGENT;
 extern NSString * const API_CONTENT_TYPE;
 
 +(NSString *)getApiUrl;
 +(NSString *)getApiUrlForString: (NSString *) value;
-+(NSArray *)locationsFromJson: (id)json;
-+(NSArray *)infoFromJson: (id)json;
 +(void)getLocationsForLocator:(Locator *)locator;
++(NSArray *)locationsFromJson: (id)json;
 +(void)getInfoForService:(LocationService *)locationService;
++(NSArray *)infoFromJson: (id)json;
 +(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller;
 +(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller;
 +(void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *) uuid;

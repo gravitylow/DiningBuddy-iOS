@@ -23,32 +23,18 @@
     return self;
 }
 - (id) initWithName:(NSString *)nameValue
-withCoordinatePairs:(NSArray *)coordinatePairsValue {
+withCoordinatePairs:(NSArray *)coordinatePairsValue
+withPriority:(NSInteger)priorityValue{
     if (self = [super init]) {
         self.name = nameValue;
         self.coordinatePairs = coordinatePairsValue;
         self.subLocations = [[NSArray alloc] init];
-    }
-    return self;
-}
-- (id) initWithName:(NSString *)nameValue
-withCoordinatePairs:(NSArray *)coordinatePairsValue
-   withSubLocations:(NSArray *)subLocationsValue {
-    if (self = [super init]) {
-        self.name = nameValue;
-        self.coordinatePairs = coordinatePairsValue;
-        self.subLocations = subLocationsValue;
+        self.priority = priorityValue;
     }
     return self;
 }
 - (NSString *) getName {
     return name;
-}
-- (NSArray *) getSubLocations {
-    return subLocations;
-}
-- (bool) hasSubLocations {
-    return [subLocations count] > 0;
 }
 - (bool) isInsideLocation:(double) latitude :(double) longitude {
     double angle = 0;
@@ -87,37 +73,6 @@ withCoordinatePairs:(NSArray *)coordinatePairsValue
         dtheta += M_PI * 2;
     }
     return dtheta;
-}
-- (NSString *) coordinatePairsJsonValue {
-    NSMutableString *value = [[NSMutableString alloc] init];
-    [value appendString:@"["];
-    NSUInteger count = [coordinatePairs count];
-    if (count > 0) {
-        for(int i=0;i<count;i++) {
-            CoordinatePair *pair = [coordinatePairs objectAtIndex:i];
-            [value appendString:[pair jsonValue]];
-            [value appendString:@","];
-        }
-        [value deleteCharactersInRange:NSMakeRange([value length]-1, 1)];
-    }
-    return value;
-}
-- (NSString *) subLocationsJsonValue {
-    NSMutableString *value = [[NSMutableString alloc] init];
-    [value appendString:@"["];
-    NSUInteger count = [subLocations count];
-    if (count > 0) {
-        for(int i=0;i<count;i++) {
-            Location *loc = [subLocations objectAtIndex:i];
-            [value appendString:[loc jsonValue]];
-            [value appendString:@","];
-        }
-        [value deleteCharactersInRange:NSMakeRange([value length]-1, 1)];
-    }
-    return value;
-}
-- (NSString *) jsonValue {
-    return [NSString stringWithFormat:@"{\"name\" : \"%@\", \"coordinatePairs\" : %@, \"subLocations\" : %@}", name, [self coordinatePairsJsonValue], [self subLocationsJsonValue]];
 }
 
 @end

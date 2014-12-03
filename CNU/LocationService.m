@@ -50,6 +50,7 @@ long const MIN_UPDATE = 60 * 1000;
                 dispatch_source_cancel(timerSource);
             } else {
                 [self updateInfo];
+                [self updateLocation];
             }
         });
         dispatch_resume(timerSource);
@@ -60,7 +61,6 @@ long const MIN_UPDATE = 60 * 1000;
 
 -(void)setInfo: (NSArray *) info {
     lastLocationInfo = info;
-    NSLog(@"Info: %@", info);
     [AppDelegate updateInfo:info];
 }
 
@@ -83,7 +83,7 @@ long const MIN_UPDATE = 60 * 1000;
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     [locationManager setPausesLocationUpdatesAutomatically:NO];
     [self.locationManager setDelegate:self];
-    [self.locationManager startUpdatingLocation];
+    [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -92,10 +92,6 @@ long const MIN_UPDATE = 60 * 1000;
     if (![locator isSetup] || ![settingsService getShouldConnect]) {
         return;
     }
-    
-    long long currentTime = [SettingsService getTime];
-    
-    lastUpdate = currentTime;
     
     CLLocationCoordinate2D currentCoordinates = currentLocation.coordinate;
 
@@ -106,10 +102,20 @@ long const MIN_UPDATE = 60 * 1000;
     //location.name = @"Einsteins";
     lastLocation = location;
     
-    NSLog(@"Location updated: %f, %f", lastLatitude, lastLongitude);
+    [self updateLocation];
+}
+
+- (void)updateLocation {
     
-    [AppDelegate updateLocationWithLatitude:currentCoordinates.latitude withLongitude:currentCoordinates.longitude withLocation:location];
+    if (![locator isSetup] || ![settingsService getShouldConnect]) {
+        return;
+    }
     
+    long long currentTime = [SettingsService getTime];
+    
+    lastUpdate = currentTime;
+    
+    [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
         [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
         lastPublishedUpdate = currentTime;
@@ -134,6 +140,6 @@ long const MIN_UPDATE = 60 * 1000;
 }
 -(void) die {
     dieFlag = true;
-    [locationManager stopUpdatingLocation];
+    [locationManager stopMonitoringSignificantLocationChanges];
 }
 @end

@@ -22,8 +22,16 @@
 NSString * const API_HOST = @"https://api.gravitydevelopment.net%@";
 NSString * const API_VERSION = @"v1.0";
 NSString * const API_QUERY = @"/cnu/api/%@/";
-NSString * const API_USER_AGENT = @"CNU-iOS-v1";
 NSString * const API_CONTENT_TYPE = @"application/json";
+
+static NSString *API_USER_AGENT = @"CNU-iOS";
+
++ (void) initialize {
+    if (self == [Api class]) {
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+        API_USER_AGENT = [NSString stringWithFormat:@"%@-v%@", API_USER_AGENT, version];
+    }
+}
 
 +(NSString *)getApiUrl {
     return [NSString stringWithFormat:API_HOST, [NSString stringWithFormat:API_QUERY, API_VERSION]];
@@ -33,33 +41,39 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     return [NSString stringWithFormat:@"%@%@", [self getApiUrl], value];
 }
 
-+(NSArray *)locationsFromJson: (id)json {
-    return [self locationsFromArray:json];
++(void)getLocationsForLocator: (Locator *) locator {
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"locations2"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (data.length > 0 && error == nil) {
+            NSString *response = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0
+                                                            error:NULL];
+            [locator setLocations:response];
+        }
+    }];
 }
 
-+(NSArray *)locationsFromArray: (NSArray *) array {
-    NSMutableArray *new = [[NSMutableArray alloc] init];
++(NSArray *)locationsFromJson: (id) json {
+    NSMutableArray *list = [[NSMutableArray alloc] init];
+    NSArray *array = [json objectForKey:@"features"];
     for (NSDictionary* value in array) {
-        NSString *name = [value objectForKey:@"name"];
-        NSArray *coordinatePairs = [value objectForKey:@"coordinatePairs"];
-        NSMutableArray *newCoordinatePairs = [[NSMutableArray alloc] init];
-        for (NSDictionary *pair in coordinatePairs) {
-            double lat = [[pair valueForKey:@"lat"] doubleValue];
-            double lon = [[pair valueForKey:@"lon"] doubleValue];
-            [newCoordinatePairs addObject:[[CoordinatePair alloc] initWithDouble:lat withDouble:lon]];
-        }
-        NSArray *subLocations = [value objectForKey:@"subLocations"];
+        id properties = [value objectForKey:@"properties"];
+        id geometry = [value objectForKey:@"geometry"];
         
-        Location *location;
-        if ([subLocations count] > 0) {
-            location = [[Location alloc] initWithName:name withCoordinatePairs:newCoordinatePairs withSubLocations:[self locationsFromArray:subLocations]];
-        } else {
-            location = [[Location alloc] initWithName:name withCoordinatePairs:newCoordinatePairs];
-        }
+        NSString *name = [properties objectForKey:@"name"];
+        NSInteger priority = [[properties objectForKey:@"priority"] integerValue];
         
-        [new addObject:location];
+        NSArray *coordinates = [[geometry objectForKey:@"coordinates"] objectAtIndex:0];
+        NSMutableArray *coordinatePairs = [[NSMutableArray alloc] init];
+        for (NSArray *value in coordinates) {
+            double longitude = [[value objectAtIndex:0] doubleValue];
+            double latitude = [[value objectAtIndex:1] doubleValue];
+            [coordinatePairs addObject:[[CoordinatePair alloc] initWithDouble:latitude withDouble:longitude]];
+        }
+        [list addObject:[[Location alloc] initWithName:name withCoordinatePairs:coordinatePairs withPriority:priority]];
     }
-    return new;
+    return list;
 }
 
 +(NSArray *)infoFromJson: (id)json {
@@ -74,21 +88,6 @@ NSString * const API_CONTENT_TYPE = @"application/json";
         [array addObject:info];
     }
     return array;
-}
-
-+(void)getLocationsForLocator: (Locator *) locator {
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"locations"]];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-         if (data.length > 0 && error == nil) {
-             id response = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:0
-                                                              error:NULL];
-             //NSLog(@"Response: %@", response);
-             NSArray *array = [self locationsFromJson:response];
-             [locator setLocations:array];
-         }
-     }];
 }
 
 +(void)getInfoForService: (LocationService *) locationService {
@@ -169,7 +168,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     if (location == nil) {
         return;
     }
-    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"time\" : %lli }", uuid, latitude, longitude, [location getName], time];
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"send_time\" : %lli }", uuid, latitude, longitude, [location getName], time];
     NSLog(@"Update: %@", json);
     
     
@@ -188,7 +187,7 @@ NSString * const API_CONTENT_TYPE = @"application/json";
     if (crowded == -1 || minutes == -1) {
         return;
     }
-    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"time\" : %lli, \"pinned\" : false }", uuid, target, crowded, minutes, feedback, [location getName], time];
+    NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"send_time\" : %lli }", uuid, target, crowded, minutes, feedback, [location getName], time];
     NSLog(@"Feedback: %@", json);
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"feedback"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
