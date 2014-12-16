@@ -20,6 +20,7 @@
 		664C69C319F4A75400C75EEA /* LocationMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69C219F4A75400C75EEA /* LocationMenuItem.m */; };
 		664C69C619F4A7BC00C75EEA /* LocationFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69C519F4A7BC00C75EEA /* LocationFeedItem.m */; };
 		664C69D819F5CFAE00C75EEA /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 664C69D719F5CFAE00C75EEA /* FeedViewController.m */; };
+		66515A671A40D63D007BC09C /* AlertItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66515A661A40D63D007BC09C /* AlertItem.m */; };
 		668751FD1A0992D900564D67 /* ic_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 668751FC1A0992D900564D67 /* ic_launch.png */; };
 		66A6583B19F9E7A700847E45 /* ic_comment_black_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6583519F9E7A700847E45 /* ic_comment_black_48dp.png */; };
 		66A6583C19F9E7A700847E45 /* ic_list_black_48dp.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A6583619F9E7A700847E45 /* ic_list_black_48dp.png */; };
@@ -91,6 +92,8 @@
 		664C69C519F4A7BC00C75EEA /* LocationFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationFeedItem.m; sourceTree = "<group>"; };
 		664C69D619F5CFAE00C75EEA /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		664C69D719F5CFAE00C75EEA /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		66515A651A40D63D007BC09C /* AlertItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertItem.h; sourceTree = "<group>"; };
+		66515A661A40D63D007BC09C /* AlertItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertItem.m; sourceTree = "<group>"; };
 		668751FC1A0992D900564D67 /* ic_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ic_launch.png; path = ../../Downloads/ic_launch.png; sourceTree = "<group>"; };
 		66A6583519F9E7A700847E45 /* ic_comment_black_48dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_comment_black_48dp.png; sourceTree = "<group>"; };
 		66A6583619F9E7A700847E45 /* ic_list_black_48dp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_list_black_48dp.png; sourceTree = "<group>"; };
@@ -163,6 +166,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66515A641A40D5FD007BC09C /* modal */ = {
+			isa = PBXGroup;
+			children = (
+				664C69C119F4A75400C75EEA /* LocationMenuItem.h */,
+				664C69C219F4A75400C75EEA /* LocationMenuItem.m */,
+				664C69C419F4A7BC00C75EEA /* LocationFeedItem.h */,
+				664C69C519F4A7BC00C75EEA /* LocationFeedItem.m */,
+				66515A651A40D63D007BC09C /* AlertItem.h */,
+				66515A661A40D63D007BC09C /* AlertItem.m */,
+			);
+			name = modal;
+			sourceTree = "<group>";
+		};
 		66A6582619F9E21500847E45 /* image */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,8 +211,8 @@
 		66AB531D19C5104D00F4877A = {
 			isa = PBXGroup;
 			children = (
-				66A6582619F9E21500847E45 /* image */,
 				66C793C819DE162A007AC4BC /* CoreLocation.framework */,
+				66A6582619F9E21500847E45 /* image */,
 				66AB532819C5104D00F4877A /* CNU */,
 				66AB534519C5104D00F4877A /* CNUTests */,
 				66AB532719C5104D00F4877A /* Products */,
@@ -215,6 +231,7 @@
 		66AB532819C5104D00F4877A /* CNU */ = {
 			isa = PBXGroup;
 			children = (
+				66515A641A40D5FD007BC09C /* modal */,
 				664C69A819F2D89500C75EEA /* Reachability.h */,
 				664C69A919F2D89500C75EEA /* Reachability.m */,
 				66C214F519F08D9900BECC96 /* view */,
@@ -231,10 +248,6 @@
 				66AB532919C5104D00F4877A /* Supporting Files */,
 				6614D17819EA2BC300E2AB53 /* Api.h */,
 				6614D17919EA2BC300E2AB53 /* Api.m */,
-				664C69C119F4A75400C75EEA /* LocationMenuItem.h */,
-				664C69C219F4A75400C75EEA /* LocationMenuItem.m */,
-				664C69C419F4A7BC00C75EEA /* LocationFeedItem.h */,
-				664C69C519F4A7BC00C75EEA /* LocationFeedItem.m */,
 			);
 			path = CNU;
 			sourceTree = "<group>";
@@ -366,7 +379,7 @@
 						DevelopmentTeam = Z2QL6X8GU7;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -462,6 +475,7 @@
 				6614D17119E7543A00E2AB53 /* SettingsService.m in Sources */,
 				664C69D819F5CFAE00C75EEA /* FeedViewController.m in Sources */,
 				6614D16E19E6DFA900E2AB53 /* LocationViewController.m in Sources */,
+				66515A671A40D63D007BC09C /* AlertItem.m in Sources */,
 				664C69C319F4A75400C75EEA /* LocationMenuItem.m in Sources */,
 				66C214F119F0830F00BECC96 /* BannerViewController.m in Sources */,
 			);

@@ -16,7 +16,8 @@
 
 @synthesize preferences;
 @synthesize locations;
-@synthesize wifiOnly, firstUserAlert;
+@synthesize alertsRead;
+@synthesize wifiOnly;
 @synthesize lastFeedbackRegattas;
 @synthesize lastFeedbackCommons;
 @synthesize lastFeedbackEinsteins;
@@ -26,8 +27,9 @@
     if (self) {
         preferences = [NSUserDefaults standardUserDefaults];
         locations = [preferences stringForKey:@"pref_locations"];
+        alertsRead = [NSMutableArray arrayWithArray:[preferences arrayForKey:@"pref_alerts_read"]];
+        NSLog(@"Alerts read: %@", alertsRead);
         wifiOnly = [preferences boolForKey:@"pref_wifi_only"];
-        firstUserAlert = [preferences boolForKey:@"pref_first_user_alert"];
         lastFeedbackRegattas = [[preferences objectForKey:@"pref_last_feedback_regattas"] longLongValue];
         lastFeedbackCommons = [[preferences objectForKey:@"pref_last_feedback_commons"] longLongValue];
         lastFeedbackEinsteins = [[preferences objectForKey:@"pref_last_feedback_einsteins"] longLongValue];
@@ -40,7 +42,7 @@
 }
 
 +(long long) getTime {
-    NSLog(@"Time: %lli", (long long)([[NSDate date] timeIntervalSince1970] * 1000.0));
+    //NSLog(@"Time: %lli", (long long)([[NSDate date] timeIntervalSince1970] * 1000.0));
     return (long long)([[NSDate date] timeIntervalSince1970] * 1000.0);
 }
 
@@ -62,16 +64,6 @@
     [preferences setBool:value forKey:@"pref_wifi_only"];
     [preferences synchronize];
     wifiOnly = value;
-}
-
--(bool) getFirstUserAlert {
-    return firstUserAlert;
-}
-
--(void) setFirstUserAlert: (bool) value {
-    [preferences setBool:value forKey:@"pref_first_user_alert"];
-    [preferences synchronize];
-    firstUserAlert = value;
 }
 
 -(bool) isWifiConnected {
@@ -117,6 +109,16 @@
     [preferences setValue:@(time) forKey:@"pref_last_feedback_einsteins"];
     [preferences synchronize];
     lastFeedbackEinsteins = time;
+}
+
+-(void) setAlertRead: (NSString *) alert {
+    [alertsRead addObject:alert];
+    [preferences setValue:alertsRead forKey:@"pref_alerts_read"];
+    [preferences synchronize];
+}
+
+-(bool) isAlertRead: (NSString *)alert {
+    return [alertsRead containsObject:alert];
 }
 
 @end

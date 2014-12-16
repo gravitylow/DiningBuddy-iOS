@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class Location;
 @class Locator;
+@class SettingsService;
 @class LocationService;
 @class LocationInfo;
 @class CoordinatePair;
@@ -17,6 +19,7 @@
 @class FeedViewController;
 @class LocationMenuItem;
 @class LocationFeedItem;
+@class AlertItem;
 
 @interface Api : NSObject
 
@@ -33,7 +36,8 @@ extern NSString * const API_CONTENT_TYPE;
 +(NSArray *)infoFromJson: (id)json;
 +(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller;
 +(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller;
-+(void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *) uuid;
++(void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid withTask:(UIBackgroundTaskIdentifier)bgTask;
 +(void)sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid;
++(void)showAlerts :(SettingsService *)settings;
 
 @end

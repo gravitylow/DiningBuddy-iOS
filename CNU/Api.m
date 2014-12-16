@@ -9,6 +9,7 @@
 #import "Api.h"
 #import "Location.h"
 #import "Locator.h"
+#import "SettingsService.h"
 #import "LocationService.h"
 #import "LocationInfo.h"
 #import "CoordinatePair.h"
@@ -16,6 +17,7 @@
 #import "FeedViewController.h"
 #import "LocationMenuItem.h"
 #import "LocationFeedItem.h"
+#import "AlertItem.h"
 
 @implementation Api
 
@@ -42,7 +44,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
 }
 
 +(void)getLocationsForLocator: (Locator *) locator {
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"locations2"]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"locations/"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
@@ -91,14 +93,13 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
 }
 
 +(void)getInfoForService: (LocationService *) locationService {
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"info"]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"info/"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
             id response = [NSJSONSerialization JSONObjectWithData:data
                                                            options:0
                                                              error:NULL];
-            //NSLog(@"Response: %@", response);
             NSArray *array = [self infoFromJson:response];
             [locationService setInfo:array];
         }
@@ -121,7 +122,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
 }
 
 +(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller {
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@", location]]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
@@ -151,7 +152,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
 }
 
 +(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller {
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"feed/%@", location]]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"feed/%@/", location]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
@@ -164,7 +165,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     }];
 }
 
-+(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid {
++(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid withTask:(UIBackgroundTaskIdentifier)bgTask{
     if (location == nil) {
         return;
     }
@@ -180,7 +181,9 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     [request setValue:API_CONTENT_TYPE forHTTPHeaderField:@"Content-Type"];
     [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
     [request setHTTPBody: requestData];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:nil];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+    }];
 }
 
 +(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid {
@@ -198,6 +201,54 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
     [request setHTTPBody: requestData];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:nil];
+}
+
++(void)showAlerts :(SettingsService *)settings {
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"alerts/"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if (data.length > 0 && error == nil) {
+            id response = [NSJSONSerialization JSONObjectWithData:data
+                                                          options:0
+                                                            error:NULL];
+            NSArray *array = [self alertsFromJson:response];
+            for (AlertItem *item in array) {
+                if (![settings isAlertRead:item.message]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:item.title
+                                                                    message:item.message
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    [settings setAlertRead:item.message];
+                }
+            }
+        }
+    }];
+}
+
++(NSArray *)alertsFromJson: (id)json {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (NSDictionary* value in json) {
+        NSString *message = [value objectForKey:@"message"];
+        NSString *title = [value objectForKey:@"title"];
+        NSString *targetOS = [value objectForKey:@"target_os"];
+        NSString *targetVersion = [value objectForKey:@"target_version"];
+        long long targetTimeMin = [[value objectForKey:@"target_time_min"] integerValue];
+        long long targetTimeMax = [[value objectForKey:@"target_time_max"] integerValue];
+        AlertItem *item = [[AlertItem alloc]init];
+        item.message = message;
+        item.title = title;
+        item.targetOS = targetOS;
+        item.targetVersion = targetVersion;
+        item.targetTimeMin = targetTimeMin;
+        item.targetTimeMax = targetTimeMax;
+        
+        if ([item isApplicable]) {
+            [array addObject:item];
+        }
+    }
+    return array;
 }
 
 @end

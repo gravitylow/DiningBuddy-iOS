@@ -9,6 +9,7 @@
 #import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
+#import "Api.h"
 
 @implementation BackendService
 
@@ -33,6 +34,10 @@
 
 +(LocationService *) getLocationService {
     return locationService;
+}
+
++(void) showAlerts {
+    [Api showAlerts:settingsService];
 }
 
 @end

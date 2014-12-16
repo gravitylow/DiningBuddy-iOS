@@ -24,10 +24,6 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location Services are required to determine when your device is in a dining area</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

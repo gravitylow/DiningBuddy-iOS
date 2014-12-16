@@ -50,7 +50,6 @@ long const MIN_UPDATE = 60 * 1000;
                 dispatch_source_cancel(timerSource);
             } else {
                 [self updateInfo];
-                [self updateLocation];
             }
         });
         dispatch_resume(timerSource);
@@ -102,10 +101,15 @@ long const MIN_UPDATE = 60 * 1000;
     //location.name = @"Einsteins";
     lastLocation = location;
     
-    [self updateLocation];
+    UIApplication *app = [UIApplication sharedApplication];
+    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
+        bgTask = UIBackgroundTaskInvalid;
+    }];
+    [self updateLocation:bgTask];
+    [app endBackgroundTask:bgTask];
 }
 
-- (void)updateLocation {
+- (void)updateLocation :(UIBackgroundTaskIdentifier)task {
     
     if (![locator isSetup] || ![settingsService getShouldConnect]) {
         return;
@@ -117,7 +121,7 @@ long const MIN_UPDATE = 60 * 1000;
     
     [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
-        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
+        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID] withTask:task];
         lastPublishedUpdate = currentTime;
     }
 }

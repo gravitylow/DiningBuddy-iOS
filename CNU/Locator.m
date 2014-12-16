@@ -64,9 +64,6 @@
         [Api getLocationsForLocator:self];
     });
 }
-- (void) postLocation: (double) latitude : (double) longitude : (Location *) location : (NSString *) uuid {
-    [Api sendUpdateWithLatitude:latitude withLongitude:longitude withLocation:location withTime:[SettingsService getTime] withUUID:uuid];
-}
 - (NSArray *) getLocations {
     return locationsList;
 }

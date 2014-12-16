@@ -13,8 +13,8 @@
 
 @property(nonatomic, retain) NSUserDefaults *preferences;
 @property(nonatomic, retain) NSString *locations;
+@property(nonatomic, retain) NSMutableArray *alertsRead;
 @property(nonatomic) bool wifiOnly;
-@property(nonatomic) bool firstUserAlert;
 @property(nonatomic) long long lastFeedbackRegattas;
 @property(nonatomic) long long lastFeedbackCommons;
 @property(nonatomic) long long lastFeedbackEinsteins;
@@ -25,8 +25,6 @@
 -(NSString *) getCachedLocations;
 -(bool) getWifiOnly;
 -(void) setWifiOnly: (bool) value;
--(bool) getFirstUserAlert;
--(void) setFirstUserAlert: (bool) value;
 -(bool) isWifiConnected;
 -(bool) getShouldConnect;
 -(long long) getLastFeedbackRegattas;
@@ -35,4 +33,6 @@
 -(void) setLastFeedbackRegattas: (long long) time;
 -(void) setLastFeedbackCommons: (long long) time;
 -(void) setLastFeedbackEinsteins: (long long) time;
+-(void) setAlertRead: (NSString *) alert;
+-(bool) isAlertRead: (NSString *)alert;
 @end

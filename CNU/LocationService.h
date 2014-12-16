@@ -21,7 +21,9 @@ static double lastLongitude;
 static Location *lastLocation;
 static bool hasLocation;
 
-@interface LocationService : NSObject <CLLocationManagerDelegate>
+@interface LocationService : NSObject <CLLocationManagerDelegate> {
+    UIBackgroundTaskIdentifier __block bgTask;
+}
 
 @property (nonatomic, retain) Locator *locator;
 @property (nonatomic, retain) NSArray *lastLocationInfo;

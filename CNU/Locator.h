@@ -23,7 +23,6 @@
 - (Location *) getLocation: (double) latitude : (double) longitude;
 - (void) setLocations: (NSString *)value;
 - (void) updateLocations;
-- (void) postLocation: (double) latitude : (double) longitude : (Location *) location : (NSString *) uuid;
 - (NSArray *) getLocations;
 - (bool) isSetup;
 - (NSString *) jsonValue;

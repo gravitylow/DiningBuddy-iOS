@@ -10,6 +10,7 @@
 
 @class SettingsService;
 @class LocationService;
+@class Api;
 
 static SettingsService *settingsService;
 static LocationService *locationService;
@@ -18,5 +19,6 @@ static LocationService *locationService;
 
 +(SettingsService *) getSettingsService;
 +(LocationService *) getLocationService;
++(void) showAlerts;
 
 @end
