@@ -28,7 +28,6 @@
         preferences = [NSUserDefaults standardUserDefaults];
         locations = [preferences stringForKey:@"pref_locations"];
         alertsRead = [NSMutableArray arrayWithArray:[preferences arrayForKey:@"pref_alerts_read"]];
-        NSLog(@"Alerts read: %@", alertsRead);
         wifiOnly = [preferences boolForKey:@"pref_wifi_only"];
         lastFeedbackRegattas = [[preferences objectForKey:@"pref_last_feedback_regattas"] longLongValue];
         lastFeedbackCommons = [[preferences objectForKey:@"pref_last_feedback_commons"] longLongValue];

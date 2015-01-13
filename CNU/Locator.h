@@ -21,7 +21,7 @@
 
 - (id) initWithJson: (NSString *) json;
 - (Location *) getLocation: (double) latitude : (double) longitude;
-- (void) setLocations: (NSString *)value;
+- (void) setLocations: (NSDictionary *)value;
 - (void) updateLocations;
 - (NSArray *) getLocations;
 - (bool) isSetup;

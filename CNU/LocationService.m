@@ -80,9 +80,9 @@ long const MIN_UPDATE = 60 * 1000;
         [self.locationManager requestAlwaysAuthorization];
     }
     [locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
-    [locationManager setPausesLocationUpdatesAutomatically:NO];
+    //locationManager.distanceFilter = 1; // meters
     [self.locationManager setDelegate:self];
-    [self.locationManager startMonitoringSignificantLocationChanges];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -98,15 +98,28 @@ long const MIN_UPDATE = 60 * 1000;
     lastLatitude = currentCoordinates.latitude;
     lastLongitude = currentCoordinates.longitude;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
+    
+    if (location == nil) {
+        return;
+    }
     //location.name = @"Einsteins";
     lastLocation = location;
+    NSLog(@"Updated location: %@", [location getName]);
     
-    UIApplication *app = [UIApplication sharedApplication];
+    /*UIApplication *app = [UIApplication sharedApplication];
     bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
         bgTask = UIBackgroundTaskInvalid;
     }];
     [self updateLocation:bgTask];
-    [app endBackgroundTask:bgTask];
+    [app endBackgroundTask:bgTask];*/
+    
+    long long currentTime = [SettingsService getTime];
+    
+    [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
+    if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
+        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
+        lastPublishedUpdate = currentTime;
+    }
 }
 
 - (void)updateLocation :(UIBackgroundTaskIdentifier)task {
@@ -121,7 +134,7 @@ long const MIN_UPDATE = 60 * 1000;
     
     [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
-        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID] withTask:task];
+        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
         lastPublishedUpdate = currentTime;
     }
 }

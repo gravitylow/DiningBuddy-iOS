@@ -36,7 +36,7 @@ extern NSString * const API_CONTENT_TYPE;
 +(NSArray *)infoFromJson: (id)json;
 +(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller;
 +(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller;
-+(void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid withTask:(UIBackgroundTaskIdentifier)bgTask;
++(void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid;
 +(void)sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid;
 +(void)showAlerts :(SettingsService *)settings;
 

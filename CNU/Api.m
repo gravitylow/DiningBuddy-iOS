@@ -48,7 +48,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
-            NSString *response = [NSJSONSerialization JSONObjectWithData:data
+            NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data
                                                           options:0
                                                             error:NULL];
             [locator setLocations:response];
@@ -165,7 +165,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     }];
 }
 
-+(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid withTask:(UIBackgroundTaskIdentifier)bgTask{
++(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid{
     if (location == nil) {
         return;
     }
@@ -173,7 +173,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     NSLog(@"Update: %@", json);
     
     
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"update"]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"update/"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -182,7 +182,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
     [request setHTTPBody: requestData];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+        //[[UIApplication sharedApplication] endBackgroundTask:bgTask];
     }];
 }
 
@@ -191,8 +191,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
         return;
     }
     NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"target\" : \"%@\", \"crowded\" : %i, \"minutes\" : %i, \"feedback\" : \"%@\", \"location\" : \"%@\", \"send_time\" : %lli }", uuid, target, crowded, minutes, feedback, [location getName], time];
-    NSLog(@"Feedback: %@", json);
-    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"feedback"]];
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"feedback/"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
     

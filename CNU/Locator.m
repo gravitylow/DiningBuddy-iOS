@@ -46,8 +46,9 @@
     }
     return nil;
 }
-- (void) setLocations: (NSString *)value {
-    self.jsonValue = value;
+- (void) setLocations: (NSDictionary *)value {
+    NSString *string = [value description];
+    self.jsonValue = string;
     NSArray *array = [Api locationsFromJson:value];
     
     if ([array count] == 0) {
@@ -55,7 +56,7 @@
     } else {
         locationsList = array;
         setup = true;
-        [[BackendService getSettingsService] cacheLocations:value];
+        [[BackendService getSettingsService] cacheLocations:string];
     }
 }
 
