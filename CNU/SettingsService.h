@@ -9,18 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 
+@class LocationMenuItem;
+
 @interface SettingsService : NSObject
 
 @property(nonatomic, retain) NSUserDefaults *preferences;
-@property(nonatomic, retain) NSString *locations;
-@property(nonatomic, retain) NSMutableArray *alertsRead;
-@property(nonatomic) bool wifiOnly;
-@property(nonatomic) long long lastFeedbackRegattas;
-@property(nonatomic) long long lastFeedbackCommons;
-@property(nonatomic) long long lastFeedbackEinsteins;
 
 +(NSString *) getUUID;
 +(long long) getTime;
+-(void)loadAll;
 -(void) cacheLocations: (NSString *) json;
 -(NSString *) getCachedLocations;
 -(bool) getWifiOnly;
@@ -33,6 +30,14 @@
 -(void) setLastFeedbackRegattas: (long long) time;
 -(void) setLastFeedbackCommons: (long long) time;
 -(void) setLastFeedbackEinsteins: (long long) time;
+-(long long) getLastFavoriteFetch;
+-(void) setLastFavoriteFetch: (long long) time;
 -(void) setAlertRead: (NSString *) alert;
 -(bool) isAlertRead: (NSString *)alert;
+-(bool) getNotifyFavorites;
+-(void) setNotifyFavorites:(bool)value;
+-(NSString *)getFavorites;
+-(void) setFavorites:(NSString *)value;
+
+-(void)setLatestMenus:(NSArray *)regattas :(NSArray *)commons;
 @end

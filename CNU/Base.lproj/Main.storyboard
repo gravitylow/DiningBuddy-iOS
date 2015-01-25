@@ -103,11 +103,21 @@
                                                             <segue destination="QkF-oz-AQT" kind="show" identifier="Einsteins" id="SJ3-La-NO2"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMh-lg-xat">
+                                                        <rect key="frame" x="570" y="491" width="22" height="22"/>
+                                                        <state key="normal">
+                                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="openSettings" destination="BYZ-38-t0r" eventType="touchUpInside" id="xkg-px-FUh"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.84313725490196079" green="0.84313725490196079" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="W3L-OT-067" firstAttribute="height" secondItem="WmC-DK-9mp" secondAttribute="height" id="02L-Wv-JFn"/>
                                                     <constraint firstItem="WmC-DK-9mp" firstAttribute="top" secondItem="W3L-OT-067" secondAttribute="bottom" id="0xr-24-Ozh"/>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="LMh-lg-xat" secondAttribute="bottom" constant="15" id="1XO-Ee-beH"/>
                                                     <constraint firstAttribute="width" secondItem="WmC-DK-9mp" secondAttribute="width" id="38F-SY-g87"/>
                                                     <constraint firstAttribute="centerY" secondItem="W3L-OT-067" secondAttribute="centerY" id="5G2-4X-GN2"/>
                                                     <constraint firstItem="W3L-OT-067" firstAttribute="top" secondItem="rS4-Gu-bmN" secondAttribute="bottom" id="678-KM-r1c"/>
@@ -130,6 +140,7 @@
                                                     <constraint firstItem="atL-8z-sU7" firstAttribute="centerY" secondItem="rS4-Gu-bmN" secondAttribute="centerY" id="cHI-xb-wt0"/>
                                                     <constraint firstItem="WmC-DK-9mp" firstAttribute="centerY" secondItem="1Gd-D0-dcO" secondAttribute="centerY" id="dRE-la-iIw"/>
                                                     <constraint firstItem="WmC-DK-9mp" firstAttribute="top" secondItem="RR5-7Z-Hge" secondAttribute="top" id="eHa-HV-yRD"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="LMh-lg-xat" secondAttribute="trailing" id="fy3-hY-1Dg"/>
                                                     <constraint firstItem="WmC-DK-9mp" firstAttribute="width" secondItem="FV0-Ps-bV5" secondAttribute="width" id="gWv-BS-qeW"/>
                                                     <constraint firstAttribute="centerY" secondItem="rS4-Gu-bmN" secondAttribute="centerY" id="h3q-f5-3Ry"/>
                                                     <constraint firstAttribute="centerY" secondItem="rS4-Gu-bmN" secondAttribute="centerY" id="i4q-fc-RJ3"/>
@@ -275,6 +286,7 @@
                     <navigationItem key="navigationItem" id="HtJ-ch-TUA"/>
                     <connections>
                         <outlet property="scrollView" destination="RT8-0g-d7G" id="iIQ-ls-myn"/>
+                        <outlet property="settingsButton" destination="LMh-lg-xat" id="hPJ-2h-QO9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

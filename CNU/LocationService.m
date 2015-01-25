@@ -104,14 +104,7 @@ long const MIN_UPDATE = 60 * 1000;
     }
     //location.name = @"Einsteins";
     lastLocation = location;
-    NSLog(@"Updated location: %@", [location getName]);
-    
-    /*UIApplication *app = [UIApplication sharedApplication];
-    bgTask = [app beginBackgroundTaskWithExpirationHandler:^{
-        bgTask = UIBackgroundTaskInvalid;
-    }];
-    [self updateLocation:bgTask];
-    [app endBackgroundTask:bgTask];*/
+    //NSLog(@"Updated location: %@", [location getName]);
     
     long long currentTime = [SettingsService getTime];
     

@@ -17,18 +17,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Loading graph");
     
     TabsController *parent = (TabsController *)self.tabBarController;
     self.location = parent.location;
     
-    NSLog(@"Parent location: %@", parent.location);
     NSString *urlAddress = @"https://api.gravitydevelopment.net/cnu/api/v1.0/graphs/";
     urlAddress = [urlAddress stringByAppendingString:self.location];
     NSURL *url = [NSURL URLWithString:urlAddress];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:requestObj];
-    NSLog(@"Done loading graph");
     [self.webView setScalesPageToFit:YES];
 }
 

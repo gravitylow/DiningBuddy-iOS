@@ -9,6 +9,7 @@
 #import "Api.h"
 #import "Location.h"
 #import "Locator.h"
+#import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
 #import "LocationInfo.h"
@@ -121,6 +122,33 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     return array;
 }
 
++(void)getLatestMenus {
+    NSString *location = @"Regattas";
+    NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    id json = [NSJSONSerialization JSONObjectWithData:data
+                                                  options:0
+                                                    error:NULL];
+    NSArray *regattas = [self menuFromJson:json];
+    
+    location = @"Commons";
+    url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
+    urlRequest = [NSURLRequest requestWithURL:url];
+    response = nil;
+    error = nil;
+    data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    json = [NSJSONSerialization JSONObjectWithData:data
+                                              options:0
+                                                error:NULL];
+    
+    NSArray *commons = [self menuFromJson:json];
+    
+    [[BackendService getSettingsService] setLatestMenus:regattas :commons];
+}
+
 +(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -170,7 +198,7 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
         return;
     }
     NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"send_time\" : %lli }", uuid, latitude, longitude, [location getName], time];
-    NSLog(@"Update: %@", json);
+    //NSLog(@"Update: %@", json);
     
     
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"update/"]];

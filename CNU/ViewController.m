@@ -14,8 +14,13 @@
 #import "LocationInfo.h"
 #import "BackendService.h"
 #import "LocationService.h"
+#import "SettingsService.h"
+#import "IASKAppSettingsViewController.h"
+#import "IASKSettingsReader.h"
+#import "CustomViewCell.h"
+#import "Api.h"
 
-@interface ViewController ()
+@interface ViewController()
 
 @end
 
@@ -34,6 +39,8 @@
 @synthesize einsteinsHasBadge;
 
 @synthesize refreshControl;
+
+@synthesize appSettingsViewController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -122,10 +129,104 @@
 }
 
 -(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
-    NSLog(@"Updating all embeded views...");
+    //NSLog(@"Updating all embeded views...");
     regattasHasBadge = [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     commonsHasBadge = [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     einsteinsHasBadge = [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
+}
+
+- (IASKAppSettingsViewController*)appSettingsViewController {
+    if (!appSettingsViewController) {
+        appSettingsViewController = [[IASKAppSettingsViewController alloc] init];
+        appSettingsViewController.delegate = self;
+    }
+    return appSettingsViewController;
+}
+
+-(IBAction)openSettings {
+    [self appSettingsViewController];
+    appSettingsViewController.showCreditsFooter = NO;
+    appSettingsViewController.showDoneButton = NO;
+    appSettingsViewController.navigationItem.rightBarButtonItem = nil;
+    [self.navigationController pushViewController:appSettingsViewController animated:YES];
+}
+
+-(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    if ([[BackendService getSettingsService] getNotifyFavorites]) {
+        NSDate *now = [NSDate date];
+        NSCalendar* myCalendar = [NSCalendar currentCalendar];
+        NSDateComponents* components = [myCalendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit
+                                                     fromDate:[NSDate date]];
+        [components setHour: 6];
+        [components setMinute: 0];
+        [components setSecond: 0];
+        NSDate *todayAt6 = [myCalendar dateFromComponents:components];
+        if ([now compare:todayAt6] == NSOrderedDescending) {
+            NSLog(@"We're good to go on time..");
+            long long time = [SettingsService getTime];
+            long long lastFetch = [[BackendService getSettingsService] getLastFavoriteFetch];
+            //long long lastFetch = 0;
+            if ((time - lastFetch) > 20 * 60 * 60 * 1000) {
+                NSLog(@"Last update was a long time ago. Fetching now.");
+                [[BackendService getSettingsService] setLastFavoriteFetch:time];
+                [Api getLatestMenus];
+                completionHandler(UIBackgroundFetchResultNewData);
+                return;
+            }
+        }
+    }
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+
+- (CGFloat)settingsViewController:(id<IASKViewController>)settingsViewController
+                        tableView:(UITableView *)tableView
+        heightForHeaderForSection:(NSInteger)section {
+    NSString* key = [[appSettingsViewController settingsReader] keyForSection:section];
+    if ([key isEqualToString:@"IASKCustomHeaderStyle"]) {
+        return 55.f;
+    }
+    return 0;
+}
+- (UIView *)settingsViewController:(id<IASKViewController>)settingsViewController
+                         tableView:(UITableView *)tableView
+           viewForHeaderForSection:(NSInteger)section {
+    NSString* key = [[appSettingsViewController settingsReader] keyForSection:section];
+    if ([key isEqualToString:@"IASKCustomHeaderStyle"]) {
+        UILabel* label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor redColor];
+        label.shadowColor = [UIColor whiteColor];
+        label.shadowOffset = CGSizeMake(0, 1);
+        label.numberOfLines = 0;
+        label.font = [UIFont boldSystemFontOfSize:16.f];
+        //figure out the title from settingsbundle
+        label.text = [settingsViewController.settingsReader titleForSection:section];
+        return label;
+    }
+    return nil;
+}
+- (CGFloat)tableView:(UITableView*)tableView heightForSpecifier:(IASKSpecifier*)specifier {
+    if ([specifier.key isEqualToString:@"customCell"]) {
+        return 44*3;
+    }
+    return 0;
+}
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForSpecifier:(IASKSpecifier*)specifier {
+    [tableView dequeueReusableCellWithIdentifier:specifier.key];
+    
+    CustomViewCell *cell = (CustomViewCell *)[tableView dequeueReusableCellWithIdentifier:specifier.key];
+    if (!cell) {
+        cell = (CustomViewCell*)[[[NSBundle mainBundle] loadNibNamed:@"CustomViewCell"
+                                                               owner:self
+                                                             options:nil] objectAtIndex:0];
+    }
+    cell.textView.text= [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] != nil ?
+    [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] : [specifier defaultStringValue];
+    //cell.textView.delegate = self;
+    [cell setNeedsLayout];
+    return cell;
+    return nil;
 }
 
 @end

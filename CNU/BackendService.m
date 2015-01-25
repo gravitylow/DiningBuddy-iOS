@@ -39,5 +39,4 @@
 +(void) showAlerts {
     [Api showAlerts:settingsService];
 }
-
 @end

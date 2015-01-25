@@ -24,9 +24,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    }
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [NSNumber numberWithBool:false], @"pref_wifi_only",
+                                          [NSNumber numberWithBool:false], @"pref_notify_favorites",
+                                          [NSString string], @"pref_favorites",
                                           [NSArray array], @"pref_alerts_read",
+                                          [NSNumber numberWithInt:-1], @"pref_last_favorite_fetch",
                                           [NSNumber numberWithInt:-1], @"pref_last_feedback_regattas",
                                           @"pref_last_feedback_commons",
                                           @"pref_last_feedback_einsteins",
@@ -36,6 +43,12 @@
     [BackendService showAlerts];
     // Override point for customization after application launch.
     return YES;
+}
+
+-(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    [mainController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
+        completionHandler(result);
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
