@@ -126,41 +126,50 @@
     [preferences synchronize];
 }
 -(void)setLatestMenus:(NSArray *)regattas :(NSArray *)commons {
+    NSArray *favoritesList = [[self getFavorites] componentsSeparatedByString:@","];
+    
+    NSMutableString *regattasItems = [[NSMutableString alloc] init];
+    NSMutableString *commonsItems = [[NSMutableString alloc] init];
+    
     NSInteger count = 0;
-    NSMutableString *items = [[NSMutableString alloc] init];
-    NSArray *f = [[self getFavorites] componentsSeparatedByString:@","];
+    
+    NSLog(@"Parsing!");
+    
     for (int i=0;i<[regattas count];i++) {
         LocationMenuItem *item = (LocationMenuItem *)[regattas objectAtIndex:i];
-        for (int j=0;j<[f count];j++) {
-            NSString *fav = [[f objectAtIndex:j] lowercaseString];
+        for (int j=0;j<[favoritesList count];j++) {
+            NSString *fav = [[favoritesList objectAtIndex:j] lowercaseString];
             if ([[item.desc lowercaseString] containsString:fav]) {
-                [items appendString:[NSString stringWithFormat:@"%@, ", fav]];
+                [regattasItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
         }
-    }
-    NSInteger rCount = count;
-    if (count != 0) {
-        items = [[items substringToIndex:[items length]- 2] mutableCopy];
-        [items appendString:@" is being served at Regattas, "];
     }
     for (int i=0;i<[commons count];i++) {
         LocationMenuItem *item = (LocationMenuItem *)[commons objectAtIndex:i];
-        for (int j=0;j<[f count];j++) {
-            NSString *fav = [[f objectAtIndex:j] lowercaseString];
+        for (int j=0;j<[favoritesList count];j++) {
+            NSString *fav = [[favoritesList objectAtIndex:j] lowercaseString];
             if ([[item.desc lowercaseString] containsString:fav]) {
-                [items appendString:[NSString stringWithFormat:@"%@, ", fav]];
+                [commonsItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
         }
     }
-    items = [[items substringToIndex:[items length]- 2] mutableCopy];
-    if (count != rCount) {
-        [items appendString:@" is being served at Commons"];
-    }
-    if (count != 0) {
-        NSString *list = [items stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:[[items substringToIndex:1] capitalizedString]];
-        [self sendNotification:list];
+    if (count > 0) {
+        NSMutableString *value = [[NSMutableString alloc] init];
+        
+        if ([regattasItems length] > 0) {
+            regattasItems = [[regattasItems substringToIndex:[regattasItems length] - 2] mutableCopy];
+            [value appendString:[NSString stringWithFormat:@"Regattas is serving %@.", regattasItems]];
+        }
+        if ([commonsItems length] > 0) {
+            commonsItems = [[commonsItems substringToIndex:[commonsItems length] - 2] mutableCopy];
+            if ([value length] > 0) {
+                [value appendString:@" "];
+            }
+            [value appendString:[NSString stringWithFormat:@"Commons is serving %@.", commonsItems]];
+        }
+        [self sendNotification:value];
     }
 }
 -(void)sendNotification:(NSString *)message {
