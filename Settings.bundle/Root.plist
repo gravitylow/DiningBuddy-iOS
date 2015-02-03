@@ -5,6 +5,8 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
+			<key>FooterText</key>
+			<string>Enable WiFi Only to only send and receive location updates when connected to WiFi.&#xA;&#xA;Enable Favorite Food Notifications to recieve a notification when a dining hall is serving one of your favorites.</string>
 			<key>Title</key>
 			<string>Main</string>
 			<key>Type</key>
@@ -31,6 +33,8 @@
 			<string></string>
 		</dict>
 		<dict>
+			<key>FooterText</key>
+			<string>Enter foods to notify you about exactly as they appear on the menu. Separate multiple foods with a comma.</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>
@@ -38,7 +42,7 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>Tater Tots, Pulled Pork, Tender Teusday</string>
+			<string>Tater Tots,Tender Tuesday,Pulled Pork</string>
 			<key>Type</key>
 			<string>PSTextFieldSpecifier</string>
 			<key>Title</key>

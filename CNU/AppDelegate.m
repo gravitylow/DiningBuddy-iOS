@@ -31,7 +31,7 @@
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [NSNumber numberWithBool:false], @"pref_wifi_only",
                                           [NSNumber numberWithBool:false], @"pref_notify_favorites",
-                                          [NSString string], @"pref_favorites",
+                                          [NSString stringWithString:@"Tater Tots,Tender Tuesday,Pulled Pork"], @"pref_favorites",
                                           [NSArray array], @"pref_alerts_read",
                                           [NSNumber numberWithInt:-1], @"pref_last_favorite_fetch",
                                           [NSNumber numberWithInt:-1], @"pref_last_feedback_regattas",

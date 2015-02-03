@@ -139,7 +139,8 @@
         LocationMenuItem *item = (LocationMenuItem *)[regattas objectAtIndex:i];
         for (int j=0;j<[favoritesList count];j++) {
             NSString *fav = [[favoritesList objectAtIndex:j] lowercaseString];
-            if ([[item.desc lowercaseString] containsString:fav]) {
+            NSString *trim = [fav stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            if ([[item.desc lowercaseString] containsString:trim]) {
                 [regattasItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
@@ -149,7 +150,8 @@
         LocationMenuItem *item = (LocationMenuItem *)[commons objectAtIndex:i];
         for (int j=0;j<[favoritesList count];j++) {
             NSString *fav = [[favoritesList objectAtIndex:j] lowercaseString];
-            if ([[item.desc lowercaseString] containsString:fav]) {
+            NSString *trim = [fav stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            if ([[item.desc lowercaseString] containsString:trim]) {
                 [commonsItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
