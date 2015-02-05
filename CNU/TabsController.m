@@ -7,9 +7,6 @@
 //
 
 #import "TabsController.h"
-#import "LocationInfo.h"
-#import "FeedbackViewController.h"
-#import "GraphViewController.h"
 #import "BackendService.h"
 #import "LocationService.h"
 #import "SettingsService.h"
@@ -31,25 +28,25 @@ int const TAB_SIZE_FULL = 4;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
+    NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
 
-    FeedViewController *c = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEED];
+    FeedViewController *c = tabbarViewControllers[TAB_LOCATION_FEED];
     c.location = self.location;
     if (![self shouldShowFeedback:[LocationService getLastLocation]]) {
-        self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK];
+        self.feedbackTabItem = tabbarViewControllers[TAB_LOCATION_FEEDBACK];
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK];
     }
     if ([location isEqualToString:@"Einsteins"]) {
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_MENU];
     } else {
-        MenuViewController *c = [tabbarViewControllers objectAtIndex:TAB_LOCATION_MENU];
+        MenuViewController *c = tabbarViewControllers[TAB_LOCATION_MENU];
         c.location = self.location;
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_HOURS];
     }
-    [self setViewControllers: tabbarViewControllers];
+    [self setViewControllers:tabbarViewControllers];
 }
 
--(bool)shouldShowFeedback:(Location *)loc {
+- (bool)shouldShowFeedback:(Location *)loc {
     bool add = false;
     if ([[loc getName] isEqualToString:location]) {
         long long last;
@@ -66,23 +63,23 @@ int const TAB_SIZE_FULL = 4;
     return add;
 }
 
-- (void) tabBarController:(UITabBarController *) tabBarController didSelectViewController:(UIViewController *) viewController {
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 }
 
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     bool shouldShowFeedback = [self shouldShowFeedback:location];
-    NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray: [self viewControllers]];
+    NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
     if (shouldShowFeedback) {
         if ([tabbarViewControllers count] != TAB_SIZE_FULL && self.feedbackTabItem) {
             [tabbarViewControllers addObject:self.feedbackTabItem];
         }
     } else {
         if ([tabbarViewControllers count] == TAB_SIZE_FULL) {
-            self.feedbackTabItem = [tabbarViewControllers objectAtIndex:TAB_LOCATION_FEEDBACK - 1];
+            self.feedbackTabItem = tabbarViewControllers[TAB_LOCATION_FEEDBACK - 1];
             [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK - 1];
         }
     }
-    [self setViewControllers: tabbarViewControllers];
+    [self setViewControllers:tabbarViewControllers];
 }
 
 @end

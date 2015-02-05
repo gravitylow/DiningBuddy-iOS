@@ -20,13 +20,11 @@
 
 @interface TabsController : UITabBarController <UITabBarDelegate>
 
-@property(nonatomic, retain) NSString  *location;
-@property(nonatomic, retain) NSString  *label;
-@property(nonatomic, retain) NSString  *photo;
+@property(nonatomic, retain) NSString *location;
 @property(nonatomic, retain) LocationInfo *info;
 
 @property(nonatomic, retain) id feedbackTabItem;
 
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 
 @end

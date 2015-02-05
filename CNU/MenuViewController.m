@@ -14,28 +14,28 @@
 
 @synthesize data;
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.data = [[NSArray alloc]init];
+    self.data = [[NSArray alloc] init];
     [Api getMenuForLocation:self.location forMenuController:self];
 }
 
--(void)setMenu:(NSArray *)array {
+- (void)setMenu:(NSArray *)array {
     self.data = array;
     [self.tableView reloadData];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
-    
-    LocationMenuItem *item = [data objectAtIndex:indexPath.row];
-    
+
+    LocationMenuItem *item = data[indexPath.row];
+
     cell.textLabel.text = item.summary;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", item.startTime, item.endTime];
     return cell;
@@ -52,13 +52,13 @@
         return 1;
     } else {
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        
+
         messageLabel.text = @"Loading...";
         messageLabel.textColor = [UIColor grayColor];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
         [messageLabel sizeToFit];
-        
+
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         return 0;
@@ -66,7 +66,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LocationMenuItem *item = [data objectAtIndex:indexPath.row];
+    LocationMenuItem *item = data[indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:item.summary
                                                     message:item.desc
                                                    delegate:self

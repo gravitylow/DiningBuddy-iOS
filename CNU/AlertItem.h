@@ -19,6 +19,6 @@
 @property(nonatomic) long long targetTimeMin;
 @property(nonatomic) long long targetTimeMax;
 
--(bool)isApplicable;
+- (bool)isApplicable;
 
 @end

@@ -17,8 +17,10 @@ static LocationService *locationService;
 
 @interface BackendService : NSObject
 
-+(SettingsService *) getSettingsService;
-+(LocationService *) getLocationService;
-+(void) showAlerts;
++ (SettingsService *)getSettingsService;
+
++ (LocationService *)getLocationService;
+
++ (void)showAlerts;
 
 @end

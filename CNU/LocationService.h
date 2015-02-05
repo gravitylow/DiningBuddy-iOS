@@ -19,30 +19,25 @@
 static double lastLatitude;
 static double lastLongitude;
 static Location *lastLocation;
-static bool hasLocation;
 
-@interface LocationService : NSObject <CLLocationManagerDelegate> {
-    UIBackgroundTaskIdentifier __block bgTask;
-}
+@interface LocationService : NSObject <CLLocationManagerDelegate>
 
-@property (nonatomic, retain) Locator *locator;
-@property (nonatomic, retain) NSArray *lastLocationInfo;
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property (nonatomic, retain) SettingsService *settingsService;
-@property (nonatomic) bool dieFlag;
-@property (nonatomic) long long lastUpdate;
-@property (nonatomic) long long lastPublishedUpdate;
-@property (nonatomic) dispatch_source_t timerSource;
+@property(nonatomic, retain) Locator *locator;
+@property(nonatomic, retain) CLLocationManager *locationManager;
+@property(nonatomic, retain) SettingsService *settingsService;
+@property(nonatomic) long long lastPublishedUpdate;
+@property(nonatomic) dispatch_source_t timerSource;
 
--(id)initWithSettings:(SettingsService *) settings;
--(void)setInfo:(NSArray *) info;
--(void)updateInfo;
--(void)requestFullUpdate;
--(void)startUpdatingLocation;
-+(double) getLastLatitude;
-+(double) getLastLongitude;
-+(Location *)getLastLocation;
-+(bool)hasLocation;
--(void)die;
+- (id)initWithSettings:(SettingsService *)settings;
+
+- (void)setInfo:(NSArray *)info;
+
+- (void)updateInfo;
+
+- (void)requestFullUpdate;
+
+- (void)startUpdatingLocation;
+
++ (Location *)getLastLocation;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "BackendService.h"
-#import "SettingsService.h"
 #import "ViewController.h"
 #import "LocationViewController.h"
 #import "Location.h"
@@ -20,32 +19,28 @@
 
 @implementation AppDelegate
 
-@synthesize backendService;
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]){
-        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil]];
     }
-    NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithBool:false], @"pref_wifi_only",
-                                          [NSNumber numberWithBool:false], @"pref_notify_favorites",
-                                          [NSString stringWithString:@"Tater Tots,Tender Tuesday,Pulled Pork"], @"pref_favorites",
-                                          [NSArray array], @"pref_alerts_read",
-                                          [NSNumber numberWithInt:-1], @"pref_last_favorite_fetch",
-                                          [NSNumber numberWithInt:-1], @"pref_last_feedback_regattas",
-                                          @"pref_last_feedback_commons",
-                                          @"pref_last_feedback_einsteins",
-                                          nil];
+    NSDictionary *userDefaultsDefaults = @{@"pref_wifi_only" : @false,
+            @"pref_notify_favorites" : @false,
+            @"pref_favorites" : @"Tater Tots,Tender Tuesday,Pulled Pork",
+            @"pref_alerts_read" : [NSArray array],
+            @"pref_last_favorite_fetch" : @(-1),
+            @"pref_last_feedback_regattas" : @(-1),
+            @"pref_last_feedback_einsteins" :
+            @"pref_last_feedback_commons"};
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
-    backendService = [[BackendService alloc] init];
+    [[BackendService alloc] init];
     [BackendService showAlerts];
     // Override point for customization after application launch.
     return YES;
 }
 
--(void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [mainController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
     }];
@@ -101,9 +96,9 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-    
+
     // Create the coordinator and store
-    
+
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CNU.sqlite"];
     NSError *error = nil;
@@ -120,7 +115,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-    
+
     return _persistentStoreCoordinator;
 }
 
@@ -130,7 +125,7 @@
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-    
+
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         return nil;
@@ -155,30 +150,30 @@
     }
 }
 
-+ (void) registerMainController:(ViewController *)viewController {
++ (void)registerMainController:(ViewController *)viewController {
     mainController = viewController;
 }
 
-+ (void) registerLocationController:(LocationViewController *)locationViewController {
++ (void)registerLocationController:(LocationViewController *)locationViewController {
     locationController = locationViewController;
 }
 
-+ (void) unregisterMainController {
++ (void)unregisterMainController {
     mainController = nil;
 }
 
-+ (void) unregisterLocationController {
++ (void)unregisterLocationController {
     locationController = nil;
 }
 
-+ (void) updateInfo:(NSArray *)info {
++ (void)updateInfo:(NSArray *)info {
     LocationInfo *regattasInfo = nil;
     LocationInfo *commonsInfo = nil;
     LocationInfo *einsteinsInfo = nil;
     NSUInteger count = [info count];
     if (count > 0) {
-        for(int i=0;i<count;i++) {
-            LocationInfo *val = (LocationInfo *)[info objectAtIndex:i];
+        for (int i = 0; i < count; i++) {
+            LocationInfo *val = (LocationInfo *) info[i];
             if ([[val getLocation] isEqualToString:@"Regattas"]) {
                 regattasInfo = val;
             }
@@ -207,7 +202,7 @@
     }
 }
 
-+ (void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
++ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     if (mainController) {
         [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }

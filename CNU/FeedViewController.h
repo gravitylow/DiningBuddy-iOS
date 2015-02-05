@@ -16,14 +16,15 @@
     bool dataLoaded;
 }
 
-@property(nonatomic, retain) NSString  *location;
+@property(nonatomic, retain) NSString *location;
 @property(nonatomic, retain) NSArray *data;
 
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property(nonatomic, retain) UIRefreshControl *refreshControl;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) IBOutlet UITableView *tableView;
 
--(void)refresh;
--(void)setFeed:(NSArray *)array;
+- (void)refresh;
+
+- (void)setFeed:(NSArray *)array;
 
 @end

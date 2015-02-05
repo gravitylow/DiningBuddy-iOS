@@ -10,7 +10,7 @@
 
 @implementation LocationFeedItem
 
--(id) initWithMessage:(NSString *)mess withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det{
+- (id)initWithMessage:(NSString *)mess withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det {
     if (self = [super init]) {
         self.message = mess;
         self.minutes = min;

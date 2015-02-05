@@ -17,19 +17,16 @@
 
 @implementation LocationService
 
-long const MIN_LOCAL_UPDATE = 5 * 1000;
 long const MIN_UPDATE = 60 * 1000;
 
 @synthesize locationManager, locator;
-@synthesize lastLocationInfo;
 @synthesize settingsService;
-@synthesize timerSource, dieFlag;
-@synthesize lastPublishedUpdate, lastUpdate;
+@synthesize timerSource;
+@synthesize lastPublishedUpdate;
 
--(id)initWithSettings:(SettingsService *) settings {
+- (id)initWithSettings:(SettingsService *)settings {
     self = [super init];
     if (self) {
-        dieFlag = false;
         settingsService = settings;
         NSString *cache = [settingsService getCachedLocations];
         if (cache) {
@@ -44,13 +41,9 @@ long const MIN_UPDATE = 60 * 1000;
         }
         dispatch_queue_t backgroundQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, backgroundQueue);
-        dispatch_source_set_timer(timerSource, dispatch_time(DISPATCH_TIME_NOW, 0), 60.0*NSEC_PER_SEC, 0*NSEC_PER_SEC);
+        dispatch_source_set_timer(timerSource, dispatch_time(DISPATCH_TIME_NOW, 0), 60.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
         dispatch_source_set_event_handler(timerSource, ^{
-            if (dieFlag) {
-                dispatch_source_cancel(timerSource);
-            } else {
-                [self updateInfo];
-            }
+            [self updateInfo];
         });
         dispatch_resume(timerSource);
 
@@ -58,23 +51,23 @@ long const MIN_UPDATE = 60 * 1000;
     return self;
 }
 
--(void)setInfo: (NSArray *) info {
-    lastLocationInfo = info;
+- (void)setInfo:(NSArray *)info {
+
     [AppDelegate updateInfo:info];
 }
 
--(void)updateInfo {
+- (void)updateInfo {
     [Api getInfoForService:self];
 }
 
--(void)requestFullUpdate {
+- (void)requestFullUpdate {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self updateInfo];
-        
+
     });
 }
 
--(void)startUpdatingLocation {
+- (void)startUpdatingLocation {
     self.locationManager = [[CLLocationManager alloc] init];
     if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
         [self.locationManager requestAlwaysAuthorization];
@@ -86,45 +79,27 @@ long const MIN_UPDATE = 60 * 1000;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-    CLLocation * currentLocation = (CLLocation *)[locations lastObject];
-    
+    CLLocation *currentLocation = (CLLocation *) [locations lastObject];
+
     if (![locator isSetup] || ![settingsService getShouldConnect]) {
         return;
     }
-    
+
     CLLocationCoordinate2D currentCoordinates = currentLocation.coordinate;
 
-    hasLocation = true;
     lastLatitude = currentCoordinates.latitude;
     lastLongitude = currentCoordinates.longitude;
     Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
-    
+
     if (location == nil) {
         return;
     }
     //location.name = @"Einsteins";
     lastLocation = location;
     //NSLog(@"Updated location: %@", [location getName]);
-    
-    long long currentTime = [SettingsService getTime];
-    
-    [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
-    if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
-        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
-        lastPublishedUpdate = currentTime;
-    }
-}
 
-- (void)updateLocation :(UIBackgroundTaskIdentifier)task {
-    
-    if (![locator isSetup] || ![settingsService getShouldConnect]) {
-        return;
-    }
-    
     long long currentTime = [SettingsService getTime];
-    
-    lastUpdate = currentTime;
-    
+
     [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
         [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
@@ -136,20 +111,7 @@ long const MIN_UPDATE = 60 * 1000;
     NSLog(@"Unable to start location manager. Error:%@", [error description]);
 }
 
-+(bool)hasLocation {
-    return hasLocation;
-}
-+(double)getLastLatitude {
-    return lastLatitude;
-}
-+(double)getLastLongitude {
-    return lastLongitude;
-}
-+(Location *)getLastLocation {
++ (Location *)getLastLocation {
     return lastLocation;
-}
--(void) die {
-    dieFlag = true;
-    [locationManager stopMonitoringSignificantLocationChanges];
 }
 @end

@@ -19,18 +19,18 @@
     CGFloat currentKeyboardHeight;
 }
 
-@property(nonatomic, retain) NSString  *location;
+@property(nonatomic, retain) NSString *location;
 @property(nonatomic) bool submitted;
 
-@property(nonatomic, retain) IBOutlet UILabel  *crowdedLabel;
-@property(nonatomic, retain) IBOutlet UILabel  *minutesLabel;
-@property(nonatomic, retain) IBOutlet UILabel  *feedbackLabel;
+@property(nonatomic, retain) IBOutlet UILabel *crowdedLabel;
+@property(nonatomic, retain) IBOutlet UILabel *minutesLabel;
+@property(nonatomic, retain) IBOutlet UILabel *feedbackLabel;
 @property(nonatomic, weak) IBOutlet UITextField *crowdedField;
 @property(nonatomic, weak) IBOutlet UITextField *minutesField;
 @property(nonatomic, retain) IBOutlet UITextField *feedbackField;
-@property(nonatomic, retain) IBOutlet UIButton  *submitButton;
-@property(nonatomic, retain) IBOutlet UILabel  *feedbackResponseTitle;
-@property(nonatomic, retain) IBOutlet UILabel  *feedbackResponseDetail;
+@property(nonatomic, retain) IBOutlet UIButton *submitButton;
+@property(nonatomic, retain) IBOutlet UILabel *feedbackResponseTitle;
+@property(nonatomic, retain) IBOutlet UILabel *feedbackResponseDetail;
 
 @property(nonatomic, retain) IBOutlet UIPickerView *crowdedPickerView;
 @property(nonatomic, retain) IBOutlet UIPickerView *minutesPickerView;
@@ -39,8 +39,9 @@
 @property(nonatomic) int crowdedValue;
 @property(nonatomic) int minutesValue;
 
--(IBAction)submit;
--(void)keyboardDidShow:(NSNotification*)notification;
+- (IBAction)submit;
+
+- (void)keyboardDidShow:(NSNotification *)notification;
 
 
 @end

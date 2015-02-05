@@ -30,17 +30,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+
     [AppDelegate registerLocationController:self];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+
     [AppDelegate unregisterLocationController];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Banner"]) {
         BannerViewController *c = [segue destinationViewController];
         c.location = self.location;
@@ -54,8 +54,8 @@
     } else if ([segue.identifier isEqualToString:@"Tabs"]) {
         TabsController *c = [segue destinationViewController];
         c.location = self.location;
-        c.label = self.label;
-        c.photo = self.photo;
+        //c.label = self.label;
+        //c.photo = self.photo;
         if (self.info) {
             c.info = self.info;
         }
@@ -63,7 +63,7 @@
     }
 }
 
--(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
+- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
     LocationInfo *locationInfo;
     if ([self.label isEqualToString:@"Regattas"]) {
         locationInfo = regattas;
@@ -75,7 +75,7 @@
     [self.banner updateViewWithLocationInfo:locationInfo];
 }
 
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     [self.tabs updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 

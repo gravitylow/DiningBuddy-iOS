@@ -19,12 +19,18 @@
 @property(nonatomic, retain) NSString *jsonValue;
 @property(nonatomic) bool setup;
 
-- (id) initWithJson: (NSString *) json;
-- (Location *) getLocation: (double) latitude : (double) longitude;
-- (void) setLocations: (NSDictionary *)value;
-- (void) updateLocations;
-- (NSArray *) getLocations;
-- (bool) isSetup;
-- (NSString *) jsonValue;
+- (id)initWithJson:(NSString *)json;
+
+- (Location *)getLocation:(double)latitude :(double)longitude;
+
+- (void)setLocations:(NSDictionary *)value;
+
+- (void)updateLocations;
+
+- (NSArray *)getLocations;
+
+- (bool)isSetup;
+
+- (NSString *)jsonValue;
 
 @end

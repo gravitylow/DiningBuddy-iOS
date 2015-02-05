@@ -12,7 +12,7 @@
 
 @interface GraphViewController : UIViewController <UIWebViewDelegate>
 
-@property(nonatomic, retain) IBOutlet UIWebView  *webView;
-@property(nonatomic, retain) NSString  *location;
+@property(nonatomic, retain) IBOutlet UIWebView *webView;
+@property(nonatomic, retain) NSString *location;
 
 @end

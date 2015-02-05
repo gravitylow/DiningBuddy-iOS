@@ -17,10 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    TabsController *parent = (TabsController *)self.tabBarController;
+
+    TabsController *parent = (TabsController *) self.tabBarController;
     self.location = parent.location;
-    
+
     NSString *urlAddress = @"https://api.gravitydevelopment.net/cnu/api/v1.0/graphs/";
     urlAddress = [urlAddress stringByAppendingString:self.location];
     NSURL *url = [NSURL URLWithString:urlAddress];
@@ -34,8 +34,8 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    if (self.navigationController.navigationBar.translucent == YES) {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    if (self.navigationController.navigationBar.translucent) {
         //webView.scrollView.contentOffset = CGPointMake(webView.frame.origin.x, webView.frame.origin.y + 100);
     }
     CGRect frame = webView.frame;
@@ -44,7 +44,7 @@
     webView.frame = frame;
 }
 
--(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     NSLog(@"Error for WEBVIEW: %@", [error description]);
 }
 

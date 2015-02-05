@@ -27,29 +27,33 @@
     IASKAppSettingsViewController *appSettingsViewController;
 }
 
-@property (nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
+@property(nonatomic, retain) IASKAppSettingsViewController *appSettingsViewController;
 
-@property (nonatomic, retain) BannerViewController *regattasView;
-@property (nonatomic, retain) BannerViewController *commonsView;
-@property (nonatomic, retain) BannerViewController *einsteinsView;
+@property(nonatomic, retain) BannerViewController *regattasView;
+@property(nonatomic, retain) BannerViewController *commonsView;
+@property(nonatomic, retain) BannerViewController *einsteinsView;
 
-@property(nonatomic, retain) LocationInfo  *lastRegattasInfo;
-@property(nonatomic, retain) LocationInfo  *lastCommonsInfo;
-@property(nonatomic, retain) LocationInfo  *lastEinsteinsInfo;
+@property(nonatomic, retain) LocationInfo *lastRegattasInfo;
+@property(nonatomic, retain) LocationInfo *lastCommonsInfo;
+@property(nonatomic, retain) LocationInfo *lastEinsteinsInfo;
 
 @property(nonatomic) bool regattasHasBadge;
 @property(nonatomic) bool commonsHasBadge;
 @property(nonatomic) bool einsteinsHasBadge;
 
-@property (nonatomic, retain) UIRefreshControl *refreshControl;
+@property(nonatomic, retain) UIRefreshControl *refreshControl;
 
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIButton *settingsButton;
+@property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property(strong, nonatomic) IBOutlet UIButton *settingsButton;
 
--(void)refresh;
--(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
--(void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
--(IBAction)openSettings;
--(void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
+- (void)refresh;
+
+- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
+
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
+
+- (IBAction)openSettings;
+
+- (void)fetchNewDataWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler;
 @end
 

@@ -23,21 +23,25 @@ static LocationViewController *locationController = nil;
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property(nonatomic, retain) BackendService *backendService;
-
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property(readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property(readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property(readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (void)saveContext;
+
 - (NSURL *)applicationDocumentsDirectory;
 
-+ (void)registerMainController: (ViewController *)viewController;
-+ (void)registerLocationController: (LocationViewController *)locationViewController;
++ (void)registerMainController:(ViewController *)viewController;
+
++ (void)registerLocationController:(LocationViewController *)locationViewController;
+
 + (void)unregisterMainController;
+
 + (void)unregisterLocationController;
-+ (void)updateInfo: (NSArray *)info;
-+ (void)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
+
++ (void)updateInfo:(NSArray *)info;
+
++ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
 
 @end
 

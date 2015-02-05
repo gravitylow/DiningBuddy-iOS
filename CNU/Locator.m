@@ -17,7 +17,7 @@
 @synthesize locationsList;
 @synthesize setup;
 
-- (id) init {
+- (id)init {
     if (self = [super init]) {
         locationsList = [NSMutableArray alloc];
         setup = false;
@@ -25,7 +25,7 @@
     return self;
 }
 
-- (id) initWithJson: (NSString *) json {
+- (id)initWithJson:(NSString *)json {
     if (self = [super init]) {
         self.jsonValue = json;
         NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
@@ -36,21 +36,22 @@
     return self;
 }
 
-- (Location *) getLocation: (double) latitude : (double) longitude {
+- (Location *)getLocation:(double)latitude :(double)longitude {
     NSUInteger count = [locationsList count];
-    for (int i=0;i<count;i++) {
-        Location *location = [locationsList objectAtIndex:i];
+    for (int i = 0; i < count; i++) {
+        Location *location = locationsList[i];
         if ([location isInsideLocation:latitude :longitude]) {
             return location;
         }
     }
     return nil;
 }
-- (void) setLocations: (NSDictionary *)value {
+
+- (void)setLocations:(NSDictionary *)value {
     NSString *string = [value description];
     self.jsonValue = string;
     NSArray *array = [Api locationsFromJson:value];
-    
+
     if ([array count] == 0) {
         [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(updateLocations) userInfo:nil repeats:NO];
     } else {
@@ -60,18 +61,21 @@
     }
 }
 
-- (void) updateLocations {
+- (void)updateLocations {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [Api getLocationsForLocator:self];
     });
 }
-- (NSArray *) getLocations {
+
+- (NSArray *)getLocations {
     return locationsList;
 }
-- (bool) isSetup {
+
+- (bool)isSetup {
     return setup;
 }
-- (NSString *) jsonValue {
+
+- (NSString *)jsonValue {
     return self.jsonValue;
 }
 

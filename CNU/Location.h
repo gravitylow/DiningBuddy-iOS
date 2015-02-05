@@ -14,13 +14,14 @@
 
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSArray *coordinatePairs;
-@property(nonatomic, retain) NSArray *subLocations;
 @property(nonatomic) NSInteger priority;
 
 - (id) initWithName:(NSString *)nameValue
-            withCoordinatePairs:(NSArray *)coordinatePairsValue
-            withPriority:(NSInteger)priorityValue;
-- (NSString *) getName;
-- (bool) isInsideLocation:(double) latitude :(double) longitude;
+withCoordinatePairs:(NSArray *)coordinatePairsValue
+       withPriority:(NSInteger)priorityValue;
+
+- (NSString *)getName;
+
+- (bool)isInsideLocation:(double)latitude :(double)longitude;
 
 @end

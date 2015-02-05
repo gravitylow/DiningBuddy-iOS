@@ -22,56 +22,56 @@
 
 @implementation Api
 
-NSString * const API_HOST = @"https://api.gravitydevelopment.net%@";
-NSString * const API_VERSION = @"v1.0";
-NSString * const API_QUERY = @"/cnu/api/%@/";
-NSString * const API_CONTENT_TYPE = @"application/json";
+NSString *const API_HOST = @"https://api.gravitydevelopment.net%@";
+NSString *const API_VERSION = @"v1.0";
+NSString *const API_QUERY = @"/cnu/api/%@/";
+NSString *const API_CONTENT_TYPE = @"application/json";
 
 static NSString *API_USER_AGENT = @"CNU-iOS";
 
-+ (void) initialize {
++ (void)initialize {
     if (self == [Api class]) {
-        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
         API_USER_AGENT = [NSString stringWithFormat:@"%@-v%@", API_USER_AGENT, version];
     }
 }
 
-+(NSString *)getApiUrl {
++ (NSString *)getApiUrl {
     return [NSString stringWithFormat:API_HOST, [NSString stringWithFormat:API_QUERY, API_VERSION]];
 }
 
-+(NSString *)getApiUrlForString: (NSString *) value {
++ (NSString *)getApiUrlForString:(NSString *)value {
     return [NSString stringWithFormat:@"%@%@", [self getApiUrl], value];
 }
 
-+(void)getLocationsForLocator: (Locator *) locator {
++ (void)getLocationsForLocator:(Locator *)locator {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"locations/"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
             NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data
-                                                          options:0
-                                                            error:NULL];
+                                                                     options:0
+                                                                       error:NULL];
             [locator setLocations:response];
         }
     }];
 }
 
-+(NSArray *)locationsFromJson: (id) json {
++ (NSArray *)locationsFromJson:(id)json {
     NSMutableArray *list = [[NSMutableArray alloc] init];
     NSArray *array = [json objectForKey:@"features"];
-    for (NSDictionary* value in array) {
+    for (NSDictionary *value in array) {
         id properties = [value objectForKey:@"properties"];
         id geometry = [value objectForKey:@"geometry"];
-        
+
         NSString *name = [properties objectForKey:@"name"];
         NSInteger priority = [[properties objectForKey:@"priority"] integerValue];
-        
+
         NSArray *coordinates = [[geometry objectForKey:@"coordinates"] objectAtIndex:0];
         NSMutableArray *coordinatePairs = [[NSMutableArray alloc] init];
         for (NSArray *value in coordinates) {
-            double longitude = [[value objectAtIndex:0] doubleValue];
-            double latitude = [[value objectAtIndex:1] doubleValue];
+            double longitude = [value[0] doubleValue];
+            double latitude = [value[1] doubleValue];
             [coordinatePairs addObject:[[CoordinatePair alloc] initWithDouble:latitude withDouble:longitude]];
         }
         [list addObject:[[Location alloc] initWithName:name withCoordinatePairs:coordinatePairs withPriority:priority]];
@@ -79,61 +79,61 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     return list;
 }
 
-+(NSArray *)infoFromJson: (id)json {
++ (NSArray *)infoFromJson:(id)json {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSDictionary* value in json) {
-        NSString *name = [value objectForKey:@"location"];
-        int people = [[value objectForKey:@"people"] integerValue];
-        int crowded = [[value objectForKey:@"crowded"] integerValue];
+    for (NSDictionary *value in json) {
+        NSString *name = value[@"location"];
+        int people = [value[@"people"] integerValue];
+        int crowded = [value[@"crowded"] integerValue];
         CrowdedRating rating = [LocationInfo getCrowdedRatingForInt:crowded];
-        
+
         LocationInfo *info = [[LocationInfo alloc] initWithName:name withPeople:people withCrowdedRating:rating];
         [array addObject:info];
     }
     return array;
 }
 
-+(void)getInfoForService: (LocationService *) locationService {
++ (void)getInfoForService:(LocationService *)locationService {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"info/"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if (data.length > 0 && error == nil) {
             id response = [NSJSONSerialization JSONObjectWithData:data
-                                                           options:0
-                                                             error:NULL];
+                                                          options:0
+                                                            error:NULL];
             NSArray *array = [self infoFromJson:response];
             [locationService setInfo:array];
         }
     }];
 }
 
-+(NSArray *)menuFromJson: (id)json {
++ (NSArray *)menuFromJson:(id)json {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSDictionary* value in json) {
+    for (NSDictionary *value in json) {
         NSString *startTime = [value objectForKey:@"start"];
         NSString *endTime = [value objectForKey:@"end"];
         NSString *summary = [value objectForKey:@"summary"];
         NSString *description = [value objectForKey:@"description"];
-        
-        LocationMenuItem *item = [[LocationMenuItem alloc] initWithStart:startTime withEnd:endTime withSummary:summary withDescription:description ];
+
+        LocationMenuItem *item = [[LocationMenuItem alloc] initWithStart:startTime withEnd:endTime withSummary:summary withDescription:description];
         [array addObject:item];
     }
-    
+
     return array;
 }
 
-+(void)getLatestMenus {
++ (void)getLatestMenus {
     NSString *location = @"Regattas";
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSURLResponse *response = nil;
     NSError *error = nil;
-    NSData * data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    NSData *data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     id json = [NSJSONSerialization JSONObjectWithData:data
-                                                  options:0
-                                                    error:NULL];
+                                              options:0
+                                                error:NULL];
     NSArray *regattas = [self menuFromJson:json];
-    
+
     location = @"Commons";
     url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
     urlRequest = [NSURLRequest requestWithURL:url];
@@ -141,15 +141,15 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     error = nil;
     data = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
     json = [NSJSONSerialization JSONObjectWithData:data
-                                              options:0
-                                                error:NULL];
-    
+                                           options:0
+                                             error:NULL];
+
     NSArray *commons = [self menuFromJson:json];
-    
+
     [[BackendService getSettingsService] setLatestMenus:regattas :commons];
 }
 
-+(void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller {
++ (void)getMenuForLocation:(NSString *)location forMenuController:(MenuViewController *)controller {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"menus/%@/", location]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -163,23 +163,23 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     }];
 }
 
-+(NSArray *)feedFromJson: (id)json {
++ (NSArray *)feedFromJson:(id)json {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSDictionary* value in json) {
-        NSString *message = [value objectForKey:@"feedback"];
-        int minutes = [[value objectForKey:@"minutes"] integerValue];
-        int crowded = [[value objectForKey:@"crowded"] integerValue];
-        long long time = [[value objectForKey:@"time"] longLongValue];
-        bool pinned = [[value objectForKey:@"pinned"] boolValue];
-        NSString *detail = [value objectForKey:@"detail"];
-        
+    for (NSDictionary *value in json) {
+        NSString *message = value[@"feedback"];
+        int minutes = [value[@"minutes"] integerValue];
+        int crowded = [value[@"crowded"] integerValue];
+        long long time = [value[@"time"] longLongValue];
+        bool pinned = [value[@"pinned"] boolValue];
+        NSString *detail = value[@"detail"];
+
         LocationFeedItem *item = [[LocationFeedItem alloc] initWithMessage:message withMinutes:minutes withCrowded:crowded withTime:time withPinned:pinned withDetail:detail];
         [array addObject:item];
     }
     return array;
 }
 
-+(void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller {
++ (void)getFeedForLocation:(NSString *)location forFeedController:(FeedViewController *)controller {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:[NSString stringWithFormat:@"feed/%@/", location]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -193,28 +193,28 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     }];
 }
 
-+(void) sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid{
++ (void)sendUpdateWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location withTime:(long long)time withUUID:(NSString *)uuid {
     if (location == nil) {
         return;
     }
     NSString *json = [NSString stringWithFormat:@"{\"id\" : \"%@\", \"lat\" : %f, \"lon\" : %f, \"location\" : \"%@\", \"send_time\" : %lli }", uuid, latitude, longitude, [location getName], time];
     //NSLog(@"Update: %@", json);
-    
-    
+
+
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"update/"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     [request setHTTPMethod:@"POST"];
     [request setValue:API_CONTENT_TYPE forHTTPHeaderField:@"Content-Type"];
     [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
-    [request setHTTPBody: requestData];
+    [request setHTTPBody:requestData];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         //[[UIApplication sharedApplication] endBackgroundTask:bgTask];
     }];
 }
 
-+(void) sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid {
++ (void)sendFeedbackWithTarget:(NSString *)target withLocation:(Location *)location withCrowded:(int)crowded withMinutes:(int)minutes withFeedback:(NSString *)feedback withTime:(long long)time withUUID:(NSString *)uuid {
     if (crowded == -1 || minutes == -1) {
         return;
     }
@@ -222,15 +222,15 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"feedback/"]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSData *requestData = [json dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     [request setHTTPMethod:@"POST"];
     [request setValue:API_CONTENT_TYPE forHTTPHeaderField:@"Content-Type"];
     [request setValue:API_USER_AGENT forHTTPHeaderField:@"User-Agent"];
-    [request setHTTPBody: requestData];
+    [request setHTTPBody:requestData];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:nil];
 }
 
-+(void)showAlerts :(SettingsService *)settings {
++ (void)showAlerts:(SettingsService *)settings {
     NSURL *url = [NSURL URLWithString:[self getApiUrlForString:@"alerts/"]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -254,23 +254,23 @@ static NSString *API_USER_AGENT = @"CNU-iOS";
     }];
 }
 
-+(NSArray *)alertsFromJson: (id)json {
++ (NSArray *)alertsFromJson:(id)json {
     NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (NSDictionary* value in json) {
-        NSString *message = [value objectForKey:@"message"];
-        NSString *title = [value objectForKey:@"title"];
-        NSString *targetOS = [value objectForKey:@"target_os"];
-        NSString *targetVersion = [value objectForKey:@"target_version"];
-        long long targetTimeMin = [[value objectForKey:@"target_time_min"] integerValue];
-        long long targetTimeMax = [[value objectForKey:@"target_time_max"] integerValue];
-        AlertItem *item = [[AlertItem alloc]init];
+    for (NSDictionary *value in json) {
+        NSString *message = value[@"message"];
+        NSString *title = value[@"title"];
+        NSString *targetOS = value[@"target_os"];
+        NSString *targetVersion = value[@"target_version"];
+        long long targetTimeMin = [value[@"target_time_min"] integerValue];
+        long long targetTimeMax = [value[@"target_time_max"] integerValue];
+        AlertItem *item = [[AlertItem alloc] init];
         item.message = message;
         item.title = title;
         item.targetOS = targetOS;
         item.targetVersion = targetVersion;
         item.targetTimeMin = targetTimeMin;
         item.targetTimeMax = targetTimeMax;
-        
+
         if ([item isApplicable]) {
             [array addObject:item];
         }

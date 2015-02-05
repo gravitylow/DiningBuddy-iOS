@@ -10,7 +10,7 @@
 
 @implementation LocationMenuItem
 
--(id) initWithStart:(NSString *)start withEnd:(NSString *)end withSummary:(NSString *)sum withDescription:(NSString *)des {
+- (id)initWithStart:(NSString *)start withEnd:(NSString *)end withSummary:(NSString *)sum withDescription:(NSString *)des {
     if (self = [super init]) {
         self.startTime = start;
         self.endTime = end;

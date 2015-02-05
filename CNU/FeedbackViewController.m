@@ -12,6 +12,7 @@
 #import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
+#import "LocationInfo.h"
 
 @interface FeedbackViewController ()
 
@@ -27,28 +28,28 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TabsController *parent = (TabsController *)self.tabBarController;
+    TabsController *parent = (TabsController *) self.tabBarController;
     self.location = parent.location;
-    
+
     crowdedValue = -1;
     minutesValue = -1;
-    self.crowdedArray  = [[NSArray alloc] initWithObjects:@"Not crowded at all",@"Somewhat crowded",@"Very crowded",nil];
-    self.minutesArray  = [[NSArray alloc] initWithObjects:@"0 Minutes",@"1 Minute",@"2 Minutes",@"3 Minutes",@"4 Minutes",@"5 Minutes",@"6 Minutes",@"7 Minutes",@"8 Minutes",@"9 Minutes",@"10+ Minutes", nil];
-    
-    self.crowdedPickerView = [[UIPickerView alloc]init];
-    self.minutesPickerView = [[UIPickerView alloc]init];
-    self.crowdedPickerView.delegate=self;
-    self.crowdedPickerView.dataSource=self;
-    self.minutesPickerView.delegate=self;
-    self.minutesPickerView.dataSource=self;
+    self.crowdedArray = [LocationInfo getFeedbackList];
+    self.minutesArray = @[@"0 Minutes", @"1 Minute", @"2 Minutes", @"3 Minutes", @"4 Minutes", @"5 Minutes", @"6 Minutes", @"7 Minutes", @"8 Minutes", @"9 Minutes", @"10+ Minutes"];
+
+    self.crowdedPickerView = [[UIPickerView alloc] init];
+    self.minutesPickerView = [[UIPickerView alloc] init];
+    self.crowdedPickerView.delegate = self;
+    self.crowdedPickerView.dataSource = self;
+    self.minutesPickerView.delegate = self;
+    self.minutesPickerView.dataSource = self;
     self.crowdedField.inputView = self.crowdedPickerView;
     self.minutesField.inputView = self.minutesPickerView;
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
-    
+
     if (self.submitted) {
         [self setHidden];
     }
@@ -59,13 +60,13 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)keyboardDidShow:(NSNotification*)notification {
-    
+- (void)keyboardDidShow:(NSNotification *)notification {
+
     UITextField *field = [crowdedField isFirstResponder] ? crowdedField : [minutesField isFirstResponder] ? minutesField : feedbackField;
     NSDictionary *info = [notification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    CGSize kbSize = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     currentKeyboardHeight = kbSize.height;
-    
+
     CGRect textFieldRect = [self.view.window convertRect:field.bounds fromView:field];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -80,26 +81,26 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     animatedDistance = floor(currentKeyboardHeight * heightFraction);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
-    
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
+
     [self.view setFrame:viewFrame];
-    
+
     [UIView commitAnimations];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
-    
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
+
     [self.view setFrame:viewFrame];
-    
+
     [UIView commitAnimations];
 }
 
@@ -121,15 +122,15 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 }
 
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (pickerView == self.crowdedPickerView) {
-        return [self.crowdedArray objectAtIndex:row];
+        return self.crowdedArray[row];
     } else {
-        return [self.minutesArray objectAtIndex:row];
+        return self.minutesArray[row];
     }
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.crowdedPickerView) {
         crowdedValue = row;
         self.crowdedField.text = self.crowdedArray[row];
@@ -141,7 +142,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     }
 }
 
-- (void) setHidden {
+- (void)setHidden {
     self.crowdedLabel.hidden = YES;
     self.crowdedField.hidden = YES;
     self.minutesLabel.hidden = YES;
@@ -153,7 +154,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     self.feedbackResponseDetail.hidden = NO;
 }
 
--(IBAction)submit {
+- (IBAction)submit {
     NSLog(@"SUBMITTED");
     if (crowdedValue == -1 && minutesValue == -1) {
         NSLog(@"RETURNED");
@@ -162,7 +163,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
         NSLog(@"SENT");
         [Api sendFeedbackWithTarget:self.location withLocation:[LocationService getLastLocation] withCrowded:crowdedValue withMinutes:minutesValue withFeedback:[feedbackField text] withTime:[SettingsService getTime] withUUID:[SettingsService getUUID]];
         self.submitted = true;
-        NSString *location = ((TabsController *)self.tabBarController).location;
+        NSString *location = ((TabsController *) self.tabBarController).location;
         SettingsService *settings = [BackendService getSettingsService];
         if ([location isEqualToString:@"Regattas"]) {
             [settings setLastFeedbackRegattas:[SettingsService getTime]];

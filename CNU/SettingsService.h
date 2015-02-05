@@ -15,29 +15,43 @@
 
 @property(nonatomic, retain) NSUserDefaults *preferences;
 
-+(NSString *) getUUID;
-+(long long) getTime;
--(void)loadAll;
--(void) cacheLocations: (NSString *) json;
--(NSString *) getCachedLocations;
--(bool) getWifiOnly;
--(void) setWifiOnly: (bool) value;
--(bool) isWifiConnected;
--(bool) getShouldConnect;
--(long long) getLastFeedbackRegattas;
--(long long) getLastFeedbackCommons;
--(long long) getLastFeedbackEinsteins;
--(void) setLastFeedbackRegattas: (long long) time;
--(void) setLastFeedbackCommons: (long long) time;
--(void) setLastFeedbackEinsteins: (long long) time;
--(long long) getLastFavoriteFetch;
--(void) setLastFavoriteFetch: (long long) time;
--(void) setAlertRead: (NSString *) alert;
--(bool) isAlertRead: (NSString *)alert;
--(bool) getNotifyFavorites;
--(void) setNotifyFavorites:(bool)value;
--(NSString *)getFavorites;
--(void) setFavorites:(NSString *)value;
++ (NSString *)getUUID;
 
--(void)setLatestMenus:(NSArray *)regattas :(NSArray *)commons;
++ (long long)getTime;
+
+- (void)cacheLocations:(NSString *)json;
+
+- (NSString *)getCachedLocations;
+
+- (bool)getWifiOnly;
+
+- (bool)isWifiConnected;
+
+- (bool)getShouldConnect;
+
+- (long long)getLastFeedbackRegattas;
+
+- (long long)getLastFeedbackCommons;
+
+- (long long)getLastFeedbackEinsteins;
+
+- (void)setLastFeedbackRegattas:(long long)time;
+
+- (void)setLastFeedbackCommons:(long long)time;
+
+- (void)setLastFeedbackEinsteins:(long long)time;
+
+- (long long)getLastFavoriteFetch;
+
+- (void)setLastFavoriteFetch:(long long)time;
+
+- (void)setAlertRead:(NSString *)alert;
+
+- (bool)isAlertRead:(NSString *)alert;
+
+- (bool)getNotifyFavorites;
+
+- (NSString *)getFavorites;
+
+- (void)setLatestMenus:(NSArray *)regattas :(NSArray *)commons;
 @end

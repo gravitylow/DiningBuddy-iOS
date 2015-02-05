@@ -17,6 +17,6 @@
 @property(nonatomic) bool pinned;
 @property(nonatomic, retain) NSString *detail;
 
--(id) initWithMessage:(NSString *)message withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det;
+- (id)initWithMessage:(NSString *)message withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det;
 
 @end

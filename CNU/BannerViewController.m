@@ -24,15 +24,15 @@
     self.locationLabel.text = self.label;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
 
-    UIImage *image = [UIImage imageNamed: self.photo];
+    UIImage *image = [UIImage imageNamed:self.photo];
     [self.imageView setImage:image];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
     self.imageView.center = self.view.center;
-    
+
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10.0;
     self.imageView.layer.borderWidth = 1.0;
-    
+
     [badgeImageView setHidden:!hasBadge];
     if (self.info) {
         [self updateInfoWithRegattas:info withCommons:info withEinsteins:info];
@@ -41,7 +41,7 @@
     }
 }
 
--(void) updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
+- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
     LocationInfo *locationInfo;
     if ([self.location isEqualToString:@"Regattas"]) {
         locationInfo = regattas;
@@ -62,7 +62,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) updateViewWithLocationInfo: (LocationInfo *)locationInfo {
+- (void)updateViewWithLocationInfo:(LocationInfo *)locationInfo {
     CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
     UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
     imageView.layer.borderColor = [color CGColor];
@@ -70,7 +70,7 @@
     infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
 
--(bool)updateLocationWithLatitude: (double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (bool)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
     if ([[location getName] isEqualToString:self.location]) {
         [badgeImageView setHidden:FALSE];
         return true;

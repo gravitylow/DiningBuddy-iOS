@@ -11,11 +11,11 @@
 
 @implementation AlertItem
 
--(bool)isApplicable {
+- (bool)isApplicable {
     NSString *thisOS = @"iOS";
-    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"];
+    NSString *thisVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     long long thisTime = [SettingsService getTime];
-    
+
     // Reasons to disqualify this alert:
     if (![self.targetOS isEqualToString:@"all"] && ![self.targetOS isEqualToString:thisOS]) {
         NSLog(@"Alert disqualified for target: %@, %@", self.targetOS, thisOS);

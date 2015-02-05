@@ -14,27 +14,11 @@
 @synthesize people;
 @synthesize crowdedRating;
 
-+ (NSString *) getTextForCrowdedRating: (CrowdedRating) rating {
-    if (rating == NOT_CROWDED) {
-        return @"Not crowded at all";
-    } else if (rating == SOMEWHAT_CROWDED) {
-        return @"Somewhat crowded";
-    } else if (rating == CROWDED) {
-        return @"Very crowded";
-    } else {
-        return nil;
-    }
++ (NSArray *)getFeedbackList {
+    return @[@"Not crowded at all", @"Somewhat crowded", @"Very crowded"];
 }
 
-+ (NSArray *) getFeedbackList {
-    NSMutableArray *array = [NSMutableArray alloc];
-    [array addObject:@"Not crowded at all"];
-    [array addObject:@"Somewhat crowded"];
-    [array addObject:@"Very crowded"];
-    return array;
-}
-
-+ (CrowdedRating) getCrowdedRatingForInt: (int) value {
++ (CrowdedRating)getCrowdedRatingForInt:(int)value {
     CrowdedRating rating = NOT_CROWDED;
     if (value == 1) {
         rating = SOMEWHAT_CROWDED;
@@ -44,7 +28,7 @@
     return rating;
 }
 
-+ (UIColor *) getColorForCrowdedRating: (CrowdedRating) value {
++ (UIColor *)getColorForCrowdedRating:(CrowdedRating)value {
     if (value == NOT_CROWDED) {
         return [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
     } else if (value == SOMEWHAT_CROWDED) {
@@ -54,18 +38,18 @@
     }
 }
 
-- (id) initWithName:(NSString *)name {
+- (id)initWithName:(NSString *)name {
     if (self = [super init]) {
         self.location = name;
         self.people = 0;
-        self.crowdedRating = 0;
+        self.crowdedRating = NOT_CROWDED;
     }
     return self;
 }
 
-- (id) initWithName:(NSString *)name
-         withPeople:(int)number
-  withCrowdedRating:(CrowdedRating)rating {
+- (id)initWithName:(NSString *)name
+        withPeople:(int)number
+ withCrowdedRating:(CrowdedRating)rating {
     if (self = [super init]) {
         self.location = name;
         self.people = number;
@@ -74,13 +58,15 @@
     return self;
 }
 
-- (NSString *) getLocation {
+- (NSString *)getLocation {
     return location;
 }
-- (int) getPeople {
+
+- (int)getPeople {
     return people;
 }
-- (CrowdedRating) getCrowdedRating {
+
+- (CrowdedRating)getCrowdedRating {
     return crowdedRating;
 }
 

@@ -15,6 +15,6 @@
 @property(nonatomic, retain) NSString *summary;
 @property(nonatomic, retain) NSString *desc;
 
--(id) initWithStart:(NSString *)start withEnd:(NSString *)end withSummary:(NSString *)sum withDescription:(NSString *)des;
+- (id)initWithStart:(NSString *)start withEnd:(NSString *)end withSummary:(NSString *)sum withDescription:(NSString *)des;
 
 @end

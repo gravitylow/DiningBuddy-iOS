@@ -11,7 +11,7 @@
 @implementation CoordinatePair
 
 - (id)initWithDouble:(double)lat
-         withDouble:(double)lon {
+          withDouble:(double)lon {
     if (self = [super init]) {
         self.latitude = lat;
         self.longitude = lon;

@@ -13,10 +13,13 @@
 @property(nonatomic) double latitude;
 @property(nonatomic) double longitude;
 
-- (id) initWithDouble:(double)lat
-           withDouble:(double)lon;
-- (double) getLatitude;
-- (double) getLongitude;
-- (NSString *) jsonValue;
+- (id)initWithDouble:(double)lat
+          withDouble:(double)lon;
+
+- (double)getLatitude;
+
+- (double)getLongitude;
+
+- (NSString *)jsonValue;
 
 @end

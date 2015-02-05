@@ -13,9 +13,9 @@
 
 @interface MenuViewController : UITableViewController <UITableViewDelegate, UITableViewDelegate>
 
-@property(nonatomic, retain) NSString  *location;
+@property(nonatomic, retain) NSString *location;
 @property(nonatomic, retain) NSArray *data;
 
--(void)setMenu:(NSArray *)array;
+- (void)setMenu:(NSArray *)array;
 
 @end

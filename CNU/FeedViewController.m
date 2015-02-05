@@ -16,21 +16,21 @@
 @synthesize data;
 @synthesize refreshControl;
 
--(void)viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
-    self.data = [[NSArray alloc]init];
+    self.data = [[NSArray alloc] init];
     [Api getFeedForLocation:self.location forFeedController:self];
-    
-    refreshControl = [[UIRefreshControl alloc]init];
+
+    refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
 }
 
--(void)refresh {
+- (void)refresh {
     [Api getFeedForLocation:self.location forFeedController:self];
 }
 
--(void)setFeed:(NSArray *)array {
+- (void)setFeed:(NSArray *)array {
     dataLoaded = true;
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     for (LocationFeedItem *item in array) {
@@ -49,19 +49,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-    
+
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
-    
-    LocationFeedItem *item = [data objectAtIndex:indexPath.row];
-    
+
+    LocationFeedItem *item = data[indexPath.row];
+
     if (item.pinned) {
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
     }
-    
+
     NSLog(@"Item time: %lli", item.time);
     NSLog(@"Current time: %lli", [SettingsService getTime]);
     NSLog(@"Message: %@", item.message);
@@ -70,7 +70,7 @@
     return cell;
 }
 
--(NSString *) minutesAgo:(long long)time {
+- (NSString *)minutesAgo:(long long)time {
     long long diff = [SettingsService getTime] - time;
     double mins = (diff / 1000) / 60;
     if (mins < 1) {
@@ -78,7 +78,7 @@
     } else if (mins >= 1 && mins < 2) {
         return @"1 minute ago";
     } else {
-        return [NSString stringWithFormat:@"%i minutes ago", (int)mins];
+        return [NSString stringWithFormat:@"%i minutes ago", (int) mins];
     }
 }
 
@@ -93,13 +93,13 @@
         return 1;
     } else {
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        
+
         messageLabel.text = dataLoaded ? @"No recent updates" : @"Loading...";
         messageLabel.textColor = [UIColor grayColor];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
         [messageLabel sizeToFit];
-        
+
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         return 0;
@@ -107,7 +107,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LocationFeedItem *item = [data objectAtIndex:indexPath.row];
+    LocationFeedItem *item = data[indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback"
                                                     message:item.message
                                                    delegate:self

@@ -13,7 +13,7 @@
 
 @implementation BackendService
 
--(id)init {
+- (id)init {
     self = [super init];
     if (self) {
         settingsService = [[SettingsService alloc] init];
@@ -21,22 +21,22 @@
         NSLog(@"Wifi Only: %i", [settingsService getWifiOnly]);
         NSLog(@"Wifi Connected: %i", [settingsService isWifiConnected]);
         NSLog(@"Should connect: %i", [settingsService getShouldConnect]);
-        
+
         locationService = [[LocationService alloc] initWithSettings:settingsService];
         [locationService startUpdatingLocation];
     }
     return self;
 }
 
-+(SettingsService *) getSettingsService {
++ (SettingsService *)getSettingsService {
     return settingsService;
 }
 
-+(LocationService *) getLocationService {
++ (LocationService *)getLocationService {
     return locationService;
 }
 
-+(void) showAlerts {
++ (void)showAlerts {
     [Api showAlerts:settingsService];
 }
 @end
