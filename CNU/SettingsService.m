@@ -126,7 +126,7 @@
         for (int j = 0; j < [favoritesList count]; j++) {
             NSString *fav = [favoritesList[j] lowercaseString];
             NSString *trim = [fav stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            if ([item.desc rangeOfString:trim].location != NSNotFound) {
+            if ([[item.desc lowercaseString] rangeOfString:trim].location != NSNotFound) {
                 [regattasItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
@@ -137,7 +137,7 @@
         for (int j = 0; j < [favoritesList count]; j++) {
             NSString *fav = [favoritesList[j] lowercaseString];
             NSString *trim = [fav stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            if ([item.desc rangeOfString:trim].location != NSNotFound) {
+            if ([[item.desc lowercaseString] rangeOfString:trim].location != NSNotFound) {
                 [commonsItems appendString:[NSString stringWithFormat:@"%@ at %@, ", fav, item.summary]];
                 count++;
             }
