@@ -10,8 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MessageUI/MessageUI.h>
-#import "IASKAppSettingsViewController.h"
-#import "IASKSettingsReader.h"
+#import <InAppSettingsKit/IASKAppSettingsViewController.h>
+#import <InAppSettingsKit/IASKSettingsReader.h>
 
 @class AppDelegate;
 @class LocationViewController;
