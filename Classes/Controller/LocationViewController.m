@@ -1,6 +1,6 @@
 //
 //  LocationViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/9/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -10,8 +10,8 @@
 #import "AppDelegate.h"
 #import "BannerViewController.h"
 #import "TabsController.h"
-#import "LocationInfo.h"
-#import "Location.h"
+#import "InfoItem.h"
+#import "LocationItem.h"
 
 @interface LocationViewController ()
 
@@ -63,8 +63,8 @@
     }
 }
 
-- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
-    LocationInfo *locationInfo;
+- (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins {
+    InfoItem *locationInfo;
     if ([self.label isEqualToString:@"Regattas"]) {
         locationInfo = regattas;
     } else if ([self.label isEqualToString:@"Commons"]) {
@@ -75,7 +75,7 @@
     [self.banner updateViewWithLocationInfo:locationInfo];
 }
 
-- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     [self.tabs updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 

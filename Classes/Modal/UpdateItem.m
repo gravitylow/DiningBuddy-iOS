@@ -10,4 +10,8 @@
 
 @implementation UpdateItem
 
++(JSONKeyMapper*)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id": @"uuid"}];
+}
+
 @end

@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/13/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -10,13 +10,13 @@
 #import "AppDelegate.h"
 #import "LocationViewController.h"
 #import "BannerViewController.h"
-#import "Location.h"
-#import "LocationInfo.h"
+#import "LocationItem.h"
+#import "InfoItem.h"
 #import "BackendService.h"
 #import "LocationService.h"
 #import "SettingsService.h"
 #import "CustomViewCell.h"
-#import "Api.h"
+#import "API.h"
 
 @interface ViewController ()
 
@@ -112,7 +112,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
+- (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins {
     lastRegattasInfo = regattas;
     lastCommonsInfo = commons;
     lastEinsteinsInfo = einsteins;
@@ -126,7 +126,7 @@
 
 }
 
-- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     //NSLog(@"Updating all embeded views...");
     regattasHasBadge = [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     commonsHasBadge = [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
@@ -167,7 +167,7 @@
             if (lastFetch == 0 || [lastDate compare:todayAt5] == NSOrderedAscending) {
                 NSLog(@"Last update was before 5 today. Fetching now.");
                 [[BackendService getSettingsService] setLastFavoriteFetch:time];
-                [Api getLatestMenus];
+                [[BackendService getSettingsService] fetchLatestMenus];
                 completionHandler(UIBackgroundFetchResultNewData);
                 return;
             }

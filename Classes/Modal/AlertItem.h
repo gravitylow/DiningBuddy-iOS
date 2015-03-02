@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONModel.h"
 
 @class SettingsService;
 
-@interface AlertItem : NSObject
+@interface AlertItem : JSONModel
 
 @property(nonatomic, retain) NSString *title;
 @property(nonatomic, retain) NSString *message;
-@property(nonatomic, retain) NSString *targetOS;
-@property(nonatomic, retain) NSString *targetVersion;
-@property(nonatomic) long long targetTimeMin;
-@property(nonatomic) long long targetTimeMax;
+@property(nonatomic, retain) NSString *target_os;
+@property(nonatomic, retain) NSString *target_version;
+@property(nonatomic) long long target_time_min;
+@property(nonatomic) long long target_time_max;
 
 - (bool)isApplicable;
 

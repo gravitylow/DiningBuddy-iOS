@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/13/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -10,8 +10,8 @@
 #import "BackendService.h"
 #import "ViewController.h"
 #import "LocationViewController.h"
-#import "Location.h"
-#import "LocationInfo.h"
+#import "LocationItem.h"
+#import "InfoItem.h"
 
 @interface AppDelegate ()
 
@@ -167,13 +167,13 @@
 }
 
 + (void)updateInfo:(NSArray *)info {
-    LocationInfo *regattasInfo = nil;
-    LocationInfo *commonsInfo = nil;
-    LocationInfo *einsteinsInfo = nil;
+    InfoItem *regattasInfo = nil;
+    InfoItem *commonsInfo = nil;
+    InfoItem *einsteinsInfo = nil;
     NSUInteger count = [info count];
     if (count > 0) {
         for (int i = 0; i < count; i++) {
-            LocationInfo *val = (LocationInfo *) info[i];
+            InfoItem *val = (InfoItem *) info[i];
             if ([[val getLocation] isEqualToString:@"Regattas"]) {
                 regattasInfo = val;
             }
@@ -186,13 +186,13 @@
         }
     }
     if (!regattasInfo) {
-        regattasInfo = [[LocationInfo alloc] initWithName:@"Regattas"];
+        regattasInfo = [[InfoItem alloc] initWithName:@"Regattas"];
     }
     if (!commonsInfo) {
-        commonsInfo = [[LocationInfo alloc] initWithName:@"Commons"];
+        commonsInfo = [[InfoItem alloc] initWithName:@"Commons"];
     }
     if (!einsteinsInfo) {
-        einsteinsInfo = [[LocationInfo alloc] initWithName:@"Einsteins"];
+        einsteinsInfo = [[InfoItem alloc] initWithName:@"Einsteins"];
     }
     if (mainController) {
         [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
@@ -202,7 +202,7 @@
     }
 }
 
-+ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
++ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     if (mainController) {
         [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }

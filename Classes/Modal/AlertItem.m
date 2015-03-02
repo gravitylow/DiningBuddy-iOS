@@ -17,15 +17,15 @@
     long long thisTime = [SettingsService getTime];
 
     // Reasons to disqualify this alert:
-    if (![self.targetOS isEqualToString:@"all"] && ![self.targetOS isEqualToString:thisOS]) {
-        NSLog(@"Alert disqualified for target: %@, %@", self.targetOS, thisOS);
+    if (![self.target_os isEqualToString:@"all"] && ![self.target_os isEqualToString:thisOS]) {
+        NSLog(@"Alert disqualified for target: %@, %@", self.target_os, thisOS);
         return false;
     }
-    if (![self.targetVersion isEqualToString:@"all"] && ![self.targetVersion isEqualToString:thisVersion]) {
-        NSLog(@"Alert disqualified for version: %@, %@", self.targetVersion, thisVersion);
+    if (![self.target_version isEqualToString:@"all"] && ![self.target_version isEqualToString:thisVersion]) {
+        NSLog(@"Alert disqualified for version: %@, %@", self.target_version, thisVersion);
         return false;
     }
-    if ((self.targetTimeMin != 0 && self.targetTimeMin > thisTime) || (self.targetTimeMax != 0 && self.targetTimeMax < thisTime)) {
+    if ((self.target_time_min != 0 && self.target_time_min > thisTime) || (self.target_time_max != 0 && self.target_time_max < thisTime)) {
         NSLog(@"Alert disqualified for time: %lli", thisTime);
         return false;
     }

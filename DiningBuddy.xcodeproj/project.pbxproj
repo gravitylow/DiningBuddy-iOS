@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6637AB131AA4F3FB00156AD8 /* LocationCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6637AB121AA4F3FB00156AD8 /* LocationCollection.m */; };
 		6639D4111A75438B0087E5B9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6639D4101A75438B0087E5B9 /* MessageUI.framework */; };
 		6639D4181A7550370087E5B9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6639D4171A7550370087E5B9 /* Settings.bundle */; };
 		66A4A0161AA4DB0F0080002D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A49FE21AA4DB0E0080002D /* AppDelegate.m */; };
@@ -24,10 +25,9 @@
 		66A4A0231AA4DB0F0080002D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A49FFA1AA4DB0E0080002D /* main.m */; };
 		66A4A0241AA4DB0F0080002D /* AlertItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A49FFD1AA4DB0E0080002D /* AlertItem.m */; };
 		66A4A0251AA4DB0F0080002D /* CoordinatePair.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A49FFF1AA4DB0E0080002D /* CoordinatePair.m */; };
-		66A4A0261AA4DB0F0080002D /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0011AA4DB0E0080002D /* Location.m */; };
-		66A4A0271AA4DB0F0080002D /* LocationFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0031AA4DB0E0080002D /* LocationFeedItem.m */; };
-		66A4A0281AA4DB0F0080002D /* LocationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0051AA4DB0F0080002D /* LocationInfo.m */; };
-		66A4A0291AA4DB0F0080002D /* LocationMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0071AA4DB0F0080002D /* LocationMenuItem.m */; };
+		66A4A0271AA4DB0F0080002D /* FeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0031AA4DB0E0080002D /* FeedItem.m */; };
+		66A4A0281AA4DB0F0080002D /* InfoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0051AA4DB0F0080002D /* InfoItem.m */; };
+		66A4A0291AA4DB0F0080002D /* MenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0071AA4DB0F0080002D /* MenuItem.m */; };
 		66A4A02B1AA4DB0F0080002D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A00C1AA4DB0F0080002D /* Reachability.m */; };
 		66A4A02C1AA4DB0F0080002D /* BackendService.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A00F1AA4DB0F0080002D /* BackendService.m */; };
 		66A4A02D1AA4DB0F0080002D /* LocationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0111AA4DB0F0080002D /* LocationService.m */; };
@@ -57,8 +57,11 @@
 		66A4A0891AA4DC350080002D /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0731AA4DC350080002D /* regattas_full.jpg */; };
 		66A4A0961AA4DECB0080002D /* CustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0941AA4DECB0080002D /* CustomViewCell.m */; };
 		66A4A0971AA4DECB0080002D /* CustomViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0951AA4DECB0080002D /* CustomViewCell.xib */; };
-		66A4A09A1AA4DF7F0080002D /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0991AA4DF7F0080002D /* Api.m */; };
 		66A4A09C1AA4E68A0080002D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A09B1AA4E68A0080002D /* Info.plist */; };
+		66A4A09F1AA4E9B60080002D /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A09E1AA4E9B60080002D /* API.m */; };
+		66A4A0A51AA4EB880080002D /* LocationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0A41AA4EB880080002D /* LocationItem.m */; };
+		66A4A0A81AA4EC610080002D /* UpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0A71AA4EC610080002D /* UpdateItem.m */; };
+		66A4A0AB1AA4EC6B0080002D /* FeedbackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0AA1AA4EC6B0080002D /* FeedbackItem.m */; };
 		66C793C919DE162A007AC4BC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C793C819DE162A007AC4BC /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		C627ED681D0E3D39AA10B8B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89D52138F440E044EF2831 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -75,6 +78,8 @@
 
 /* Begin PBXFileReference section */
 		1E21FF89B20747CBFF35A990 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		6637AB111AA4F3FB00156AD8 /* LocationCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCollection.h; sourceTree = "<group>"; };
+		6637AB121AA4F3FB00156AD8 /* LocationCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCollection.m; sourceTree = "<group>"; };
 		6639D4101A75438B0087E5B9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6639D4171A7550370087E5B9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		66A49FE11AA4DB0E0080002D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,14 +108,12 @@
 		66A49FFD1AA4DB0E0080002D /* AlertItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertItem.m; sourceTree = "<group>"; };
 		66A49FFE1AA4DB0E0080002D /* CoordinatePair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinatePair.h; sourceTree = "<group>"; };
 		66A49FFF1AA4DB0E0080002D /* CoordinatePair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinatePair.m; sourceTree = "<group>"; };
-		66A4A0001AA4DB0E0080002D /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
-		66A4A0011AA4DB0E0080002D /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		66A4A0021AA4DB0E0080002D /* LocationFeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationFeedItem.h; sourceTree = "<group>"; };
-		66A4A0031AA4DB0E0080002D /* LocationFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationFeedItem.m; sourceTree = "<group>"; };
-		66A4A0041AA4DB0F0080002D /* LocationInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationInfo.h; sourceTree = "<group>"; };
-		66A4A0051AA4DB0F0080002D /* LocationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationInfo.m; sourceTree = "<group>"; };
-		66A4A0061AA4DB0F0080002D /* LocationMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationMenuItem.h; sourceTree = "<group>"; };
-		66A4A0071AA4DB0F0080002D /* LocationMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationMenuItem.m; sourceTree = "<group>"; };
+		66A4A0021AA4DB0E0080002D /* FeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItem.h; sourceTree = "<group>"; };
+		66A4A0031AA4DB0E0080002D /* FeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItem.m; sourceTree = "<group>"; };
+		66A4A0041AA4DB0F0080002D /* InfoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoItem.h; sourceTree = "<group>"; };
+		66A4A0051AA4DB0F0080002D /* InfoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoItem.m; sourceTree = "<group>"; };
+		66A4A0061AA4DB0F0080002D /* MenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItem.h; sourceTree = "<group>"; };
+		66A4A0071AA4DB0F0080002D /* MenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItem.m; sourceTree = "<group>"; };
 		66A4A00B1AA4DB0F0080002D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		66A4A00C1AA4DB0F0080002D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		66A4A00E1AA4DB0F0080002D /* BackendService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackendService.h; sourceTree = "<group>"; };
@@ -146,9 +149,15 @@
 		66A4A0931AA4DECB0080002D /* CustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewCell.h; sourceTree = "<group>"; };
 		66A4A0941AA4DECB0080002D /* CustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewCell.m; sourceTree = "<group>"; };
 		66A4A0951AA4DECB0080002D /* CustomViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewCell.xib; sourceTree = "<group>"; };
-		66A4A0981AA4DF7F0080002D /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
-		66A4A0991AA4DF7F0080002D /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
 		66A4A09B1AA4E68A0080002D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66A4A09D1AA4E9B60080002D /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		66A4A09E1AA4E9B60080002D /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		66A4A0A31AA4EB880080002D /* LocationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationItem.h; sourceTree = "<group>"; };
+		66A4A0A41AA4EB880080002D /* LocationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationItem.m; sourceTree = "<group>"; };
+		66A4A0A61AA4EC610080002D /* UpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateItem.h; sourceTree = "<group>"; };
+		66A4A0A71AA4EC610080002D /* UpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateItem.m; sourceTree = "<group>"; };
+		66A4A0A91AA4EC6B0080002D /* FeedbackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackItem.h; sourceTree = "<group>"; };
+		66A4A0AA1AA4EC6B0080002D /* FeedbackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackItem.m; sourceTree = "<group>"; };
 		66AB532619C5104D00F4877A /* DiningBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB534219C5104D00F4877A /* DiningBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiningBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C793C819DE162A007AC4BC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -229,18 +238,24 @@
 		66A49FFB1AA4DB0E0080002D /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				66A4A0A31AA4EB880080002D /* LocationItem.h */,
+				66A4A0A41AA4EB880080002D /* LocationItem.m */,
 				66A49FFC1AA4DB0E0080002D /* AlertItem.h */,
 				66A49FFD1AA4DB0E0080002D /* AlertItem.m */,
 				66A49FFE1AA4DB0E0080002D /* CoordinatePair.h */,
 				66A49FFF1AA4DB0E0080002D /* CoordinatePair.m */,
-				66A4A0001AA4DB0E0080002D /* Location.h */,
-				66A4A0011AA4DB0E0080002D /* Location.m */,
-				66A4A0021AA4DB0E0080002D /* LocationFeedItem.h */,
-				66A4A0031AA4DB0E0080002D /* LocationFeedItem.m */,
-				66A4A0041AA4DB0F0080002D /* LocationInfo.h */,
-				66A4A0051AA4DB0F0080002D /* LocationInfo.m */,
-				66A4A0061AA4DB0F0080002D /* LocationMenuItem.h */,
-				66A4A0071AA4DB0F0080002D /* LocationMenuItem.m */,
+				66A4A0021AA4DB0E0080002D /* FeedItem.h */,
+				66A4A0031AA4DB0E0080002D /* FeedItem.m */,
+				66A4A0041AA4DB0F0080002D /* InfoItem.h */,
+				66A4A0051AA4DB0F0080002D /* InfoItem.m */,
+				66A4A0061AA4DB0F0080002D /* MenuItem.h */,
+				66A4A0071AA4DB0F0080002D /* MenuItem.m */,
+				66A4A0A61AA4EC610080002D /* UpdateItem.h */,
+				66A4A0A71AA4EC610080002D /* UpdateItem.m */,
+				66A4A0A91AA4EC6B0080002D /* FeedbackItem.h */,
+				66A4A0AA1AA4EC6B0080002D /* FeedbackItem.m */,
+				6637AB111AA4F3FB00156AD8 /* LocationCollection.h */,
+				6637AB121AA4F3FB00156AD8 /* LocationCollection.m */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -248,10 +263,10 @@
 		66A4A0081AA4DB0F0080002D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				66A4A0981AA4DF7F0080002D /* Api.h */,
-				66A4A0991AA4DF7F0080002D /* Api.m */,
 				66A4A00B1AA4DB0F0080002D /* Reachability.h */,
 				66A4A00C1AA4DB0F0080002D /* Reachability.m */,
+				66A4A09D1AA4E9B60080002D /* API.h */,
+				66A4A09E1AA4E9B60080002D /* API.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -531,8 +546,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A4A0961AA4DECB0080002D /* CustomViewCell.m in Sources */,
+				66A4A0A81AA4EC610080002D /* UpdateItem.m in Sources */,
 				66A4A0231AA4DB0F0080002D /* main.m in Sources */,
-				66A4A0261AA4DB0F0080002D /* Location.m in Sources */,
 				66A4A0201AA4DB0F0080002D /* ViewController.m in Sources */,
 				66A4A0241AA4DB0F0080002D /* AlertItem.m in Sources */,
 				66A4A02C1AA4DB0F0080002D /* BackendService.m in Sources */,
@@ -541,18 +556,21 @@
 				66A4A02D1AA4DB0F0080002D /* LocationService.m in Sources */,
 				66A4A01F1AA4DB0F0080002D /* TabsController.m in Sources */,
 				66A4A01D1AA4DB0F0080002D /* LocationViewController.m in Sources */,
+				66A4A0A51AA4EB880080002D /* LocationItem.m in Sources */,
 				66A4A0161AA4DB0F0080002D /* AppDelegate.m in Sources */,
 				66A4A01B1AA4DB0F0080002D /* FeedViewController.m in Sources */,
 				66A4A01E1AA4DB0F0080002D /* MenuViewController.m in Sources */,
-				66A4A0291AA4DB0F0080002D /* LocationMenuItem.m in Sources */,
+				66A4A0291AA4DB0F0080002D /* MenuItem.m in Sources */,
 				66A4A01C1AA4DB0F0080002D /* GraphViewController.m in Sources */,
+				66A4A0AB1AA4EC6B0080002D /* FeedbackItem.m in Sources */,
 				66A4A01A1AA4DB0F0080002D /* FeedbackViewController.m in Sources */,
-				66A4A0281AA4DB0F0080002D /* LocationInfo.m in Sources */,
+				66A4A0281AA4DB0F0080002D /* InfoItem.m in Sources */,
 				66A4A0251AA4DB0F0080002D /* CoordinatePair.m in Sources */,
+				66A4A09F1AA4E9B60080002D /* API.m in Sources */,
 				66A4A02B1AA4DB0F0080002D /* Reachability.m in Sources */,
-				66A4A09A1AA4DF7F0080002D /* Api.m in Sources */,
 				66A4A02F1AA4DB0F0080002D /* SettingsService.m in Sources */,
-				66A4A0271AA4DB0F0080002D /* LocationFeedItem.m in Sources */,
+				6637AB131AA4F3FB00156AD8 /* LocationCollection.m in Sources */,
+				66A4A0271AA4DB0F0080002D /* FeedItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,14 +1,15 @@
 //
 //  LocationFeedItem.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/19/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "JSONModel.h"
 
-@interface LocationFeedItem : NSObject
+@interface FeedItem : JSONModel
 
 @property(nonatomic, retain) NSString *message;
 @property(nonatomic) int minutes;

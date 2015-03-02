@@ -1,6 +1,6 @@
 //
 //  BackendService.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/11/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -9,7 +9,8 @@
 #import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
-#import "Api.h"
+#import "API.h"
+#import "AlertItem.h"
 
 @implementation BackendService
 
@@ -37,6 +38,20 @@
 }
 
 + (void)showAlerts {
-    [Api showAlerts:settingsService];
+    [API getAlerts:^(NSArray *alerts) {
+        if ([alerts count] > 0) {
+            for (AlertItem *item in alerts) {
+                if ([item isApplicable] && ![settingsService isAlertRead:item.message]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:item.title
+                                                                    message:item.message
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    [settingsService setAlertRead:item.message];
+                }
+            }
+        }
+    }];
 }
 @end

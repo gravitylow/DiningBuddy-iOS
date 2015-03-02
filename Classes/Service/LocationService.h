@@ -1,6 +1,6 @@
 //
 //  LocationService.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/14/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -12,13 +12,13 @@
 
 @class AppDelegate;
 @class Locator;
-@class Location;
+@class LocationItem;
 @class SettingsService;
-@class Api;
+@class API;
 
 static double lastLatitude;
 static double lastLongitude;
-static Location *lastLocation;
+static LocationItem *lastLocation;
 
 @interface LocationService : NSObject <CLLocationManagerDelegate>
 
@@ -30,14 +30,12 @@ static Location *lastLocation;
 
 - (id)initWithSettings:(SettingsService *)settings;
 
-- (void)setInfo:(NSArray *)info;
-
 - (void)updateInfo;
 
 - (void)requestFullUpdate;
 
 - (void)startUpdatingLocation;
 
-+ (Location *)getLastLocation;
++ (LocationItem *)getLastLocation;
 
 @end

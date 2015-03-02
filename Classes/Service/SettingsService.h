@@ -1,15 +1,16 @@
 //
 //  SettingsService.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/9/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "Reachability.h"
 
-@class LocationMenuItem;
+@class MenuItem;
 
 @interface SettingsService : NSObject
 
@@ -18,10 +19,6 @@
 + (NSString *)getUUID;
 
 + (long long)getTime;
-
-- (void)cacheLocations:(NSString *)json;
-
-- (NSString *)getCachedLocations;
 
 - (bool)getWifiOnly;
 
@@ -53,5 +50,5 @@
 
 - (NSString *)getFavorites;
 
-- (void)setLatestMenus:(NSArray *)regattas :(NSArray *)commons;
+- (void) fetchLatestMenus;
 @end

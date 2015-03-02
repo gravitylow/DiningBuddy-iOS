@@ -1,14 +1,14 @@
 //
 //  MenuViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/19/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
 #import "FeedViewController.h"
-#import "LocationFeedItem.h"
-#import "Api.h"
+#import "FeedItem.h"
+#import "API.h"
 #import "SettingsService.h"
 
 @implementation FeedViewController
@@ -19,32 +19,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.data = [[NSArray alloc] init];
-    [Api getFeedForLocation:self.location forFeedController:self];
-
+    [self getFeed];
+    
     refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:refreshControl];
-    [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [refreshControl addTarget:self action:@selector(getFeed) forControlEvents:UIControlEventValueChanged];
 }
 
-- (void)refresh {
-    [Api getFeedForLocation:self.location forFeedController:self];
-}
-
-- (void)setFeed:(NSArray *)array {
-    dataLoaded = true;
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    for (LocationFeedItem *item in array) {
-        if (item.pinned) {
-            [temp insertObject:item atIndex:0];
-        } else {
-            [temp addObject:item];
+- (void)getFeed {
+    [API getFeedForLocationName:self.location :^(NSArray *feed) {
+        dataLoaded = true;
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (FeedItem *item in feed) {
+            if (item.pinned) {
+                [temp insertObject:item atIndex:0];
+            } else {
+                [temp addObject:item];
+            }
         }
-    }
-    self.data = temp;
-    [self.tableView reloadData];
-    if ([refreshControl isRefreshing]) {
-        [refreshControl endRefreshing];
-    }
+        self.data = temp;
+        [self.tableView reloadData];
+        if ([refreshControl isRefreshing]) {
+            [refreshControl endRefreshing];
+        }
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -56,7 +54,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
 
-    LocationFeedItem *item = data[indexPath.row];
+    FeedItem *item = data[indexPath.row];
 
     if (item.pinned) {
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
@@ -107,7 +105,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LocationFeedItem *item = data[indexPath.row];
+    FeedItem *item = data[indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback"
                                                     message:item.message
                                                    delegate:self

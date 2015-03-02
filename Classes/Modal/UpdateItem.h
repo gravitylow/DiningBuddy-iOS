@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSONModel/JSONKeyMapper.h>
+#import "JSONModel.h"
 
-@interface UpdateItem : NSObject
+@interface UpdateItem : JSONModel
+
+@property NSString *uuid;
+@property double lat;
+@property double lon;
+@property NSString *location;
+@property long long send_time;
 
 @end

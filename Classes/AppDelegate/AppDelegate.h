@@ -1,6 +1,6 @@
 //
 //  AppDelegate.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/13/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -13,8 +13,8 @@
 @class LocationViewController;
 @class BackendService;
 @class SettingsService;
-@class Location;
-@class LocationInfo;
+@class LocationItem;
+@class InfoItem;
 
 static ViewController *mainController = nil;
 static LocationViewController *locationController = nil;
@@ -41,7 +41,7 @@ static LocationViewController *locationController = nil;
 
 + (void)updateInfo:(NSArray *)info;
 
-+ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
++ (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location;
 
 @end
 

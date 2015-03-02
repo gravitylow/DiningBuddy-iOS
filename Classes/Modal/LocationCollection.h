@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocationItem.h"
 
 @interface LocationCollection : NSObject
+
+@property (strong, nonatomic) NSArray<LocationItem>* locations;
+
+- (id) initWithString: (NSString *) string;
 
 @end

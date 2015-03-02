@@ -1,6 +1,6 @@
 //
 //  LocationService.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/14/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -9,9 +9,10 @@
 #import "AppDelegate.h"
 #import "LocationService.h"
 #import "Locator.h"
-#import "Location.h"
+#import "LocationItem.h"
 #import "SettingsService.h"
-#import "Api.h"
+#import "API.h"
+#import "UpdateItem.h"
 
 #pragma mark - CLLocationManagerDelegate
 
@@ -28,14 +29,7 @@ long const MIN_UPDATE = 60 * 1000;
     self = [super init];
     if (self) {
         settingsService = settings;
-        NSString *cache = [settingsService getCachedLocations];
-        if (cache) {
-            locator = [[Locator alloc] initWithJson:cache];
-            NSLog(@"Setup from cache");
-        } else {
-            locator = [[Locator alloc] init];
-            NSLog(@"No cache; awaiting connection to server");
-        }
+        locator = [[Locator alloc] init];
         if ([settingsService getShouldConnect]) {
             [locator updateLocations];
         }
@@ -51,19 +45,15 @@ long const MIN_UPDATE = 60 * 1000;
     return self;
 }
 
-- (void)setInfo:(NSArray *)info {
-
-    [AppDelegate updateInfo:info];
-}
-
 - (void)updateInfo {
-    [Api getInfoForService:self];
+    [API getInfo:^(NSArray *info) {
+        [AppDelegate updateInfo:info];
+    }];
 }
 
 - (void)requestFullUpdate {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self updateInfo];
-
     });
 }
 
@@ -89,7 +79,7 @@ long const MIN_UPDATE = 60 * 1000;
 
     lastLatitude = currentCoordinates.latitude;
     lastLongitude = currentCoordinates.longitude;
-    Location *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
+    LocationItem *location = [locator getLocation:currentCoordinates.latitude :currentCoordinates.longitude];
 
     if (location == nil) {
         return;
@@ -102,7 +92,13 @@ long const MIN_UPDATE = 60 * 1000;
 
     [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
-        [Api sendUpdateWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation withTime:currentTime withUUID:[SettingsService getUUID]];
+        UpdateItem *item = [[UpdateItem alloc] init];
+        item.uuid = [SettingsService getUUID];
+        item.lat = lastLatitude;
+        item.lon = lastLongitude;
+        item.location = [lastLocation getName];
+        item.send_time = currentTime;
+        [API sendUpdate:item];
         lastPublishedUpdate = currentTime;
     }
 }
@@ -111,7 +107,7 @@ long const MIN_UPDATE = 60 * 1000;
     NSLog(@"Unable to start location manager. Error:%@", [error description]);
 }
 
-+ (Location *)getLastLocation {
++ (LocationItem *)getLastLocation {
     return lastLocation;
 }
 @end

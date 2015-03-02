@@ -1,6 +1,6 @@
 //
 //  LocationInfo.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/2/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h> 
+#import "JSONModel.h"
 
 typedef enum {
     NOT_CROWDED,
@@ -15,11 +16,11 @@ typedef enum {
     CROWDED
 } CrowdedRating;
 
-@interface LocationInfo : NSObject
+@interface InfoItem : JSONModel
 
 @property(nonatomic, retain) NSString *location;
 @property(nonatomic) int people;
-@property(nonatomic) CrowdedRating crowdedRating;
+@property(nonatomic, assign) int crowded;
 
 + (NSArray *)getFeedbackList;
 

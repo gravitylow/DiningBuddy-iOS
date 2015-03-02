@@ -1,14 +1,14 @@
 //
 //  MenuViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/19/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
 #import "MenuViewController.h"
-#import "LocationMenuItem.h"
-#import "Api.h"
+#import "MenuItem.h"
+#import "API.h"
 
 @implementation MenuViewController
 
@@ -17,12 +17,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.data = [[NSArray alloc] init];
-    [Api getMenuForLocation:self.location forMenuController:self];
+    [self getMenu];
 }
 
-- (void)setMenu:(NSArray *)array {
-    self.data = array;
-    [self.tableView reloadData];
+- (void)getMenu {
+    [API getMenuForLocationName:self.location :^(NSArray *menu) {
+        self.data = menu;
+        [self.tableView reloadData];
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -34,10 +36,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
 
-    LocationMenuItem *item = data[indexPath.row];
+    MenuItem *item = data[indexPath.row];
 
     cell.textLabel.text = item.summary;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", item.startTime, item.endTime];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", item.start, item.end];
     return cell;
 }
 
@@ -66,7 +68,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    LocationMenuItem *item = data[indexPath.row];
+    MenuItem *item = data[indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:item.summary
                                                     message:item.desc
                                                    delegate:self

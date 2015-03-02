@@ -1,14 +1,14 @@
 //
 //  BannerViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/16/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
 #import "BannerViewController.h"
-#import "Location.h"
-#import "LocationInfo.h"
+#import "LocationItem.h"
+#import "InfoItem.h"
 
 @interface BannerViewController ()
 
@@ -41,8 +41,8 @@
     }
 }
 
-- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins {
-    LocationInfo *locationInfo;
+- (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins {
+    InfoItem *locationInfo;
     if ([self.location isEqualToString:@"Regattas"]) {
         locationInfo = regattas;
     } else if ([self.location isEqualToString:@"Commons"]) {
@@ -50,8 +50,8 @@
     } else if ([self.location isEqualToString:@"Einsteins"]) {
         locationInfo = einsteins;
     }
-    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+    CrowdedRating crowdedRating = [InfoItem getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+    UIColor *color = [InfoItem getColorForCrowdedRating:crowdedRating];
     self.imageView.layer.borderColor = [color CGColor];
     self.locationLabel.textColor = color;
     self.infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
@@ -62,15 +62,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)updateViewWithLocationInfo:(LocationInfo *)locationInfo {
-    CrowdedRating crowdedRating = [LocationInfo getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [LocationInfo getColorForCrowdedRating:crowdedRating];
+- (void)updateViewWithLocationInfo:(InfoItem *)locationInfo {
+    CrowdedRating crowdedRating = [InfoItem getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+    UIColor *color = [InfoItem getColorForCrowdedRating:crowdedRating];
     imageView.layer.borderColor = [color CGColor];
     locationLabel.textColor = color;
     infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
 }
 
-- (bool)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (bool)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     if ([[location getName] isEqualToString:self.location]) {
         [badgeImageView setHidden:FALSE];
         return true;

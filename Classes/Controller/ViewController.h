@@ -1,6 +1,6 @@
 //
 //  ViewController.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/13/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -16,8 +16,8 @@
 @class AppDelegate;
 @class LocationViewController;
 @class BannerViewController;
-@class Location;
-@class LocationInfo;
+@class LocationItem;
+@class InfoItem;
 @class BackendService;
 @class LocationService;
 @class SettingsService;
@@ -33,9 +33,9 @@
 @property(nonatomic, retain) BannerViewController *commonsView;
 @property(nonatomic, retain) BannerViewController *einsteinsView;
 
-@property(nonatomic, retain) LocationInfo *lastRegattasInfo;
-@property(nonatomic, retain) LocationInfo *lastCommonsInfo;
-@property(nonatomic, retain) LocationInfo *lastEinsteinsInfo;
+@property(nonatomic, retain) InfoItem *lastRegattasInfo;
+@property(nonatomic, retain) InfoItem *lastCommonsInfo;
+@property(nonatomic, retain) InfoItem *lastEinsteinsInfo;
 
 @property(nonatomic) bool regattasHasBadge;
 @property(nonatomic) bool commonsHasBadge;
@@ -48,9 +48,9 @@
 
 - (void)refresh;
 
-- (void)updateInfoWithRegattas:(LocationInfo *)regattas withCommons:(LocationInfo *)commons withEinsteins:(LocationInfo *)einsteins;
+- (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins;
 
-- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location;
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location;
 
 - (IBAction)openSettings;
 

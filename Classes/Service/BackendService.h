@@ -1,6 +1,6 @@
 //
 //  BackendService.h
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/11/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.

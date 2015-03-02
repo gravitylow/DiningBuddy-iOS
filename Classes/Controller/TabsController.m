@@ -1,6 +1,6 @@
 //
 //  TabsController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/16/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -10,7 +10,7 @@
 #import "BackendService.h"
 #import "LocationService.h"
 #import "SettingsService.h"
-#import "Location.h"
+#import "LocationItem.h"
 #import "MenuViewController.h"
 #import "FeedViewController.h"
 
@@ -46,7 +46,7 @@ int const TAB_SIZE_FULL = 4;
     [self setViewControllers:tabbarViewControllers];
 }
 
-- (bool)shouldShowFeedback:(Location *)loc {
+- (bool)shouldShowFeedback:(LocationItem *)loc {
     bool add = false;
     if ([[loc getName] isEqualToString:location]) {
         long long last;
@@ -66,7 +66,7 @@ int const TAB_SIZE_FULL = 4;
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
 }
 
-- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(Location *)location {
+- (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     bool shouldShowFeedback = [self shouldShowFeedback:location];
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
     if (shouldShowFeedback) {

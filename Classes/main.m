@@ -1,6 +1,6 @@
 //
 //  main.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 9/13/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.

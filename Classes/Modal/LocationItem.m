@@ -1,12 +1,12 @@
 //
 //  Location.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/2/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
-#import "Location.h"
+#import "LocationItem.h"
 #import "CoordinatePair.h"
 
 @implementation LocationItem

@@ -1,18 +1,18 @@
 //
 //  LocationInfo.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/2/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
-#import "LocationInfo.h"
+#import "InfoItem.h"
 
-@implementation LocationInfo
+@implementation InfoItem
 
 @synthesize location;
 @synthesize people;
-@synthesize crowdedRating;
+@synthesize crowded;
 
 + (NSArray *)getFeedbackList {
     return @[@"Not crowded at all", @"Somewhat crowded", @"Very crowded"];
@@ -42,7 +42,7 @@
     if (self = [super init]) {
         self.location = name;
         self.people = 0;
-        self.crowdedRating = NOT_CROWDED;
+        self.crowded = NOT_CROWDED;
     }
     return self;
 }
@@ -53,7 +53,7 @@
     if (self = [super init]) {
         self.location = name;
         self.people = number;
-        self.crowdedRating = rating;
+        self.crowded = rating;
     }
     return self;
 }
@@ -67,7 +67,7 @@
 }
 
 - (CrowdedRating)getCrowdedRating {
-    return crowdedRating;
+    return crowded;
 }
 
 @end

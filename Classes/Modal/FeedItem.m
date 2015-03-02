@@ -1,14 +1,14 @@
 //
 //  LocationFeedItem.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/19/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
-#import "LocationFeedItem.h"
+#import "FeedItem.h"
 
-@implementation LocationFeedItem
+@implementation FeedItem
 
 - (id)initWithMessage:(NSString *)mess withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det {
     if (self = [super init]) {

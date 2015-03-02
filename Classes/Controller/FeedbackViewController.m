@@ -1,6 +1,6 @@
 //
 //  FeedbackViewController.m
-//  CNU
+//  DiningBuddy
 //
 //  Created by Adam Fendley on 10/16/14.
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
@@ -8,11 +8,13 @@
 
 #import "FeedbackViewController.h"
 #import "TabsController.h"
-#import "Api.h"
+#import "API.h"
 #import "BackendService.h"
 #import "SettingsService.h"
 #import "LocationService.h"
-#import "LocationInfo.h"
+#import "InfoItem.h"
+#import "LocationItem.h"
+#import "FeedbackItem.h"
 
 @interface FeedbackViewController ()
 
@@ -33,7 +35,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 
     crowdedValue = -1;
     minutesValue = -1;
-    self.crowdedArray = [LocationInfo getFeedbackList];
+    self.crowdedArray = [InfoItem getFeedbackList];
     self.minutesArray = @[@"0 Minutes", @"1 Minute", @"2 Minutes", @"3 Minutes", @"4 Minutes", @"5 Minutes", @"6 Minutes", @"7 Minutes", @"8 Minutes", @"9 Minutes", @"10+ Minutes"];
 
     self.crowdedPickerView = [[UIPickerView alloc] init];
@@ -160,8 +162,17 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
         NSLog(@"RETURNED");
         return;
     } else {
+        FeedbackItem *item = [[FeedbackItem alloc] init];
+        item.target = self.location;
+        item.location = [[LocationService getLastLocation] getName];
+        item.crowded = crowdedValue;
+        item.minutes = minutesValue;
+        item.message = [feedbackField text];
+        item.uuid = [SettingsService getUUID];
+        item.send_time = [SettingsService getTime];
+        
+        [API sendFeedback:item];
         NSLog(@"SENT");
-        [Api sendFeedbackWithTarget:self.location withLocation:[LocationService getLastLocation] withCrowded:crowdedValue withMinutes:minutesValue withFeedback:[feedbackField text] withTime:[SettingsService getTime] withUUID:[SettingsService getUUID]];
         self.submitted = true;
         NSString *location = ((TabsController *) self.tabBarController).location;
         SettingsService *settings = [BackendService getSettingsService];

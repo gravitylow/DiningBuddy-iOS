@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <JSONModel/JSONKeyMapper.h>
+#import "JSONModel.h"
 
-@interface FeedbackItem : NSObject
+@interface FeedbackItem : JSONModel
+
+@property NSString *uuid;
+@property NSString *target;
+@property NSString *location;
+@property NSString *message;
+@property int crowded;
+@property int minutes;
+@property long long send_time;
 
 @end
