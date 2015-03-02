@@ -104,14 +104,14 @@
     [preferences synchronize];
 }
 
-- (void) fetchLatestMenus {
+- (void)fetchLatestMenus {
     [API getAllMenus:^(NSArray *regattas, NSArray *commons) {
         NSArray *favoritesList = [[self getFavorites] componentsSeparatedByString:@","];
         NSMutableString *regattasItems = [[NSMutableString alloc] init];
         NSMutableString *commonsItems = [[NSMutableString alloc] init];
-        
+
         NSInteger count = 0;
-        
+
         for (int i = 0; i < [regattas count]; i++) {
             MenuItem *item = (MenuItem *) regattas[i];
             for (int j = 0; j < [favoritesList count]; j++) {
@@ -136,7 +136,7 @@
         }
         if (count > 0) {
             NSMutableString *value = [[NSMutableString alloc] init];
-            
+
             if ([regattasItems length] > 0) {
                 regattasItems = [[regattasItems substringToIndex:[regattasItems length] - 2] mutableCopy];
                 [value appendString:[NSString stringWithFormat:@"Regattas is serving %@.", regattasItems]];

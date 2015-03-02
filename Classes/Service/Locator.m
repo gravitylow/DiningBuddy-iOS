@@ -7,8 +7,6 @@
 //
 
 #import "Locator.h"
-#import "BackendService.h"
-#import "SettingsService.h"
 #import "LocationItem.h"
 #import "API.h"
 

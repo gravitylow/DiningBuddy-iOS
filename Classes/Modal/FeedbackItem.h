@@ -15,7 +15,7 @@
 @property NSString *uuid;
 @property NSString *target;
 @property NSString *location;
-@property NSString *message;
+@property NSString *feedback;
 @property int crowded;
 @property int minutes;
 @property long long send_time;

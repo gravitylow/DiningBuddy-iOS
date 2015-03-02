@@ -10,7 +10,7 @@
 
 @class SettingsService;
 @class LocationService;
-@class Api;
+@class API;
 
 static SettingsService *settingsService;
 static LocationService *locationService;

@@ -16,7 +16,6 @@
 #import "LocationService.h"
 #import "SettingsService.h"
 #import "CustomViewCell.h"
-#import "API.h"
 
 @interface ViewController ()
 
@@ -43,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"DiningBuddy";
-
+    
     refreshControl = [[UIRefreshControl alloc] init];
     [self.scrollView addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
@@ -100,14 +99,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
+    
     [AppDelegate registerMainController:self];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-
+    
     [AppDelegate unregisterMainController];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
@@ -119,11 +118,11 @@
     [regattasView updateViewWithLocationInfo:regattas];
     [commonsView updateViewWithLocationInfo:commons];
     [einsteinsView updateViewWithLocationInfo:einsteins];
-
+    
     if ([refreshControl isRefreshing]) {
         [refreshControl endRefreshing];
     }
-
+    
 }
 
 - (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
@@ -215,7 +214,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSpecifier:(IASKSpecifier *)specifier {
     [tableView dequeueReusableCellWithIdentifier:specifier.key];
-
+    
     CustomViewCell *cell = (CustomViewCell *) [tableView dequeueReusableCellWithIdentifier:specifier.key];
     if (!cell) {
         cell = (CustomViewCell *) [[NSBundle mainBundle] loadNibNamed:@"CustomViewCell"
@@ -223,7 +222,7 @@
                                                               options:nil][0];
     }
     cell.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] != nil ?
-            [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] : [specifier defaultStringValue];
+    [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] : [specifier defaultStringValue];
     //cell.textView.delegate = self;
     [cell setNeedsLayout];
     return cell;

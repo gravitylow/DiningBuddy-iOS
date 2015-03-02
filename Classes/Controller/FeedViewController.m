@@ -47,19 +47,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
-
+    
     FeedItem *item = data[indexPath.row];
-
+    
     if (item.pinned) {
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
     }
-
+    
     NSLog(@"Item time: %lli", item.time);
     NSLog(@"Current time: %lli", [SettingsService getTime]);
     NSLog(@"Message: %@", item.message);
@@ -91,13 +91,13 @@
         return 1;
     } else {
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-
+        
         messageLabel.text = dataLoaded ? @"No recent updates" : @"Loading...";
         messageLabel.textColor = [UIColor grayColor];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
         [messageLabel sizeToFit];
-
+        
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         return 0;

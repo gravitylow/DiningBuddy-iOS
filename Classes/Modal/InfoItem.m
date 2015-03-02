@@ -67,7 +67,7 @@
 }
 
 - (CrowdedRating)getCrowdedRating {
-    return crowded;
+    return [InfoItem getCrowdedRatingForInt:crowded];
 }
 
 @end

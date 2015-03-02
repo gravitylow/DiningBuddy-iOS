@@ -26,13 +26,13 @@
         [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil]];
     }
     NSDictionary *userDefaultsDefaults = @{@"pref_wifi_only" : @false,
-            @"pref_notify_favorites" : @false,
-            @"pref_favorites" : @"Tater Tots,Tender Tuesday,Pulled Pork",
-            @"pref_alerts_read" : [NSArray array],
-            @"pref_last_favorite_fetch" : @(-1),
-            @"pref_last_feedback_regattas" : @(-1),
-            @"pref_last_feedback_einsteins" :
-            @"pref_last_feedback_commons"};
+                                           @"pref_notify_favorites" : @false,
+                                           @"pref_favorites" : @"Tater Tots,Tender Tuesday,Pulled Pork",
+                                           @"pref_alerts_read" : [NSArray array],
+                                           @"pref_last_favorite_fetch" : @(-1),
+                                           @"pref_last_feedback_regattas" : @(-1),
+                                           @"pref_last_feedback_einsteins" :
+                                               @"pref_last_feedback_commons"};
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     [[BackendService alloc] init];
     [BackendService showAlerts];
@@ -96,9 +96,9 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-
+    
     // Create the coordinator and store
-
+    
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CNU.sqlite"];
     NSError *error = nil;
@@ -115,7 +115,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
-
+    
     return _persistentStoreCoordinator;
 }
 
@@ -125,7 +125,7 @@
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
     }
-
+    
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         return nil;

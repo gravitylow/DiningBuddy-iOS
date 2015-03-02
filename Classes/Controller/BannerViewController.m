@@ -23,16 +23,16 @@
     self.locationLabel.textAlignment = NSTextAlignmentCenter;
     self.locationLabel.text = self.label;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
-
+    
     UIImage *image = [UIImage imageNamed:self.photo];
     [self.imageView setImage:image];
     self.imageView.contentMode = UIViewContentModeScaleToFill;
     self.imageView.center = self.view.center;
-
+    
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10.0;
     self.imageView.layer.borderWidth = 1.0;
-
+    
     [badgeImageView setHidden:!hasBadge];
     if (self.info) {
         [self updateInfoWithRegattas:info withCommons:info withEinsteins:info];

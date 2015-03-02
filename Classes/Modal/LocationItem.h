@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol LocationItem @end
+@protocol LocationItem
+@end
 
 @class CoordinatePair;
 

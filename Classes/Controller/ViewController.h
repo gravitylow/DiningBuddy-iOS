@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Adam Fendley. All rights reserved.
 //
 
-#import <UIKit/UIKit.h> 
+#import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MessageUI/MessageUI.h>
@@ -21,7 +21,7 @@
 @class BackendService;
 @class LocationService;
 @class SettingsService;
-@class Api;
+@class API;
 
 @interface ViewController : UIViewController <IASKSettingsDelegate> {
     IASKAppSettingsViewController *appSettingsViewController;

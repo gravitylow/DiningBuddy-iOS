@@ -32,12 +32,12 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     [super viewDidLoad];
     TabsController *parent = (TabsController *) self.tabBarController;
     self.location = parent.location;
-
+    
     crowdedValue = -1;
     minutesValue = -1;
     self.crowdedArray = [InfoItem getFeedbackList];
     self.minutesArray = @[@"0 Minutes", @"1 Minute", @"2 Minutes", @"3 Minutes", @"4 Minutes", @"5 Minutes", @"6 Minutes", @"7 Minutes", @"8 Minutes", @"9 Minutes", @"10+ Minutes"];
-
+    
     self.crowdedPickerView = [[UIPickerView alloc] init];
     self.minutesPickerView = [[UIPickerView alloc] init];
     self.crowdedPickerView.delegate = self;
@@ -46,12 +46,12 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     self.minutesPickerView.dataSource = self;
     self.crowdedField.inputView = self.crowdedPickerView;
     self.minutesField.inputView = self.minutesPickerView;
-
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
-
+    
     if (self.submitted) {
         [self setHidden];
     }
@@ -63,12 +63,12 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification {
-
+    
     UITextField *field = [crowdedField isFirstResponder] ? crowdedField : [minutesField isFirstResponder] ? minutesField : feedbackField;
     NSDictionary *info = [notification userInfo];
     CGSize kbSize = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     currentKeyboardHeight = kbSize.height;
-
+    
     CGRect textFieldRect = [self.view.window convertRect:field.bounds fromView:field];
     CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
     CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
@@ -83,26 +83,26 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     animatedDistance = floor(currentKeyboardHeight * heightFraction);
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y -= animatedDistance;
-
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-
+    
     [self.view setFrame:viewFrame];
-
+    
     [UIView commitAnimations];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance;
-
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-
+    
     [self.view setFrame:viewFrame];
-
+    
     [UIView commitAnimations];
 }
 
@@ -167,7 +167,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
         item.location = [[LocationService getLastLocation] getName];
         item.crowded = crowdedValue;
         item.minutes = minutesValue;
-        item.message = [feedbackField text];
+        item.feedback = [feedbackField text];
         item.uuid = [SettingsService getUUID];
         item.send_time = [SettingsService getTime];
         

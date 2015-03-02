@@ -17,10 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     TabsController *parent = (TabsController *) self.tabBarController;
     self.location = parent.location;
-
+    
     NSString *urlAddress = @"https://api.gravitydevelopment.net/cnu/api/v1.0/graphs/";
     urlAddress = [urlAddress stringByAppendingString:self.location];
     NSURL *url = [NSURL URLWithString:urlAddress];

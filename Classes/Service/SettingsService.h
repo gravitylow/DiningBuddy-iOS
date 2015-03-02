@@ -50,5 +50,5 @@
 
 - (NSString *)getFavorites;
 
-- (void) fetchLatestMenus;
+- (void)fetchLatestMenus;
 @end

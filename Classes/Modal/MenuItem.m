@@ -10,8 +10,8 @@
 
 @implementation MenuItem
 
-+(JSONKeyMapper*)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"description": @"desc"}];
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"description" : @"desc"}];
 }
 
 @end

@@ -29,15 +29,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"SimpleTableCell";
-
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:simpleTableIdentifier];
     }
-
+    
     MenuItem *item = data[indexPath.row];
-
+    
     cell.textLabel.text = item.summary;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", item.start, item.end];
     return cell;
@@ -54,13 +54,13 @@
         return 1;
     } else {
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-
+        
         messageLabel.text = @"Loading...";
         messageLabel.textColor = [UIColor grayColor];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
         [messageLabel sizeToFit];
-
+        
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         return 0;

@@ -11,8 +11,8 @@
 
 @interface LocationCollection : NSObject
 
-@property (strong, nonatomic) NSArray<LocationItem>* locations;
+@property(strong, nonatomic) NSArray <LocationItem> *locations;
 
-- (id) initWithString: (NSString *) string;
+- (id)initWithJson:(NSString *)string;
 
 @end

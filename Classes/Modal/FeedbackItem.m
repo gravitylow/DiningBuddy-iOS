@@ -10,8 +10,8 @@
 
 @implementation FeedbackItem
 
-+(JSONKeyMapper*)keyMapper {
-    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id": @"uuid"}];
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id" : @"uuid"}];
 }
 
 @end
