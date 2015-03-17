@@ -21,8 +21,7 @@ long const MIN_FEEDBACK = 30 * 60 * 1000;
 int const TAB_LOCATION_MENU = 1;
 int const TAB_LOCATION_HOURS = 2;
 int const TAB_LOCATION_FEED = 3;
-int const TAB_LOCATION_FEEDBACK = 4;
-int const TAB_SIZE_FULL = 4;
+int const TAB_SIZE_FULL = 3;
 
 @synthesize location;
 
@@ -31,11 +30,8 @@ int const TAB_SIZE_FULL = 4;
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
 
     FeedViewController *c = tabbarViewControllers[TAB_LOCATION_FEED];
+    // TODO the new intermediary needs a class
     c.location = self.location;
-    if (![self shouldShowFeedback:[LocationService getLastLocation]]) {
-        self.feedbackTabItem = tabbarViewControllers[TAB_LOCATION_FEEDBACK];
-        [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK];
-    }
     if ([location isEqualToString:@"Einsteins"]) {
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_MENU];
     } else {
@@ -68,18 +64,6 @@ int const TAB_SIZE_FULL = 4;
 
 - (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     bool shouldShowFeedback = [self shouldShowFeedback:location];
-    NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
-    if (shouldShowFeedback) {
-        if ([tabbarViewControllers count] != TAB_SIZE_FULL && self.feedbackTabItem) {
-            [tabbarViewControllers addObject:self.feedbackTabItem];
-        }
-    } else {
-        if ([tabbarViewControllers count] == TAB_SIZE_FULL) {
-            self.feedbackTabItem = tabbarViewControllers[TAB_LOCATION_FEEDBACK - 1];
-            [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_FEEDBACK - 1];
-        }
-    }
-    [self setViewControllers:tabbarViewControllers];
 }
 
 @end

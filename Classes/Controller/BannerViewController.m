@@ -20,9 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.locationLabel.textAlignment = NSTextAlignmentCenter;
     self.locationLabel.text = self.label;
-    self.infoLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.locationLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
+    self.infoLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
     
     UIImage *image = [UIImage imageNamed:self.photo];
     [self.imageView setImage:image];
@@ -30,7 +31,6 @@
     self.imageView.center = self.view.center;
     
     self.imageView.layer.masksToBounds = YES;
-    self.imageView.layer.cornerRadius = 10.0;
     self.imageView.layer.borderWidth = 1.0;
     
     [badgeImageView setHidden:!hasBadge];
