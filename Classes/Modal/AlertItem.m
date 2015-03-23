@@ -25,7 +25,9 @@
         NSLog(@"Alert disqualified for version: %@, %@", self.target_version, thisVersion);
         return false;
     }
-    if ((self.target_time_min != 0 && self.target_time_min > thisTime) || (self.target_time_max != 0 && self.target_time_max < thisTime)) {
+    long long min = [self.target_time_min longLongValue];
+    long long max = [self.target_time_max longLongValue];
+    if ((min != 0 && min > thisTime) || (max != 0 && max < thisTime)) {
         NSLog(@"Alert disqualified for time: %lli", thisTime);
         return false;
     }

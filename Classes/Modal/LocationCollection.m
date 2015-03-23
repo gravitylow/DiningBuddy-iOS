@@ -31,7 +31,7 @@
     id geometry = value[@"geometry"];
 
     NSString *name = [properties objectForKey:@"name"];
-    NSInteger priority = [[properties objectForKey:@"priority"] integerValue];
+    int priority = [[properties objectForKey:@"priority"] intValue];
 
     NSArray *coordinates = [[geometry objectForKey:@"coordinates"] objectAtIndex:0];
     NSMutableArray *coordinatePairs = [[NSMutableArray alloc] init];

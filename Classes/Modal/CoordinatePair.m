@@ -13,22 +13,22 @@
 - (id)initWithDouble:(double)lat
           withDouble:(double)lon {
     if (self = [super init]) {
-        self.latitude = lat;
-        self.longitude = lon;
+        self.latitude = [NSNumber numberWithDouble:lat];
+        self.longitude = [NSNumber numberWithDouble:lon];
     }
     return self;
 }
 
 - (double)getLatitude {
-    return self.latitude;
+    return [self.latitude doubleValue];
 }
 
 - (double)getLongitude {
-    return self.longitude;
+    return [self.longitude doubleValue];
 }
 
 - (NSString *)jsonValue {
-    return [NSString stringWithFormat:@"{\"lat\" %f, \"lon\" : %f}", self.latitude, self.longitude];
+    return [NSString stringWithFormat:@"{\"lat\" %@, \"lon\" : %@}", self.latitude, self.longitude];
 }
 
 @end

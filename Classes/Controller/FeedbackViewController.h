@@ -13,14 +13,15 @@
 @class BackendService;
 @class SettingsService;
 @class LocationService;
+@class WYPopoverController;
 
 @interface FeedbackViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
     CGFloat animatedDistance;
     CGFloat currentKeyboardHeight;
+    bool showLocationDetail;
 }
 
 @property(nonatomic, retain) NSString *location;
-@property(nonatomic) bool submitted;
 
 @property(nonatomic, retain) IBOutlet UILabel *crowdedLabel;
 @property(nonatomic, retain) IBOutlet UILabel *minutesLabel;
@@ -29,8 +30,6 @@
 @property(nonatomic, weak) IBOutlet UITextField *minutesField;
 @property(nonatomic, retain) IBOutlet UITextField *feedbackField;
 @property(nonatomic, retain) IBOutlet UIButton *submitButton;
-@property(nonatomic, retain) IBOutlet UILabel *feedbackResponseTitle;
-@property(nonatomic, retain) IBOutlet UILabel *feedbackResponseDetail;
 
 @property(nonatomic, retain) IBOutlet UIPickerView *crowdedPickerView;
 @property(nonatomic, retain) IBOutlet UIPickerView *minutesPickerView;
@@ -39,9 +38,13 @@
 @property(nonatomic) int crowdedValue;
 @property(nonatomic) int minutesValue;
 
+@property(nonatomic, retain) WYPopoverController *wyPopoverController;
+
 - (IBAction)submit;
 
 - (void)keyboardDidShow:(NSNotification *)notification;
+
+- (void)setShowLocationDetail:(bool)show;
 
 
 @end

@@ -17,11 +17,11 @@
 
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSArray *coordinatePairs;
-@property(nonatomic) NSInteger priority;
+@property(nonatomic, retain) NSNumber *priority;
 
 - (id) initWithName:(NSString *)nameValue
 withCoordinatePairs:(NSArray *)coordinatePairsValue
-       withPriority:(NSInteger)priorityValue;
+       withPriority:(int)priorityValue;
 
 - (NSString *)getName;
 

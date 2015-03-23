@@ -12,10 +12,10 @@
 
 @interface UpdateItem : JSONModel
 
-@property NSString *uuid;
-@property double lat;
-@property double lon;
-@property NSString *location;
-@property long long send_time;
+@property(nonatomic, retain) NSString *uuid;
+@property(nonatomic, retain) NSNumber *lat;
+@property(nonatomic, retain) NSNumber *lon;
+@property(nonatomic, retain) NSString *location;
+@property(nonatomic, retain) NSNumber *send_time;
 
 @end

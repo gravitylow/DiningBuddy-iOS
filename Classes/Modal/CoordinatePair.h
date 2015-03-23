@@ -10,8 +10,8 @@
 
 @interface CoordinatePair : NSObject
 
-@property(nonatomic) double latitude;
-@property(nonatomic) double longitude;
+@property(nonatomic, retain) NSNumber *latitude;
+@property(nonatomic, retain) NSNumber *longitude;
 
 - (id)initWithDouble:(double)lat
           withDouble:(double)lon;

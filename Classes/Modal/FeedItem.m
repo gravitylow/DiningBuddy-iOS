@@ -13,10 +13,10 @@
 - (id)initWithMessage:(NSString *)mess withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det {
     if (self = [super init]) {
         self.message = mess;
-        self.minutes = min;
-        self.crowded = crow;
-        self.time = t;
-        self.pinned = pin;
+        self.minutes = [NSNumber numberWithInt:min];
+        self.crowded = [NSNumber numberWithInt:crow];
+        self.time = [NSNumber numberWithLongLong:t];
+        self.pinned = [NSNumber numberWithBool:pin];
         self.detail = det;
     }
     return self;

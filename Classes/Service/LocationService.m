@@ -94,10 +94,10 @@ long const MIN_UPDATE = 60 * 1000;
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
         UpdateItem *item = [[UpdateItem alloc] init];
         item.uuid = [SettingsService getUUID];
-        item.lat = lastLatitude;
-        item.lon = lastLongitude;
+        item.lat = [NSNumber numberWithDouble:lastLatitude];
+        item.lon = [NSNumber numberWithDouble:lastLongitude];
         item.location = [lastLocation getName];
-        item.send_time = currentTime;
+        item.send_time = [NSNumber numberWithLongLong:currentTime];
         [API sendUpdate:item];
         lastPublishedUpdate = currentTime;
     }

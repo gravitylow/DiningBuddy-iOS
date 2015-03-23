@@ -17,8 +17,8 @@
 @property(nonatomic, retain) NSString *message;
 @property(nonatomic, retain) NSString *target_os;
 @property(nonatomic, retain) NSString *target_version;
-@property(nonatomic) long long target_time_min;
-@property(nonatomic) long long target_time_max;
+@property(nonatomic, retain) NSNumber *target_time_min;
+@property(nonatomic, retain) NSNumber *target_time_max;
 
 - (bool)isApplicable;
 

@@ -16,6 +16,7 @@
 @class SettingsService;
 @class LocationItem;
 @class MenuViewController;
+@class CombinedFeedViewController;
 @class FeedViewController;
 
 @interface TabsController : UITabBarController <UITabBarDelegate>

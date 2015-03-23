@@ -12,15 +12,17 @@
 #import "SettingsService.h"
 #import "LocationItem.h"
 #import "MenuViewController.h"
+#import "CombinedFeedViewController.h"
 #import "FeedViewController.h"
 
 @implementation TabsController
 
-long const MIN_FEEDBACK = 30 * 60 * 1000;
+long const MIN_FEEDBACK = 60 * 1000;
 
+int const TAB_LOCATION_FEED = 0;
 int const TAB_LOCATION_MENU = 1;
 int const TAB_LOCATION_HOURS = 2;
-int const TAB_LOCATION_FEED = 3;
+int const TAB_LOCATION_GRAPH = 3;
 int const TAB_SIZE_FULL = 3;
 
 @synthesize location;
@@ -29,8 +31,7 @@ int const TAB_SIZE_FULL = 3;
     [super viewDidLoad];
     NSMutableArray *tabbarViewControllers = [NSMutableArray arrayWithArray:[self viewControllers]];
 
-    FeedViewController *c = tabbarViewControllers[TAB_LOCATION_FEED];
-    // TODO the new intermediary needs a class
+    CombinedFeedViewController *c = tabbarViewControllers[TAB_LOCATION_FEED];
     c.location = self.location;
     if ([location isEqualToString:@"Einsteins"]) {
         [tabbarViewControllers removeObjectAtIndex:TAB_LOCATION_MENU];

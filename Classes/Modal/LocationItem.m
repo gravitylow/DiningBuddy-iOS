@@ -23,11 +23,11 @@
 
 - (id) initWithName:(NSString *)nameValue
 withCoordinatePairs:(NSArray *)coordinatePairsValue
-       withPriority:(NSInteger)priorityValue {
+       withPriority:(int)priorityValue {
     if (self = [super init]) {
         self.name = nameValue;
         self.coordinatePairs = coordinatePairsValue;
-        self.priority = priorityValue;
+        self.priority = [NSNumber numberWithInt:priorityValue];
     }
     return self;
 }

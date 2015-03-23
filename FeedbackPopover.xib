@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedbackViewController">
+            <connections>
+                <outlet property="crowdedField" destination="jKD-z1-4M6" id="bEc-YA-tlK"/>
+                <outlet property="crowdedLabel" destination="hoK-wx-xT2" id="4ak-MG-vKv"/>
+                <outlet property="feedbackField" destination="8eA-hW-HgT" id="KOf-Mq-EFF"/>
+                <outlet property="minutesField" destination="96Y-Nz-TOk" id="pmL-ZQ-zs2"/>
+                <outlet property="minutesLabel" destination="Tao-Tg-iHq" id="sFV-na-x5e"/>
+                <outlet property="submitButton" destination="s3T-J9-H9g" id="wcX-kc-sOv"/>
+                <outlet property="view" destination="iN0-l3-epB" id="qWJ-mt-BMX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="190"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKD-z1-4M6" userLabel="Crowded Field">
+                    <rect key="frame" x="66" y="69" width="283" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96Y-Nz-TOk" userLabel="Minutes Field">
+                    <rect key="frame" x="66" y="125" width="283" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What's going on?" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8eA-hW-HgT" userLabel="Feedback Field">
+                    <rect key="frame" x="8" y="8" width="398" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated waiting time for your food:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-Tg-iHq">
+                    <rect key="frame" x="66" y="99" width="283" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is it very crowded?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoK-wx-xT2">
+                    <rect key="frame" x="134" y="43" width="146" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3T-J9-H9g">
+                    <rect key="frame" x="183" y="160" width="49" height="30"/>
+                    <state key="normal" title="Submit">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="submit" destination="-1" eventType="touchUpInside" id="mVk-rz-h4H"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jKD-z1-4M6" firstAttribute="top" secondItem="hoK-wx-xT2" secondAttribute="bottom" constant="5" id="1QA-km-0Cm"/>
+                <constraint firstItem="Tao-Tg-iHq" firstAttribute="leading" secondItem="96Y-Nz-TOk" secondAttribute="leading" id="1kj-Jk-se2"/>
+                <constraint firstItem="jKD-z1-4M6" firstAttribute="trailing" secondItem="96Y-Nz-TOk" secondAttribute="trailing" id="32E-yo-Isa"/>
+                <constraint firstAttribute="centerX" secondItem="hoK-wx-xT2" secondAttribute="centerX" id="65r-5J-VbV"/>
+                <constraint firstItem="96Y-Nz-TOk" firstAttribute="top" secondItem="Tao-Tg-iHq" secondAttribute="bottom" constant="5" id="8c2-We-ek0"/>
+                <constraint firstAttribute="trailing" secondItem="8eA-hW-HgT" secondAttribute="trailing" constant="8" id="8r8-nC-2MX"/>
+                <constraint firstAttribute="centerX" secondItem="96Y-Nz-TOk" secondAttribute="centerX" id="BeA-Lb-NyM"/>
+                <constraint firstItem="hoK-wx-xT2" firstAttribute="top" secondItem="8eA-hW-HgT" secondAttribute="bottom" constant="5" id="FYO-fl-Vqs"/>
+                <constraint firstAttribute="centerX" secondItem="8eA-hW-HgT" secondAttribute="centerX" id="JWi-lU-hXj"/>
+                <constraint firstAttribute="trailing" secondItem="8eA-hW-HgT" secondAttribute="trailing" constant="5" id="M2q-h1-lLE"/>
+                <constraint firstAttribute="centerX" secondItem="s3T-J9-H9g" secondAttribute="centerX" id="N7a-Yn-CuE"/>
+                <constraint firstItem="8eA-hW-HgT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="cZ9-SW-lCC"/>
+                <constraint firstItem="s3T-J9-H9g" firstAttribute="top" secondItem="8eA-hW-HgT" secondAttribute="bottom" constant="10" id="d8z-gr-UGn"/>
+                <constraint firstItem="jKD-z1-4M6" firstAttribute="leading" secondItem="96Y-Nz-TOk" secondAttribute="leading" id="dRS-y1-kjd"/>
+                <constraint firstItem="Tao-Tg-iHq" firstAttribute="top" secondItem="jKD-z1-4M6" secondAttribute="bottom" id="eIF-1A-eMQ"/>
+                <constraint firstItem="Tao-Tg-iHq" firstAttribute="trailing" secondItem="96Y-Nz-TOk" secondAttribute="trailing" id="fB2-l9-zUd"/>
+                <constraint firstItem="hoK-wx-xT2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gbw-Jw-3J8"/>
+                <constraint firstAttribute="centerX" secondItem="Tao-Tg-iHq" secondAttribute="centerX" id="kRW-1W-B5V"/>
+                <constraint firstItem="8eA-hW-HgT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="kfm-7C-ERU"/>
+                <constraint firstAttribute="centerX" secondItem="jKD-z1-4M6" secondAttribute="centerX" id="r3O-M4-myY"/>
+                <constraint firstItem="jKD-z1-4M6" firstAttribute="top" secondItem="hoK-wx-xT2" secondAttribute="bottom" id="s97-gt-1yn"/>
+                <constraint firstItem="s3T-J9-H9g" firstAttribute="top" secondItem="96Y-Nz-TOk" secondAttribute="bottom" constant="5" id="soU-EF-ttf"/>
+                <constraint firstItem="8eA-hW-HgT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-5" id="uAv-YM-P5N"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="M2q-h1-lLE"/>
+                    <exclude reference="uAv-YM-P5N"/>
+                    <exclude reference="s97-gt-1yn"/>
+                    <exclude reference="gbw-Jw-3J8"/>
+                    <exclude reference="d8z-gr-UGn"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="391" y="-241"/>
+        </view>
+    </objects>
+</document>

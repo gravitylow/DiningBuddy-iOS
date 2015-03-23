@@ -12,12 +12,12 @@
 
 @interface FeedbackItem : JSONModel
 
-@property NSString *uuid;
-@property NSString *target;
-@property NSString *location;
-@property NSString *feedback;
-@property int crowded;
-@property int minutes;
-@property long long send_time;
+@property(nonatomic, retain) NSString *uuid;
+@property(nonatomic, retain) NSString *target;
+@property(nonatomic, retain) NSString *location;
+@property(nonatomic, retain) NSString *feedback;
+@property(nonatomic, retain) NSNumber *crowded;
+@property(nonatomic, retain) NSNumber *minutes;
+@property(nonatomic, retain) NSNumber *send_time;
 
 @end

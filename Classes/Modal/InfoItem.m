@@ -52,8 +52,8 @@
  withCrowdedRating:(CrowdedRating)rating {
     if (self = [super init]) {
         self.location = name;
-        self.people = number;
-        self.crowded = rating;
+        self.people = [NSNumber numberWithInt:number];
+        self.crowded = [NSNumber numberWithInt:rating];
     }
     return self;
 }
@@ -63,11 +63,11 @@
 }
 
 - (int)getPeople {
-    return people;
+    return [people intValue];
 }
 
 - (CrowdedRating)getCrowdedRating {
-    return [InfoItem getCrowdedRatingForInt:crowded];
+    return [InfoItem getCrowdedRatingForInt:[crowded intValue]];
 }
 
 @end

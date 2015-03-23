@@ -15,6 +15,7 @@
 #import "InfoItem.h"
 #import "LocationItem.h"
 #import "FeedbackItem.h"
+#import "WYPopoverController.h"
 
 @interface FeedbackViewController ()
 
@@ -30,8 +31,8 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    TabsController *parent = (TabsController *) self.tabBarController;
-    self.location = parent.location;
+    
+    self->showLocationDetail = true;
     
     crowdedValue = -1;
     minutesValue = -1;
@@ -51,10 +52,6 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
                                              selector:@selector(keyboardDidShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
-    
-    if (self.submitted) {
-        [self setHidden];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -144,47 +141,63 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     }
 }
 
-- (void)setHidden {
-    self.crowdedLabel.hidden = YES;
-    self.crowdedField.hidden = YES;
-    self.minutesLabel.hidden = YES;
-    self.minutesField.hidden = YES;
-    self.feedbackLabel.hidden = YES;
-    self.feedbackField.hidden = YES;
-    self.submitButton.hidden = YES;
-    self.feedbackResponseTitle.hidden = NO;
-    self.feedbackResponseDetail.hidden = NO;
+- (IBAction)submit {
+    bool err = false;
+    UIColor *errColor = [UIColor colorWithRed:0.851 green:0.255 blue:0.188 alpha:1]; /*#d94130*/
+    if ([self.feedbackField.text length] == 0) {
+        NSLog(@"ERR: FEEDBACK");
+        self.crowdedField.backgroundColor = errColor;
+        err = true;
+    }
+    if (self->showLocationDetail && crowdedValue == -1) {
+        NSLog(@"ERR: CROWDED");
+        self.crowdedField.backgroundColor = errColor;
+        err = true;
+    }
+    if (self->showLocationDetail && minutesValue == -1) {
+        NSLog(@"ERR: MINUTES");
+        self.minutesField.backgroundColor = errColor;
+        err = true;
+    }
+    if (err) {
+        return;
+    }
+    
+    NSString *current = [[LocationService getLastLocation] getName];
+    if (current == nil) {
+        current = @"Unknown";
+    }
+
+    
+    NSLog(@"SUBMITTING");
+    FeedbackItem *item = [[FeedbackItem alloc] init];
+    item.uuid = [SettingsService getUUID];
+    item.target = self.location;
+    item.location = current;
+    item.crowded = [NSNumber numberWithInt:crowdedValue];
+    item.minutes = [NSNumber numberWithInt:minutesValue];
+    item.feedback = [feedbackField text];
+    item.send_time = [NSNumber numberWithLongLong:[SettingsService getTime]];
+
+    [API sendFeedback:item];
+    NSString *location = ((TabsController *) self.tabBarController).location;
+    SettingsService *settings = [BackendService getSettingsService];
+    if ([location isEqualToString:@"Regattas"]) {
+        [settings setLastFeedbackRegattas:[SettingsService getTime]];
+    } else if ([location isEqualToString:@"Commons"]) {
+        [settings setLastFeedbackCommons:[SettingsService getTime]];
+    } else if ([location isEqualToString:@"Einsteins"]) {
+        [settings setLastFeedbackEinsteins:[SettingsService getTime]];
+    }
+    [self.wyPopoverController dismissPopoverAnimated:YES];
 }
 
-- (IBAction)submit {
-    NSLog(@"SUBMITTED");
-    if (crowdedValue == -1 && minutesValue == -1) {
-        NSLog(@"RETURNED");
-        return;
-    } else {
-        FeedbackItem *item = [[FeedbackItem alloc] init];
-        item.target = self.location;
-        item.location = [[LocationService getLastLocation] getName];
-        item.crowded = crowdedValue;
-        item.minutes = minutesValue;
-        item.feedback = [feedbackField text];
-        item.uuid = [SettingsService getUUID];
-        item.send_time = [SettingsService getTime];
-        
-        [API sendFeedback:item];
-        NSLog(@"SENT");
-        self.submitted = true;
-        NSString *location = ((TabsController *) self.tabBarController).location;
-        SettingsService *settings = [BackendService getSettingsService];
-        if ([location isEqualToString:@"Regattas"]) {
-            [settings setLastFeedbackRegattas:[SettingsService getTime]];
-        } else if ([location isEqualToString:@"Commons"]) {
-            [settings setLastFeedbackCommons:[SettingsService getTime]];
-        } else if ([location isEqualToString:@"Einsteins"]) {
-            [settings setLastFeedbackEinsteins:[SettingsService getTime]];
-        }
-        [self setHidden];
-    }
+- (void)setShowLocationDetail:(bool)show {
+    self->showLocationDetail = show;
+    [self.crowdedField setHidden:show];
+    [self.crowdedLabel setHidden:show];
+    [self.minutesField setHidden:show];
+    [self.minutesLabel setHidden:show];
 }
 
 

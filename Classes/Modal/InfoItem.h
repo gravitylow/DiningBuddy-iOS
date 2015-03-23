@@ -19,8 +19,8 @@ typedef enum {
 @interface InfoItem : JSONModel
 
 @property(nonatomic, retain) NSString *location;
-@property(nonatomic) int people;
-@property(nonatomic, assign) int crowded;
+@property(nonatomic, retain) NSNumber *people;
+@property(nonatomic, assign) NSNumber *crowded;
 
 + (NSArray *)getFeedbackList;
 
