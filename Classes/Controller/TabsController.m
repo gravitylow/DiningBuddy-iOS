@@ -64,7 +64,6 @@ int const TAB_SIZE_FULL = 3;
 }
 
 - (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
-    bool shouldShowFeedback = [self shouldShowFeedback:location];
 }
 
 @end

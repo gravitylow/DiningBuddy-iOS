@@ -11,6 +11,8 @@
 @class FeedItem;
 @class Api;
 @class SettingsService;
+@class CombinedFeedViewController;
+@class FeedBoxViewController;
 
 @interface FeedViewController : UITableViewController <UITableViewDelegate, UITableViewDelegate> {
     bool dataLoaded;
@@ -18,7 +20,7 @@
 
 @property(nonatomic, retain) NSString *location;
 @property(nonatomic, retain) NSArray *data;
-
+@property(nonatomic, retain) CombinedFeedViewController *combinedFeedViewController;
 @property(nonatomic, retain) UIRefreshControl *refreshControl;
 
 @property(strong, nonatomic) IBOutlet UITableView *tableView;

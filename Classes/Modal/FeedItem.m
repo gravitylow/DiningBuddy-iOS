@@ -10,16 +10,12 @@
 
 @implementation FeedItem
 
-- (id)initWithMessage:(NSString *)mess withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det {
-    if (self = [super init]) {
-        self.message = mess;
-        self.minutes = [NSNumber numberWithInt:min];
-        self.crowded = [NSNumber numberWithInt:crow];
-        self.time = [NSNumber numberWithLongLong:t];
-        self.pinned = [NSNumber numberWithBool:pin];
-        self.detail = det;
-    }
-    return self;
++ (JSONKeyMapper *)keyMapper {
+    return [[JSONKeyMapper alloc] initWithDictionary:@{@"id": @"uuid"}];
+}
+
+- (BOOL)isPinned {
+    return [self.pinned integerValue] == [[NSNumber numberWithBool:YES] integerValue];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CombinedFeedViewController.h"
+#import "FeedViewController.h"
 #import "FeedBoxViewController.h"
 
 @interface CombinedFeedViewController ()
@@ -19,10 +20,24 @@
     [super viewDidLoad];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    if (self.feedBoxViewController != nil) {
+        [self.feedBoxViewController checkFeedbackAnimated:NO];
+    }
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"feedbox"]) {
+    if ([segue.identifier isEqualToString:@"feed"]) {
+        FeedViewController *vc = [segue destinationViewController];
+        self.feedViewController = vc;
+        self.feedViewController.location = self.location;
+        self.feedViewController.combinedFeedViewController = self;
+    } else if ([segue.identifier isEqualToString:@"feedbox"]) {
         FeedBoxViewController *vc = [segue destinationViewController];
-        vc.location = self.location;
+        self.feedBoxViewController = vc;
+        self.feedBoxViewController.location = self.location;
+        self.feedBoxViewController.combinedFeedViewController = self;
+        [self.feedBoxViewController checkFeedbackAnimated:NO];
     }
 }
 

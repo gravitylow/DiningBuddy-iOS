@@ -14,10 +14,9 @@
 @class SettingsService;
 @class LocationService;
 @class WYPopoverController;
+@class CombinedFeedViewController;
 
 @interface FeedbackViewController : UIViewController <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate> {
-    CGFloat animatedDistance;
-    CGFloat currentKeyboardHeight;
     bool showLocationDetail;
 }
 
@@ -35,16 +34,15 @@
 @property(nonatomic, retain) IBOutlet UIPickerView *minutesPickerView;
 @property(nonatomic, strong) NSArray *crowdedArray;
 @property(nonatomic, strong) NSArray *minutesArray;
-@property(nonatomic) int crowdedValue;
-@property(nonatomic) int minutesValue;
+@property(nonatomic) NSInteger crowdedValue;
+@property(nonatomic) NSInteger minutesValue;
 
 @property(nonatomic, retain) WYPopoverController *wyPopoverController;
+@property(nonatomic, retain) CombinedFeedViewController *combinedFeedViewController;
 
 - (IBAction)submit;
 
 - (void)keyboardDidShow:(NSNotification *)notification;
-
-- (void)setShowLocationDetail:(bool)show;
 
 
 @end

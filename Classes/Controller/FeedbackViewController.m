@@ -7,6 +7,8 @@
 //
 
 #import "FeedbackViewController.h"
+#import "CombinedFeedViewController.h"
+#import "FeedViewController.h"
 #import "TabsController.h"
 #import "API.h"
 #import "BackendService.h"
@@ -22,10 +24,6 @@
 @end
 
 @implementation FeedbackViewController
-
-static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
-static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
-static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 
 @synthesize crowdedPickerView, minutesPickerView, crowdedValue, minutesValue, crowdedField, minutesField, feedbackField;
 
@@ -48,10 +46,7 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     self.crowdedField.inputView = self.crowdedPickerView;
     self.minutesField.inputView = self.minutesPickerView;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardDidShow:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    [self.feedbackField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,47 +55,9 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
 }
 
 - (void)keyboardDidShow:(NSNotification *)notification {
-    
-    UITextField *field = [crowdedField isFirstResponder] ? crowdedField : [minutesField isFirstResponder] ? minutesField : feedbackField;
-    NSDictionary *info = [notification userInfo];
-    CGSize kbSize = [info[UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    currentKeyboardHeight = kbSize.height;
-    
-    CGRect textFieldRect = [self.view.window convertRect:field.bounds fromView:field];
-    CGRect viewRect = [self.view.window convertRect:self.view.bounds fromView:self.view];
-    CGFloat midline = textFieldRect.origin.y + 0.5 * textFieldRect.size.height;
-    CGFloat numerator = midline - viewRect.origin.y - MINIMUM_SCROLL_FRACTION * viewRect.size.height;
-    CGFloat denominator = (MAXIMUM_SCROLL_FRACTION - MINIMUM_SCROLL_FRACTION) * viewRect.size.height;
-    CGFloat heightFraction = numerator / denominator;
-    if (heightFraction < 0.0) {
-        heightFraction = 0.0;
-    } else if (heightFraction > 1.0) {
-        heightFraction = 1.0;
-    }
-    animatedDistance = floor(currentKeyboardHeight * heightFraction);
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= animatedDistance;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self.view setFrame:viewFrame];
-    
-    [UIView commitAnimations];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += animatedDistance;
-    
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:KEYBOARD_ANIMATION_DURATION];
-    
-    [self.view setFrame:viewFrame];
-    
-    [UIView commitAnimations];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -174,31 +131,19 @@ static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
     item.uuid = [SettingsService getUUID];
     item.target = self.location;
     item.location = current;
-    item.crowded = [NSNumber numberWithInt:crowdedValue];
-    item.minutes = [NSNumber numberWithInt:minutesValue];
+    item.crowded = [NSNumber numberWithInteger:crowdedValue];
+    item.minutes = [NSNumber numberWithInteger:minutesValue];
     item.feedback = [feedbackField text];
     item.send_time = [NSNumber numberWithLongLong:[SettingsService getTime]];
 
     [API sendFeedback:item];
-    NSString *location = ((TabsController *) self.tabBarController).location;
+    NSString *location = self.location;
     SettingsService *settings = [BackendService getSettingsService];
-    if ([location isEqualToString:@"Regattas"]) {
-        [settings setLastFeedbackRegattas:[SettingsService getTime]];
-    } else if ([location isEqualToString:@"Commons"]) {
-        [settings setLastFeedbackCommons:[SettingsService getTime]];
-    } else if ([location isEqualToString:@"Einsteins"]) {
-        [settings setLastFeedbackEinsteins:[SettingsService getTime]];
-    }
+    [settings setLastFeedbackWithLocationName:location :[SettingsService getTime]];
+    
+    NSLog(@"Dismiss");
     [self.wyPopoverController dismissPopoverAnimated:YES];
+    [self.combinedFeedViewController.feedViewController getFeed];
 }
-
-- (void)setShowLocationDetail:(bool)show {
-    self->showLocationDetail = show;
-    [self.crowdedField setHidden:show];
-    [self.crowdedLabel setHidden:show];
-    [self.minutesField setHidden:show];
-    [self.minutesLabel setHidden:show];
-}
-
 
 @end

@@ -15,7 +15,6 @@
 #import "BackendService.h"
 #import "LocationService.h"
 #import "SettingsService.h"
-#import "CustomViewCell.h"
 
 @interface ViewController ()
 
@@ -126,7 +125,6 @@
 }
 
 - (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
-    //NSLog(@"Updating all embeded views...");
     regattasHasBadge = [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     commonsHasBadge = [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     einsteinsHasBadge = [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
@@ -175,6 +173,10 @@
     completionHandler(UIBackgroundFetchResultNoData);
 }
 
+- (void) settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender {
+    
+}
+
 - (CGFloat)settingsViewController:(id <IASKViewController>)settingsViewController
                         tableView:(UITableView *)tableView
         heightForHeaderForSection:(NSInteger)section {
@@ -198,7 +200,6 @@
         label.shadowOffset = CGSizeMake(0, 1);
         label.numberOfLines = 0;
         label.font = [UIFont boldSystemFontOfSize:16.f];
-        //figure out the title from settingsbundle
         label.text = [settingsViewController.settingsReader titleForSection:section];
         return label;
     }
@@ -213,15 +214,13 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForSpecifier:(IASKSpecifier *)specifier {
-    [tableView dequeueReusableCellWithIdentifier:specifier.key];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:specifier.key];
     
-    CustomViewCell *cell = (CustomViewCell *) [tableView dequeueReusableCellWithIdentifier:specifier.key];
-    if (!cell) {
-        cell = (CustomViewCell *) [[NSBundle mainBundle] loadNibNamed:@"CustomViewCell"
-                                                                owner:self
-                                                              options:nil][0];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:specifier.key];
     }
-    cell.textView.text = [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] != nil ?
+    
+    cell.textLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] != nil ?
     [[NSUserDefaults standardUserDefaults] objectForKey:specifier.key] : [specifier defaultStringValue];
     //cell.textView.delegate = self;
     [cell setNeedsLayout];

@@ -39,4 +39,5 @@ typedef enum {
 - (int)getPeople;
 
 - (CrowdedRating)getCrowdedRating;
+
 @end

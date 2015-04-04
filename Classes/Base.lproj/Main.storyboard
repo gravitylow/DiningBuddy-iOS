@@ -843,24 +843,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="368"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1G-ap-ZX2">
-                                <rect key="frame" x="165" y="8" width="271" height="82"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1G-ap-ZX2">
+                                <rect key="frame" x="165" y="8" width="271" height="303"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="Du4-pA-3Mj"/>
                                     <constraint firstAttribute="width" constant="271" id="UEp-sH-AxH"/>
                                 </constraints>
                                 <string key="text">Monday - Thursday: 7:30AM - 1AM
+
 Friday: 7:30AM - 8PM
+
 Saturday: 9AM - 5PM
+
 Sunday: 1PM - 1AM</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Du4-pA-3Mj"/>
+                                    </mask>
+                                </variation>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Q1G-ap-ZX2" firstAttribute="top" secondItem="y0j-R6-Xnk" secondAttribute="bottom" constant="8" id="4bj-E7-q4o"/>
+                            <constraint firstItem="lVl-TZ-rcd" firstAttribute="top" secondItem="Q1G-ap-ZX2" secondAttribute="bottom" constant="8" id="MaH-gW-XY3"/>
                             <constraint firstAttribute="centerX" secondItem="Q1G-ap-ZX2" secondAttribute="centerX" id="zeg-nj-VNN"/>
                         </constraints>
                     </view>
@@ -875,7 +884,7 @@ Sunday: 1PM - 1AM</string>
             <objects>
                 <tableViewController id="KPr-JL-8rc" customClass="FeedViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qhs-Co-xfy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="274"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -927,13 +936,16 @@ Sunday: 1PM - 1AM</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-sJ-tzS">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="274"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
                                 <connections>
                                     <segue destination="KPr-JL-8rc" kind="embed" identifier="feed" id="b8p-qS-feN"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-rI-u6b">
                                 <rect key="frame" x="0.0" y="274" width="600" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="UCt-dL-ovL"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="UGP-xz-bTh" kind="embed" identifier="feedbox" id="OGX-Xx-toE"/>
                                 </connections>
@@ -942,38 +954,57 @@ Sunday: 1PM - 1AM</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="fqO-sJ-tzS" secondAttribute="centerY" id="8wK-JM-6OR"/>
+                            <constraint firstAttribute="width" secondItem="fqO-sJ-tzS" secondAttribute="width" id="BCQ-wZ-6kL"/>
                             <constraint firstAttribute="centerY" secondItem="Eca-rI-u6b" secondAttribute="centerY" constant="-108" id="Dxq-aA-1gc"/>
                             <constraint firstItem="fqO-sJ-tzS" firstAttribute="top" secondItem="57p-oh-drB" secondAttribute="bottom" id="ESq-dv-Srq"/>
                             <constraint firstItem="fqO-sJ-tzS" firstAttribute="width" secondItem="Nwe-ee-NhB" secondAttribute="width" id="Ec7-bu-QMD"/>
                             <constraint firstAttribute="centerX" secondItem="Eca-rI-u6b" secondAttribute="centerX" id="Fbq-d4-oFt"/>
                             <constraint firstItem="fqO-sJ-tzS" firstAttribute="leading" secondItem="Nwe-ee-NhB" secondAttribute="leading" id="HiR-hf-1TC"/>
+                            <constraint firstItem="Eca-rI-u6b" firstAttribute="width" secondItem="fqO-sJ-tzS" secondAttribute="width" id="Iih-LR-Ydj"/>
                             <constraint firstItem="Eca-rI-u6b" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="top" id="MAT-1b-74V"/>
                             <constraint firstAttribute="centerX" secondItem="fqO-sJ-tzS" secondAttribute="centerX" id="VTA-SE-43M"/>
+                            <constraint firstItem="ImI-cG-lnn" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="bottom" id="bOa-SM-f0W"/>
                             <constraint firstItem="Eca-rI-u6b" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="bottom" id="bvY-Qq-5kB"/>
                             <constraint firstItem="ImI-cG-lnn" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="bottom" constant="10" id="dwH-bE-ZzL"/>
                             <constraint firstAttribute="centerX" secondItem="Eca-rI-u6b" secondAttribute="centerX" constant="-21" id="e00-UU-Ho3"/>
+                            <constraint firstItem="ImI-cG-lnn" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="bottom" id="ef2-qU-kET"/>
                             <constraint firstItem="Eca-rI-u6b" firstAttribute="leading" secondItem="Nwe-ee-NhB" secondAttribute="leadingMargin" id="g4k-kz-o1S"/>
+                            <constraint firstItem="fqO-sJ-tzS" firstAttribute="top" secondItem="57p-oh-drB" secondAttribute="bottom" id="grk-2j-ByY"/>
                             <constraint firstItem="Eca-rI-u6b" firstAttribute="width" secondItem="fqO-sJ-tzS" secondAttribute="width" id="i6X-Mf-IKu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Eca-rI-u6b" secondAttribute="trailing" id="iPo-S3-amX"/>
                             <constraint firstItem="ImI-cG-lnn" firstAttribute="top" secondItem="fqO-sJ-tzS" secondAttribute="bottom" constant="45" id="keh-43-atA"/>
                             <constraint firstItem="Eca-rI-u6b" firstAttribute="width" secondItem="fqO-sJ-tzS" secondAttribute="width" id="pIl-Cd-p4m"/>
                             <constraint firstItem="ImI-cG-lnn" firstAttribute="top" secondItem="Eca-rI-u6b" secondAttribute="bottom" id="shW-AU-F3W"/>
+                            <constraint firstAttribute="centerY" secondItem="fqO-sJ-tzS" secondAttribute="centerY" id="ttr-2U-Q6d"/>
+                            <constraint firstAttribute="height" secondItem="fqO-sJ-tzS" secondAttribute="height" id="v54-ld-wxy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="8wK-JM-6OR"/>
+                                <exclude reference="ESq-dv-Srq"/>
                                 <exclude reference="Ec7-bu-QMD"/>
+                                <exclude reference="HiR-hf-1TC"/>
+                                <exclude reference="ttr-2U-Q6d"/>
+                                <exclude reference="v54-ld-wxy"/>
                                 <exclude reference="Dxq-aA-1gc"/>
                                 <exclude reference="MAT-1b-74V"/>
+                                <exclude reference="bvY-Qq-5kB"/>
                                 <exclude reference="e00-UU-Ho3"/>
                                 <exclude reference="g4k-kz-o1S"/>
+                                <exclude reference="i6X-Mf-IKu"/>
                                 <exclude reference="iPo-S3-amX"/>
                                 <exclude reference="pIl-Cd-p4m"/>
                                 <exclude reference="dwH-bE-ZzL"/>
+                                <exclude reference="ef2-qU-kET"/>
+                                <exclude reference="keh-43-atA"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Feed" image="ic_poll_black_48dp.png" id="TBK-mR-Z8l"/>
+                    <connections>
+                        <outlet property="feedBoxView" destination="Eca-rI-u6b" id="WDu-Ub-7pD"/>
+                        <outlet property="feedView" destination="fqO-sJ-tzS" id="3v6-6g-Uxl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YBF-Al-GkC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1007,6 +1038,9 @@ Sunday: 1PM - 1AM</string>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="submit" destination="UGP-xz-bTh" eventType="touchUpInside" id="oYc-t2-yg3"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.90980392160000001" green="0.92549019610000005" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1029,6 +1063,10 @@ Sunday: 1PM - 1AM</string>
                         </variation>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="feedbackField" destination="sOj-Y0-jcQ" id="Wbn-H4-Pos"/>
+                        <outlet property="submitButton" destination="Hoc-SN-TxJ" id="PlC-et-Sz3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhV-OK-hRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

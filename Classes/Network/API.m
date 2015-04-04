@@ -107,8 +107,9 @@ static NSString *API_USER_AGENT = @"DiningBuddy-iOS";
 
 + (void)getFeedForLocationName:(NSString *)location :(void (^)(NSArray *feed))finishBlock {
     NSString *string = [NSString stringWithFormat:@"%@/feed/%@/", API_URL, location];
+    //NSLog(@"Loading feed from %@", string);
     [JSONHTTPClient getJSONFromURLWithString:string completion:^(id json, JSONModelError *err) {
-        NSError *error = nil;
+        NSError *error = [[NSError alloc] init];
         NSMutableArray *array = [FeedItem arrayOfModelsFromDictionaries:json error:&error];
         finishBlock(array);
     }];
@@ -116,14 +117,20 @@ static NSString *API_USER_AGENT = @"DiningBuddy-iOS";
 
 + (void)sendUpdate:(UpdateItem *)update {
     NSString *string = [NSString stringWithFormat:@"%@/update/", API_URL];
-    NSDictionary *json = [update toDictionary];
-    [JSONHTTPClient postJSONFromURLWithString:string params:json completion:nil];
+    NSString *json = [update toJSONString];
+    //NSLog(@"Posting Update JSON: %@", json);
+    [JSONHTTPClient postJSONFromURLWithString:string bodyString:json completion:^(id json, JSONModelError *err) {
+        NSLog(@"Response: %@", json);
+    }];
 }
 
 + (void)sendFeedback:(FeedbackItem *)feedback {
     NSString *string = [NSString stringWithFormat:@"%@/feedback/", API_URL];
-    NSDictionary *json = [feedback toDictionary];
-    [JSONHTTPClient postJSONFromURLWithString:string params:json completion:nil];
+    NSString *json = [feedback toJSONString];
+    //NSLog(@"Posting Feedback JSON: %@", json);
+    [JSONHTTPClient postJSONFromURLWithString:string bodyString:json completion:^(id json, JSONModelError *err) {
+        NSLog(@"Response: %@", json);
+    }];
 }
 
 @end

@@ -10,6 +10,8 @@
 #import "FeedItem.h"
 #import "API.h"
 #import "SettingsService.h"
+#import "CombinedFeedViewController.h"
+#import "FeedBoxViewController.h"
 
 @implementation FeedViewController
 
@@ -31,7 +33,7 @@
         dataLoaded = true;
         NSMutableArray *temp = [[NSMutableArray alloc] init];
         for (FeedItem *item in feed) {
-            if (item.pinned) {
+            if ([item isPinned]) {
                 [temp insertObject:item atIndex:0];
             } else {
                 [temp addObject:item];
@@ -39,6 +41,7 @@
         }
         self.data = temp;
         [self.tableView reloadData];
+        [self.combinedFeedViewController.feedBoxViewController checkFeedbackAnimated:YES];
         if ([refreshControl isRefreshing]) {
             [refreshControl endRefreshing];
         }
@@ -56,15 +59,12 @@
     
     FeedItem *item = data[indexPath.row];
     
-    if (item.pinned) {
+    if ([item isPinned]) {
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
     }
     
-    NSLog(@"Item time: %lli", item.time);
-    NSLog(@"Current time: %lli", [SettingsService getTime]);
-    NSLog(@"Message: %@", item.message);
-    cell.textLabel.text = item.message;
-    cell.detailTextLabel.text = [self minutesAgo:item.time];
+    cell.textLabel.text = item.feedback;
+    cell.detailTextLabel.text = [self minutesAgo:[item.time longLongValue]];
     return cell;
 }
 
@@ -107,7 +107,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedItem *item = data[indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback"
-                                                    message:item.message
+                                                    message:item.feedback
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

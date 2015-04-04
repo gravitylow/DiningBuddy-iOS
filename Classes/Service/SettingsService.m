@@ -10,6 +10,8 @@
 #import "API.h"
 #import "MenuItem.h"
 
+const long long MIN_FEEDBACK_INTERVAL = 60 * 1000;
+
 @implementation SettingsService
 
 @synthesize preferences;
@@ -61,6 +63,12 @@
     return [[preferences objectForKey:@"pref_last_feedback_einsteins"] longLongValue];
 }
 
+- (long long)getLastFeedbackWithLocationName:(NSString *)location {
+    return [location isEqualToString:@"Regattas"] ? [self getLastFeedbackRegattas] :
+    [location isEqualToString:@"Commons"] ? [self getLastFeedbackCommons] :
+    [self getLastFeedbackEinsteins];
+}
+
 - (void)setLastFeedbackRegattas:(long long)time {
     [preferences setValue:@(time) forKey:@"pref_last_feedback_regattas"];
     [preferences synchronize];
@@ -74,6 +82,16 @@
 - (void)setLastFeedbackEinsteins:(long long)time {
     [preferences setValue:@(time) forKey:@"pref_last_feedback_einsteins"];
     [preferences synchronize];
+}
+
+- (void)setLastFeedbackWithLocationName:(NSString *)location :(long long)time {
+    if ([location isEqualToString:@"Regattas"]) {
+        [self setLastFeedbackRegattas:[SettingsService getTime]];
+    } else if ([location isEqualToString:@"Commons"]) {
+        [self setLastFeedbackCommons:[SettingsService getTime]];
+    } else if ([location isEqualToString:@"Einsteins"]) {
+        [self setLastFeedbackEinsteins:[SettingsService getTime]];
+    }
 }
 
 - (void)setAlertRead:(NSString *)alert {

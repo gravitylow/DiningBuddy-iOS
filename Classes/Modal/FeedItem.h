@@ -11,13 +11,16 @@
 
 @interface FeedItem : JSONModel
 
-@property(nonatomic, retain) NSString *message;
+@property(nonatomic, retain) NSString *uuid;
+@property(nonatomic, retain) NSString *feedback;
+@property(nonatomic, retain) NSString *location;
+@property(nonatomic, retain) NSString *target;
 @property(nonatomic, retain) NSNumber *minutes;
 @property(nonatomic, retain) NSNumber *crowded;
 @property(nonatomic, retain) NSNumber *time;
+@property(nonatomic, retain) NSNumber *send_time;
 @property(nonatomic, retain) NSNumber *pinned;
-@property(nonatomic, retain) NSString *detail;
 
-- (id)initWithMessage:(NSString *)message withMinutes:(int)min withCrowded:(int)crow withTime:(long long)t withPinned:(bool)pin withDetail:(NSString *)det;
+-(BOOL)isPinned;
 
 @end

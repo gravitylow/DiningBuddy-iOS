@@ -58,9 +58,6 @@
 		66A4A0871AA4DC350080002D /* location-marker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0711AA4DC350080002D /* location-marker@2x.png */; };
 		66A4A0881AA4DC350080002D /* location-marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0721AA4DC350080002D /* location-marker@3x.png */; };
 		66A4A0891AA4DC350080002D /* regattas_full.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0731AA4DC350080002D /* regattas_full.jpg */; };
-		66A4A0961AA4DECB0080002D /* CustomViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0941AA4DECB0080002D /* CustomViewCell.m */; };
-		66A4A0971AA4DECB0080002D /* CustomViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A0951AA4DECB0080002D /* CustomViewCell.xib */; };
-		66A4A09C1AA4E68A0080002D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66A4A09B1AA4E68A0080002D /* Info.plist */; };
 		66A4A09F1AA4E9B60080002D /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A09E1AA4E9B60080002D /* API.m */; };
 		66A4A0A51AA4EB880080002D /* LocationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0A41AA4EB880080002D /* LocationItem.m */; };
 		66A4A0A81AA4EC610080002D /* UpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0A71AA4EC610080002D /* UpdateItem.m */; };
@@ -154,9 +151,6 @@
 		66A4A0711AA4DC350080002D /* location-marker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker@2x.png"; sourceTree = "<group>"; };
 		66A4A0721AA4DC350080002D /* location-marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location-marker@3x.png"; sourceTree = "<group>"; };
 		66A4A0731AA4DC350080002D /* regattas_full.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = regattas_full.jpg; sourceTree = "<group>"; };
-		66A4A0931AA4DECB0080002D /* CustomViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewCell.h; sourceTree = "<group>"; };
-		66A4A0941AA4DECB0080002D /* CustomViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewCell.m; sourceTree = "<group>"; };
-		66A4A0951AA4DECB0080002D /* CustomViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomViewCell.xib; sourceTree = "<group>"; };
 		66A4A09B1AA4E68A0080002D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66A4A09D1AA4E9B60080002D /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		66A4A09E1AA4E9B60080002D /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
@@ -197,7 +191,6 @@
 		66A49FDF1AA4DB0E0080002D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				66A4A0921AA4DECB0080002D /* InAppSettingsKit */,
 				66A4A00D1AA4DB0F0080002D /* Service */,
 				66A4A0081AA4DB0F0080002D /* Network */,
 				66A49FE71AA4DB0E0080002D /* Controller */,
@@ -327,16 +320,6 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		66A4A0921AA4DECB0080002D /* InAppSettingsKit */ = {
-			isa = PBXGroup;
-			children = (
-				66A4A0931AA4DECB0080002D /* CustomViewCell.h */,
-				66A4A0941AA4DECB0080002D /* CustomViewCell.m */,
-				66A4A0951AA4DECB0080002D /* CustomViewCell.xib */,
-			);
-			path = InAppSettingsKit;
-			sourceTree = "<group>";
-		};
 		66AB531D19C5104D00F4877A = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +408,7 @@
 		66AB531E19C5104D00F4877A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = "Adam Fendley";
 				TargetAttributes = {
 					66AB532519C5104D00F4877A = {
@@ -481,7 +464,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				66A4A0841AA4DC350080002D /* ic_trending_up_black_48dp@2x.png in Resources */,
-				66A4A0971AA4DECB0080002D /* CustomViewCell.xib in Resources */,
 				66A4A0181AA4DB0F0080002D /* Main.storyboard in Resources */,
 				66A4A0751AA4DC350080002D /* einsteins_full.jpg in Resources */,
 				66A4A0741AA4DC350080002D /* commons_full.jpg in Resources */,
@@ -501,7 +483,6 @@
 				66A4A0801AA4DC350080002D /* ic_schedule_black_48dp.png in Resources */,
 				66A4A07A1AA4DC350080002D /* ic_list_black_48dp.png in Resources */,
 				66A4A07B1AA4DC350080002D /* ic_list_black_48dp@2x.png in Resources */,
-				66A4A09C1AA4E68A0080002D /* Info.plist in Resources */,
 				66A4A07C1AA4DC350080002D /* ic_list_black_48dp@3x.png in Resources */,
 				66A4A0761AA4DC350080002D /* ic_comment_black_48dp.png in Resources */,
 				66A4A0791AA4DC350080002D /* ic_launch.png in Resources */,
@@ -559,7 +540,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66A4A0961AA4DECB0080002D /* CustomViewCell.m in Sources */,
 				66A4A0A81AA4EC610080002D /* UpdateItem.m in Sources */,
 				66A4A0231AA4DB0F0080002D /* main.m in Sources */,
 				66A4A0201AA4DB0F0080002D /* ViewController.m in Sources */,

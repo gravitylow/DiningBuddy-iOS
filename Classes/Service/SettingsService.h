@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
 
+extern const long long MIN_FEEDBACK_INTERVAL;
+
 @class MenuItem;
 
 @interface SettingsService : NSObject
@@ -32,11 +34,15 @@
 
 - (long long)getLastFeedbackEinsteins;
 
+- (long long)getLastFeedbackWithLocationName:(NSString *)location;
+
 - (void)setLastFeedbackRegattas:(long long)time;
 
 - (void)setLastFeedbackCommons:(long long)time;
 
 - (void)setLastFeedbackEinsteins:(long long)time;
+
+- (void)setLastFeedbackWithLocationName:(NSString *)location :(long long)time;
 
 - (long long)getLastFavoriteFetch;
 
