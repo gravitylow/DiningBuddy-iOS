@@ -16,29 +16,17 @@
 
 @implementation BannerViewController
 
-@synthesize locationLabel, infoLabel, imageView, info, badgeImageView, hasBadge;
+@synthesize cardView, info;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.locationLabel.text = self.label;
+    cardView = [[RKCardView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
     
-    self.locationLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
-    self.infoLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.6f];
-    
-    UIImage *image = [UIImage imageNamed:self.photo];
-    [self.imageView setImage:image];
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
-    self.imageView.center = self.view.center;
-    
-    self.imageView.layer.masksToBounds = YES;
-    self.imageView.layer.borderWidth = 1.0;
-    
-    [badgeImageView setHidden:!hasBadge];
-    if (self.info) {
-        [self updateInfoWithRegattas:info withCommons:info withEinsteins:info];
-    } else {
-        self.imageView.layer.borderColor = [[UIColor grayColor] CGColor];
-    }
+    cardView.coverImageView.image = [UIImage imageNamed:self.photo];
+    cardView.profileImageView.image = [self getProfileImageForInfo:info];
+    cardView.titleLabel.text = self.label;
+    [cardView addShadow];
+    [self.view addSubview:cardView];
 }
 
 - (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins {
@@ -50,11 +38,8 @@
     } else if ([self.location isEqualToString:@"Einsteins"]) {
         locationInfo = einsteins;
     }
-    CrowdedRating crowdedRating = [InfoItem getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [InfoItem getColorForCrowdedRating:crowdedRating];
-    self.imageView.layer.borderColor = [color CGColor];
-    self.locationLabel.textColor = color;
-    self.infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
+    UIImage *image = [self getProfileImageForInfo:locationInfo];
+    self.cardView.profileImageView.image = image;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,19 +48,47 @@
 }
 
 - (void)updateViewWithLocationInfo:(InfoItem *)locationInfo {
-    CrowdedRating crowdedRating = [InfoItem getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
-    UIColor *color = [InfoItem getColorForCrowdedRating:crowdedRating];
-    imageView.layer.borderColor = [color CGColor];
-    locationLabel.textColor = color;
-    infoLabel.text = [NSString stringWithFormat:@"Currently: %i people", [locationInfo getPeople]];
+    UIImage *image = [self getProfileImageForInfo:locationInfo];
+    self.cardView.profileImageView.image = image;
+}
+
+- (UIImage *)getProfileImageForInfo:(InfoItem *)locationInfo {
+    NSString *text = @"...";
+    UIColor *color = [UIColor grayColor];
+    if (locationInfo) {
+        text = [NSString stringWithFormat:@"%i", [locationInfo getPeople]];
+        CrowdedRating crowdedRating = [InfoItem getCrowdedRatingForInt:[locationInfo getCrowdedRating]];
+        color = [InfoItem getColorForCrowdedRating:crowdedRating];
+    }
+    CGRect rect = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 4);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIFont *font = [UIFont systemFontOfSize:20.0];
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *textAttributes = @{NSFontAttributeName: font, NSParagraphStyleAttributeName: paragraphStyle};
+    CGSize size = [text sizeWithAttributes:textAttributes];
+    CGRect r = CGRectMake(rect.origin.x,
+                          rect.origin.y + (rect.size.height - size.height)/2.0,
+                          rect.size.width,
+                          size.height);
+    [text drawInRect:CGRectIntegral(r) withAttributes:textAttributes];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 - (bool)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
     if ([[location getName] isEqualToString:self.location]) {
-        [badgeImageView setHidden:FALSE];
         return true;
     } else {
-        [badgeImageView setHidden:TRUE];
         return false;
     }
 }

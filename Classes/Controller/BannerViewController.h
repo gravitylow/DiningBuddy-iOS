@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RKCardView.h"
 
 @class LocationItem;
 @class InfoItem;
@@ -17,13 +18,7 @@
 @property(nonatomic, retain) NSString *label;
 @property(nonatomic, retain) NSString *photo;
 @property(nonatomic, retain) InfoItem *info;
-
-@property(nonatomic, retain) IBOutlet UILabel *locationLabel;
-@property(nonatomic, retain) IBOutlet UILabel *infoLabel;
-@property(nonatomic, retain) IBOutlet UIImageView *imageView;
-@property(nonatomic, retain) IBOutlet UIImageView *badgeImageView;
-
-@property(nonatomic) bool hasBadge;
+@property(nonatomic, retain) RKCardView *cardView;
 
 - (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins;
 

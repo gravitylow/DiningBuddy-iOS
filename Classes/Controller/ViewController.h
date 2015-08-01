@@ -37,10 +37,6 @@
 @property(nonatomic, retain) InfoItem *lastCommonsInfo;
 @property(nonatomic, retain) InfoItem *lastEinsteinsInfo;
 
-@property(nonatomic) bool regattasHasBadge;
-@property(nonatomic) bool commonsHasBadge;
-@property(nonatomic) bool einsteinsHasBadge;
-
 @property(nonatomic, retain) UIRefreshControl *refreshControl;
 
 @property(strong, nonatomic) IBOutlet UIScrollView *scrollView;

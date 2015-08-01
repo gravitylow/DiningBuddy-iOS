@@ -10,6 +10,8 @@
 		661871F71ABA0DFD00185828 /* CombinedFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661871F61ABA0DFD00185828 /* CombinedFeedViewController.m */; };
 		661871FA1ABA117700185828 /* FeedBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 661871F91ABA117700185828 /* FeedBoxViewController.m */; };
 		661871FC1ABA1A3500185828 /* FeedbackPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 661871FB1ABA1A3500185828 /* FeedbackPopover.xib */; };
+		6618866D1B5E0C4E00CC65B7 /* einsteins.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6618866B1B5E0C4E00CC65B7 /* einsteins.jpg */; };
+		6618866E1B5E0C4E00CC65B7 /* regattas.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6618866C1B5E0C4E00CC65B7 /* regattas.jpg */; };
 		6637AB131AA4F3FB00156AD8 /* LocationCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6637AB121AA4F3FB00156AD8 /* LocationCollection.m */; };
 		6639D4111A75438B0087E5B9 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6639D4101A75438B0087E5B9 /* MessageUI.framework */; };
 		6639D4181A7550370087E5B9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6639D4171A7550370087E5B9 /* Settings.bundle */; };
@@ -83,6 +85,8 @@
 		661871F81ABA117700185828 /* FeedBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBoxViewController.h; sourceTree = "<group>"; };
 		661871F91ABA117700185828 /* FeedBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBoxViewController.m; sourceTree = "<group>"; };
 		661871FB1ABA1A3500185828 /* FeedbackPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackPopover.xib; sourceTree = "<group>"; };
+		6618866B1B5E0C4E00CC65B7 /* einsteins.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = einsteins.jpg; sourceTree = "<group>"; };
+		6618866C1B5E0C4E00CC65B7 /* regattas.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = regattas.jpg; sourceTree = "<group>"; };
 		6637AB111AA4F3FB00156AD8 /* LocationCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCollection.h; sourceTree = "<group>"; };
 		6637AB121AA4F3FB00156AD8 /* LocationCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCollection.m; sourceTree = "<group>"; };
 		6639D4101A75438B0087E5B9 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -294,6 +298,8 @@
 		66A4A05D1AA4DC350080002D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				6618866B1B5E0C4E00CC65B7 /* einsteins.jpg */,
+				6618866C1B5E0C4E00CC65B7 /* regattas.jpg */,
 				66A4A05E1AA4DC350080002D /* commons_full.jpg */,
 				66A4A05F1AA4DC350080002D /* einsteins_full.jpg */,
 				66A4A0601AA4DC350080002D /* ic_comment_black_48dp.png */,
@@ -469,6 +475,7 @@
 				66A4A0741AA4DC350080002D /* commons_full.jpg in Resources */,
 				66A4A0891AA4DC350080002D /* regattas_full.jpg in Resources */,
 				66A4A07E1AA4DC350080002D /* ic_poll_black_48dp@2x.png in Resources */,
+				6618866D1B5E0C4E00CC65B7 /* einsteins.jpg in Resources */,
 				661871FC1ABA1A3500185828 /* FeedbackPopover.xib in Resources */,
 				66A4A0831AA4DC350080002D /* ic_trending_up_black_48dp.png in Resources */,
 				66A4A0781AA4DC350080002D /* ic_comment_black_48dp@3x.png in Resources */,
@@ -480,6 +487,7 @@
 				66A4A0811AA4DC350080002D /* ic_schedule_black_48dp@2x.png in Resources */,
 				66A4A07D1AA4DC350080002D /* ic_poll_black_48dp.png in Resources */,
 				66A4A0771AA4DC350080002D /* ic_comment_black_48dp@2x.png in Resources */,
+				6618866E1B5E0C4E00CC65B7 /* regattas.jpg in Resources */,
 				66A4A0801AA4DC350080002D /* ic_schedule_black_48dp.png in Resources */,
 				66A4A07A1AA4DC350080002D /* ic_list_black_48dp.png in Resources */,
 				66A4A07B1AA4DC350080002D /* ic_list_black_48dp@2x.png in Resources */,

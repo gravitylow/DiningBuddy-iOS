@@ -30,10 +30,6 @@
 @synthesize lastCommonsInfo;
 @synthesize lastEinsteinsInfo;
 
-@synthesize regattasHasBadge;
-@synthesize commonsHasBadge;
-@synthesize einsteinsHasBadge;
-
 @synthesize refreshControl;
 
 @synthesize appSettingsViewController;
@@ -60,9 +56,8 @@
     LocationViewController *c = [segue destinationViewController];
     if ([segue.identifier hasSuffix:@"Regattas"]) {
         c.location = @"Regattas";
-        c.label = @"Regattas";
-        c.photo = @"regattas_full.jpg";
-        c.hasBadge = regattasHasBadge;
+        c.label = @"Regatta's";
+        c.photo = @"regattas.jpg";
         if (lastRegattasInfo) {
             c.info = lastRegattasInfo;
         }
@@ -73,7 +68,6 @@
         c.location = @"Commons";
         c.label = @"The Commons";
         c.photo = @"commons_full.jpg";
-        c.hasBadge = commonsHasBadge;
         NSLog(@"Commons info: %@", lastCommonsInfo);
         if (lastCommonsInfo) {
             NSLog(@"Passed");
@@ -85,8 +79,7 @@
     } else if ([segue.identifier hasSuffix:@"Einsteins"]) {
         c.location = @"Einsteins";
         c.label = @"Einstein's";
-        c.photo = @"einsteins_full.jpg";
-        c.hasBadge = einsteinsHasBadge;
+        c.photo = @"einsteins.jpg";
         if (lastEinsteinsInfo) {
             c.info = lastEinsteinsInfo;
         }
@@ -125,9 +118,6 @@
 }
 
 - (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
-    regattasHasBadge = [regattasView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
-    commonsHasBadge = [commonsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
-    einsteinsHasBadge = [einsteinsView updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
 }
 
 - (IASKAppSettingsViewController *)appSettingsViewController {

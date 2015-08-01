@@ -46,7 +46,6 @@
         c.location = self.location;
         c.label = self.label;
         c.photo = self.photo;
-        c.hasBadge = self.hasBadge;
         if (self.info) {
             c.info = self.info;
         }
