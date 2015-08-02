@@ -14,6 +14,13 @@
     return [[JSONKeyMapper alloc] initWithDictionary:@{@"id": @"uuid"}];
 }
 
++(BOOL)propertyIsOptional:(NSString *)propertyName {
+    if ([propertyName isEqualToString:@"detail"]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)isPinned {
     return [self.pinned integerValue] == [[NSNumber numberWithBool:YES] integerValue];
 }

@@ -41,6 +41,7 @@
 }
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    NSLog(@"Background fetch");
     [mainController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
     }];

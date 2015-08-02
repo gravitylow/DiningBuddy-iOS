@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class FeedItem;
+@class InfoItem;
 @class Api;
 @class SettingsService;
 @class CombinedFeedViewController;

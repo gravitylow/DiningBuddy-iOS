@@ -913,12 +913,17 @@ Sunday: 1PM - 1AM</string>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="RAN-LK-zN9"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="UGP-xz-bTh" id="u1L-ON-5vk"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hoc-SN-TxJ">
-                                <rect key="frame" x="535" y="7" width="49" height="30"/>
+                                <rect key="frame" x="535" y="8" width="49" height="30"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -927,21 +932,38 @@ Sunday: 1PM - 1AM</string>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sOj-Y0-jcQ" firstAttribute="leading" secondItem="Yv7-u0-dQ0" secondAttribute="leadingMargin" id="61I-dk-cJu"/>
                             <constraint firstItem="sOj-Y0-jcQ" firstAttribute="top" secondItem="c0X-Nj-ndI" secondAttribute="bottom" constant="8" id="BYz-X7-GgV"/>
                             <constraint firstItem="Hoc-SN-TxJ" firstAttribute="leading" secondItem="sOj-Y0-jcQ" secondAttribute="trailing" constant="5" id="C2f-Lk-bCe"/>
                             <constraint firstItem="Hoc-SN-TxJ" firstAttribute="trailing" secondItem="Yv7-u0-dQ0" secondAttribute="trailingMargin" id="ODf-Bx-Nnc"/>
+                            <constraint firstItem="sOj-Y0-jcQ" firstAttribute="leading" secondItem="Yv7-u0-dQ0" secondAttribute="leadingMargin" id="P4f-Di-IyA"/>
+                            <constraint firstItem="Hoc-SN-TxJ" firstAttribute="leading" secondItem="sOj-Y0-jcQ" secondAttribute="trailing" priority="750" constant="5" id="Por-Wd-8rM"/>
                             <constraint firstAttribute="centerY" secondItem="Hoc-SN-TxJ" secondAttribute="centerY" id="Uop-fv-3MQ"/>
                             <constraint firstItem="60x-FV-rhh" firstAttribute="top" secondItem="sOj-Y0-jcQ" secondAttribute="bottom" constant="7" id="bVe-vb-Bwj"/>
                             <constraint firstAttribute="centerX" secondItem="Hoc-SN-TxJ" secondAttribute="centerX" constant="-259.5" id="coL-SL-vLJ"/>
+                            <constraint firstItem="Hoc-SN-TxJ" firstAttribute="trailing" secondItem="sOj-Y0-jcQ" secondAttribute="trailing" constant="54" id="hI1-Oh-Ds9"/>
+                            <constraint firstItem="Hoc-SN-TxJ" firstAttribute="centerY" secondItem="sOj-Y0-jcQ" secondAttribute="centerY" id="hqi-Y8-z5I"/>
+                            <constraint firstAttribute="centerY" secondItem="sOj-Y0-jcQ" secondAttribute="centerY" id="lmj-gh-E4t"/>
+                            <constraint firstItem="Hoc-SN-TxJ" firstAttribute="trailing" secondItem="Yv7-u0-dQ0" secondAttribute="trailingMargin" id="lur-hn-eeu"/>
+                            <constraint firstAttribute="centerY" secondItem="Hoc-SN-TxJ" secondAttribute="centerY" id="tn7-3o-SP5"/>
+                            <constraint firstItem="Hoc-SN-TxJ" firstAttribute="leading" secondItem="sOj-Y0-jcQ" secondAttribute="trailing" constant="5" id="wTE-cE-a26"/>
                             <constraint firstAttribute="centerY" secondItem="sOj-Y0-jcQ" secondAttribute="centerY" id="wUo-SF-pPC"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="61I-dk-cJu"/>
                                 <exclude reference="BYz-X7-GgV"/>
+                                <exclude reference="wUo-SF-pPC"/>
                                 <exclude reference="bVe-vb-Bwj"/>
+                                <exclude reference="C2f-Lk-bCe"/>
+                                <exclude reference="ODf-Bx-Nnc"/>
+                                <exclude reference="Uop-fv-3MQ"/>
                                 <exclude reference="coL-SL-vLJ"/>
+                                <exclude reference="hI1-Oh-Ds9"/>
+                                <exclude reference="hqi-Y8-z5I"/>
+                                <exclude reference="wTE-cE-a26"/>
                             </mask>
                         </variation>
                     </view>

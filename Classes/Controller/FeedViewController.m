@@ -8,10 +8,13 @@
 
 #import "FeedViewController.h"
 #import "FeedItem.h"
+#import "InfoItem.h"
 #import "API.h"
 #import "SettingsService.h"
 #import "CombinedFeedViewController.h"
 #import "FeedBoxViewController.h"
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 @implementation FeedViewController
 
@@ -26,6 +29,10 @@
     refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:refreshControl];
     [refreshControl addTarget:self action:@selector(getFeed) forControlEvents:UIControlEventValueChanged];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        self.tableView.separatorInset = UIEdgeInsetsZero;
+    }
 }
 
 - (void)getFeed {
@@ -61,10 +68,17 @@
     
     if ([item isPinned]) {
         cell.backgroundColor = [UIColor colorWithRed:0.165 green:0.69 blue:0.506 alpha:1]; /*#2ab081*/
+        cell.detailTextLabel.text = @"Announcement";
+        [cell.textLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:15]];
+    } else {
+        cell.detailTextLabel.text = [self minutesAgo:[item.time longLongValue]];
+    }
+    
+    if ([item.crowded intValue] != -1 && [item.minutes intValue] != -1) {
+        cell.imageView.image = [UIImage imageNamed:@"location-marker.png"];
     }
     
     cell.textLabel.text = item.feedback;
-    cell.detailTextLabel.text = [self minutesAgo:[item.time longLongValue]];
     return cell;
 }
 
@@ -106,8 +120,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     FeedItem *item = data[indexPath.row];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Feedback"
-                                                    message:item.feedback
+    NSString *message = item.feedback;
+    NSString *title = @"Feedback";
+    if ([item isPinned] && item.detail != nil) {
+        message = item.detail;
+        title = @"Announcement";
+    } else if ([item.crowded intValue] != -1 && [item.minutes intValue] != -1) {
+        message = [NSString stringWithFormat:@"%@\n\nIt's %@\nAbout %i minute wait", message, [[[InfoItem getFeedbackList] objectAtIndex:[item.crowded intValue]] lowercaseString], [item.minutes intValue]];
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
                                                    delegate:self
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];

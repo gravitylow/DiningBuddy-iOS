@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.data = [[NSArray alloc] init];
+    self.data = nil;
     [self getMenu];
 }
 
@@ -48,23 +48,31 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([data count] > 0) {
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.tableView.backgroundView = nil;
-        return 1;
+    if (self.data) {
+        if ([self.data count] > 1) {
+            self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+            self.tableView.backgroundView = nil;
+            return 1;
+        } else {
+            [self setTableMessage:@"Nothing being served today."];
+        }
     } else {
-        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
-        
-        messageLabel.text = @"Loading...";
-        messageLabel.textColor = [UIColor grayColor];
-        messageLabel.numberOfLines = 0;
-        messageLabel.textAlignment = NSTextAlignmentCenter;
-        [messageLabel sizeToFit];
-        
-        self.tableView.backgroundView = messageLabel;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        return 0;
+        [self setTableMessage:@"Loading..."];
     }
+    return 0;
+}
+
+-(void)setTableMessage:(NSString *)message {
+    UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    
+    messageLabel.text = message;
+    messageLabel.textColor = [UIColor grayColor];
+    messageLabel.numberOfLines = 0;
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    [messageLabel sizeToFit];
+    
+    self.tableView.backgroundView = messageLabel;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

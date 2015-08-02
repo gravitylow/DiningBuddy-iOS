@@ -57,4 +57,6 @@ extern const long long MIN_FEEDBACK_INTERVAL;
 - (NSString *)getFavorites;
 
 - (void)fetchLatestMenus;
+
+- (void)sendNotification:(NSString *)message;
 @end

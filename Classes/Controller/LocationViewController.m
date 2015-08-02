@@ -64,11 +64,11 @@
 
 - (void)updateInfoWithRegattas:(InfoItem *)regattas withCommons:(InfoItem *)commons withEinsteins:(InfoItem *)einsteins {
     InfoItem *locationInfo;
-    if ([self.label isEqualToString:@"Regattas"]) {
+    if ([self.label isEqualToString:@"Regatta's"]) {
         locationInfo = regattas;
     } else if ([self.label isEqualToString:@"Commons"]) {
         locationInfo = commons;
-    } else if ([self.label isEqualToString:@"Einsteins"]) {
+    } else if ([self.label isEqualToString:@"Einstein's"]) {
         locationInfo = einsteins;
     }
     [self.banner updateViewWithLocationInfo:locationInfo];

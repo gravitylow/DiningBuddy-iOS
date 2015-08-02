@@ -13,7 +13,7 @@
 
 @property(nonatomic, retain) NSString *uuid;
 @property(nonatomic, retain) NSString *feedback;
-@property(nonatomic, retain) NSString *location;
+@property(nonatomic, retain) NSString *detail;
 @property(nonatomic, retain) NSString *target;
 @property(nonatomic, retain) NSNumber *minutes;
 @property(nonatomic, retain) NSNumber *crowded;

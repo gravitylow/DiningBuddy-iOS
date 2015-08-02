@@ -145,14 +145,14 @@
         [components setHour:6];
         [components setMinute:0];
         [components setSecond:0];
-        NSDate *todayAt5 = [myCalendar dateFromComponents:components];
-        if ([now compare:todayAt5] == NSOrderedDescending) {
-            NSLog(@"It's after 5...");
+        NSDate *notifyTime = [myCalendar dateFromComponents:components];
+        if ([now compare:notifyTime] == NSOrderedDescending) {
+            NSLog(@"It's after the specified time...");
             long long time = [SettingsService getTime];
             long long lastFetch = [[BackendService getSettingsService] getLastFavoriteFetch];
             NSDate *lastDate = [NSDate dateWithTimeIntervalSince1970:(lastFetch / 1000.0)];
-            if (lastFetch == 0 || [lastDate compare:todayAt5] == NSOrderedAscending) {
-                NSLog(@"Last update was before 5 today. Fetching now.");
+            if (lastFetch == 0 || [lastDate compare:notifyTime] == NSOrderedAscending) {
+                NSLog(@"Last update was before today's time. Fetching now.");
                 [[BackendService getSettingsService] setLastFavoriteFetch:time];
                 [[BackendService getSettingsService] fetchLatestMenus];
                 completionHandler(UIBackgroundFetchResultNewData);
