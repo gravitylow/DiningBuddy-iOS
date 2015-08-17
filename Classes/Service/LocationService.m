@@ -87,10 +87,13 @@ long const MIN_UPDATE = 60 * 1000;
     //location.name = @"Einsteins";
     lastLocation = location;
     //NSLog(@"Updated location: %@", [location getName]);
-
-    long long currentTime = [SettingsService getTime];
-
+    
     [AppDelegate updateLocationWithLatitude:lastLatitude withLongitude:lastLongitude withLocation:lastLocation];
+    [self sendUpdate];
+}
+
+- (void)sendUpdate {
+    long long currentTime = [SettingsService getTime];
     if (lastPublishedUpdate == 0 || (currentTime - lastPublishedUpdate) >= MIN_UPDATE) {
         UpdateItem *item = [[UpdateItem alloc] init];
         item.uuid = [SettingsService getUUID];

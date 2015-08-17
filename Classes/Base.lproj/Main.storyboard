@@ -304,7 +304,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q17-aw-7ru">
-                                <rect key="frame" x="0.0" y="72" width="600" height="160"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="6ee-ay-uAQ"/>
                                     <constraint firstAttribute="height" constant="140" id="Afr-CH-xm1"/>
@@ -323,7 +323,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="797-Cf-OtZ">
-                                <rect key="frame" x="0.0" y="232" width="600" height="368"/>
+                                <rect key="frame" x="0.0" y="224" width="600" height="376"/>
                                 <connections>
                                     <segue destination="Gqr-W2-NYF" kind="embed" identifier="Tabs" id="ska-os-oFa"/>
                                 </connections>
@@ -333,7 +333,7 @@
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="q17-aw-7ru" secondAttribute="centerY" constant="156" id="0gR-aB-G00"/>
                             <constraint firstItem="q17-aw-7ru" firstAttribute="top" secondItem="zlC-RZ-64G" secondAttribute="bottom" constant="8" id="4Fo-2B-7eS"/>
-                            <constraint firstItem="q17-aw-7ru" firstAttribute="top" secondItem="zlC-RZ-64G" secondAttribute="bottom" constant="8" id="6Me-cN-saz"/>
+                            <constraint firstItem="q17-aw-7ru" firstAttribute="top" secondItem="zlC-RZ-64G" secondAttribute="bottom" id="6Me-cN-saz"/>
                             <constraint firstAttribute="centerX" secondItem="q17-aw-7ru" secondAttribute="centerX" id="NOa-dH-8AL"/>
                             <constraint firstAttribute="centerX" secondItem="q17-aw-7ru" secondAttribute="centerX" id="Q2D-LD-5Y7"/>
                             <constraint firstItem="797-Cf-OtZ" firstAttribute="top" secondItem="q17-aw-7ru" secondAttribute="bottom" id="R6A-Vh-VuY"/>
@@ -496,11 +496,11 @@
                         <viewControllerLayoutGuide type="bottom" id="te2-5b-CS8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DEF-zR-Pe9">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="368"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="376"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" scalesPageToFit="YES" allowsInlineMediaPlayback="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00p-Hn-vxf">
-                                <rect key="frame" x="16" y="0.0" width="568" height="319"/>
+                                <rect key="frame" x="16" y="0.0" width="568" height="327"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="600" id="GZ7-HD-Nt9"/>
@@ -618,9 +618,8 @@
             <objects>
                 <tableViewController id="nz3-kb-LMa" customClass="MenuViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6Yd-R5-57A">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="368"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="376"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="menucell" textLabel="ekv-vZ-Daq" detailTextLabel="0Qt-Xi-uji" style="IBUITableViewCellStyleSubtitle" id="4U1-iy-648">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -704,17 +703,18 @@
                         <viewControllerLayoutGuide type="bottom" id="fGq-I9-YaW"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0KJ-y9-hzV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="277"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.90980392156862744" green="0.92549019607843142" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="277"/>
+                    <connections>
+                        <outlet property="view" destination="0KJ-y9-hzV" id="yfO-KP-jRn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pLF-zz-qfi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2703" y="-483"/>
+            <point key="canvasLocation" x="2703" y="-447"/>
         </scene>
         <!--Hours-->
         <scene sceneID="4MR-5I-Fmk">
@@ -725,11 +725,11 @@
                         <viewControllerLayoutGuide type="bottom" id="lVl-TZ-rcd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="v87-ts-2Jh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="368"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="376"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q1G-ap-ZX2">
-                                <rect key="frame" x="165" y="8" width="271" height="303"/>
+                                <rect key="frame" x="165" y="8" width="271" height="311"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="Du4-pA-3Mj"/>
                                     <constraint firstAttribute="width" constant="271" id="UEp-sH-AxH"/>
@@ -769,7 +769,7 @@ Sunday: 1PM - 1AM</string>
             <objects>
                 <tableViewController id="KPr-JL-8rc" customClass="FeedViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qhs-Co-xfy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="327"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="feedcell" textLabel="w39-Im-DCa" detailTextLabel="dlr-BE-926" style="IBUITableViewCellStyleSubtitle" id="Mfa-vD-lhS">
@@ -816,17 +816,17 @@ Sunday: 1PM - 1AM</string>
                         <viewControllerLayoutGuide type="bottom" id="ImI-cG-lnn"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Nwe-ee-NhB">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="368"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="376"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-sJ-tzS">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="319"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="327"/>
                                 <connections>
                                     <segue destination="KPr-JL-8rc" kind="embed" identifier="feed" id="b8p-qS-feN"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-rI-u6b">
-                                <rect key="frame" x="0.0" y="274" width="600" height="45"/>
+                                <rect key="frame" x="0.0" y="282" width="600" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="UCt-dL-ovL"/>
                                 </constraints>
@@ -986,7 +986,7 @@ Sunday: 1PM - 1AM</string>
         <image name="ic_trending_up_black_48dp.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="War-5R-tAZ"/>
         <segue reference="yxx-eQ-Aq6"/>
-        <segue reference="RwM-nN-osb"/>
     </inferredMetricsTieBreakers>
 </document>

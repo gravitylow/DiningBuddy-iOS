@@ -118,7 +118,7 @@ static NSString *API_USER_AGENT = @"DiningBuddy-iOS";
 + (void)sendUpdate:(UpdateItem *)update {
     NSString *string = [NSString stringWithFormat:@"%@/update/", API_URL];
     NSString *json = [update toJSONString];
-    //NSLog(@"Posting Update JSON: %@", json);
+    NSLog(@"Posting Update JSON: %@", json);
     [JSONHTTPClient postJSONFromURLWithString:string bodyString:json completion:^(id json, JSONModelError *err) {
         NSLog(@"Response: %@", json);
     }];

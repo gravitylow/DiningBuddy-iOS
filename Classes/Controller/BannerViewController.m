@@ -20,12 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    cardView = [[RKCardView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    cardView = [[RKCardView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 2)];
     
     cardView.coverImageView.image = [UIImage imageNamed:self.photo];
     cardView.profileImageView.image = [self getProfileImageForInfo:info];
     cardView.titleLabel.text = self.label;
-    [cardView addShadow];
     [self.view addSubview:cardView];
 }
 
@@ -61,7 +64,7 @@
         color = [InfoItem getColorForCrowdedRating:crowdedRating];
     }
     CGRect rect = CGRectMake(0.0f, 0.0f, 50.0f, 50.0f);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 4);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 5);
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, [color CGColor]);

@@ -70,7 +70,6 @@
         c.photo = @"commons_full.jpg";
         NSLog(@"Commons info: %@", lastCommonsInfo);
         if (lastCommonsInfo) {
-            NSLog(@"Passed");
             c.info = lastCommonsInfo;
         }
         if ([segue.identifier hasPrefix:@"embed"]) {

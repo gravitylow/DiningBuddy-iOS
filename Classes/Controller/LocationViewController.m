@@ -32,6 +32,7 @@
     [super viewWillAppear:animated];
     
     [AppDelegate registerLocationController:self];
+    [self.banner.cardView addBlur];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -53,8 +54,6 @@
     } else if ([segue.identifier isEqualToString:@"Tabs"]) {
         TabsController *c = [segue destinationViewController];
         c.location = self.location;
-        //c.label = self.label;
-        //c.photo = self.photo;
         if (self.info) {
             c.info = self.info;
         }

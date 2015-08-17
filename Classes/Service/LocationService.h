@@ -36,6 +36,8 @@ static LocationItem *lastLocation;
 
 - (void)startUpdatingLocation;
 
+- (void)sendUpdate;
+
 + (LocationItem *)getLastLocation;
 
 @end
