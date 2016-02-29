@@ -10,6 +10,7 @@
 #import "BackendService.h"
 #import "ViewController.h"
 #import "LocationViewController.h"
+#import "TabsController.h"
 #import "LocationItem.h"
 #import "InfoItem.h"
 
@@ -45,6 +46,24 @@
     [mainController fetchNewDataWithCompletionHandler:^(UIBackgroundFetchResult result) {
         completionHandler(result);
     }];
+}
+
+- (void)application:(UIApplication *)application performActionForShortcutItem:(UIApplicationShortcutItem *)shortcutItem completionHandler:(void (^)(BOOL succeeded))completionHandler {
+    if ([shortcutItem.type  isEqual:@"net.gravitydevelopment.cnu.openmenu"]) {
+        NSDictionary <NSString *, id<NSSecureCoding>> *userInfo = shortcutItem.userInfo;
+        NSString *location = (NSString *)userInfo[@"location"];
+        shortcutActionLocationTab = TAB_LOCATION_MENU;
+        
+        if (mainController != nil && mainControllerActive) {
+            [mainController performSegueWithIdentifier:location sender:mainController];
+        } else {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *main = [storyboard instantiateViewControllerWithIdentifier:@"main"];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:main animated:NO completion:^{
+                [mainController performSegueWithIdentifier:location sender:mainController];
+            }];
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -153,18 +172,25 @@
 
 + (void)registerMainController:(ViewController *)viewController {
     mainController = viewController;
+    mainControllerActive = TRUE;
 }
 
 + (void)registerLocationController:(LocationViewController *)locationViewController {
     locationController = locationViewController;
+    if (shortcutActionLocationTab != -1) {
+        UITabBarController *tabs = locationController.tabs;
+        tabs.selectedIndex = shortcutActionLocationTab;
+        shortcutActionLocationTab = -1;
+    }
+    mainControllerActive = TRUE;
 }
 
 + (void)unregisterMainController {
-    mainController = nil;
+    mainControllerActive = FALSE;
 }
 
 + (void)unregisterLocationController {
-    locationController = nil;
+    locationControllerActive = FALSE;
 }
 
 + (void)updateInfo:(NSArray *)info {
@@ -195,19 +221,19 @@
     if (!einsteinsInfo) {
         einsteinsInfo = [[InfoItem alloc] initWithName:@"Einsteins"];
     }
-    if (mainController) {
+    if (mainController != nil && mainControllerActive) {
         [mainController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
-    if (locationController) {
+    if (locationController != nil && locationControllerActive) {
         [locationController updateInfoWithRegattas:regattasInfo withCommons:commonsInfo withEinsteins:einsteinsInfo];
     }
 }
 
 + (void)updateLocationWithLatitude:(double)latitude withLongitude:(double)longitude withLocation:(LocationItem *)location {
-    if (mainController) {
+    if (mainController != nil && mainControllerActive) {
         [mainController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
-    if (locationController) {
+    if (locationController != nil && locationControllerActive) {
         [locationController updateLocationWithLatitude:latitude withLongitude:longitude withLocation:location];
     }
 }

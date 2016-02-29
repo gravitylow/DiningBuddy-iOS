@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"showLocation" object:nil]];
 }
 
 - (void)didReceiveMemoryWarning {

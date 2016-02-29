@@ -11,13 +11,17 @@
 
 @class ViewController;
 @class LocationViewController;
+@class TabsController;
 @class BackendService;
 @class SettingsService;
 @class LocationItem;
 @class InfoItem;
 
 static ViewController *mainController = nil;
+static bool mainControllerActive = FALSE;
 static LocationViewController *locationController = nil;
+static bool locationControllerActive = FALSE;
+static int shortcutActionLocationTab = -1;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

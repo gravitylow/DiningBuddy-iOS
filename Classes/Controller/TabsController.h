@@ -19,6 +19,11 @@
 @class CombinedFeedViewController;
 @class FeedViewController;
 
+extern int const TAB_LOCATION_FEED;
+extern int const TAB_LOCATION_MENU;
+extern int const TAB_LOCATION_HOURS;
+extern int const TAB_LOCATION_GRAPH;
+
 @interface TabsController : UITabBarController <UITabBarDelegate>
 
 @property(nonatomic, retain) NSString *location;
