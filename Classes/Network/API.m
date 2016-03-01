@@ -109,7 +109,7 @@ static NSString *API_USER_AGENT = @"DiningBuddy-iOS";
     NSString *string = [NSString stringWithFormat:@"%@/feed/%@/", API_URL, location];
     //NSLog(@"Loading feed from %@", string);
     [JSONHTTPClient getJSONFromURLWithString:string completion:^(id json, JSONModelError *err) {
-        NSError *error = [[NSError alloc] init];
+        NSError *error = nil;
         NSMutableArray *array = [FeedItem arrayOfModelsFromDictionaries:json error:&error];
         finishBlock(array);
     }];
