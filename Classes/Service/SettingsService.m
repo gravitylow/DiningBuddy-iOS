@@ -25,7 +25,8 @@ const long long MIN_FEEDBACK_INTERVAL = 60 * 1000;
 }
 
 + (NSString *)getUUID {
-    return [[[NSUUID UUID] UUIDString] lowercaseString];
+    NSString *UUID = [NSString stringWithFormat:@"%@", [[UIDevice currentDevice] identifierForVendor]];
+    return UUID;
 }
 
 + (long long)getTime {

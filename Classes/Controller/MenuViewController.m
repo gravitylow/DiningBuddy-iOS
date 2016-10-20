@@ -49,7 +49,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (self.data) {
-        if ([self.data count] > 1) {
+        if ([self.data count] > 0) {
             self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
             self.tableView.backgroundView = nil;
             return 1;
