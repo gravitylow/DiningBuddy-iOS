@@ -65,7 +65,7 @@
 		66A4A0A81AA4EC610080002D /* UpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0A71AA4EC610080002D /* UpdateItem.m */; };
 		66A4A0AB1AA4EC6B0080002D /* FeedbackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66A4A0AA1AA4EC6B0080002D /* FeedbackItem.m */; };
 		66C793C919DE162A007AC4BC /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C793C819DE162A007AC4BC /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		C627ED681D0E3D39AA10B8B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89D52138F440E044EF2831 /* libPods.a */; };
+		A9D9E9458170765F4794D12E /* libPods-DiningBuddy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E1E584D4A7E8ECEB6556E1E /* libPods-DiningBuddy.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,7 +167,10 @@
 		66AB532619C5104D00F4877A /* DiningBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiningBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66AB534219C5104D00F4877A /* DiningBuddyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DiningBuddyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C793C819DE162A007AC4BC /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6E1E584D4A7E8ECEB6556E1E /* libPods-DiningBuddy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DiningBuddy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8079B7616C6BB681EEA7F6E1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		887D3D840A96B21CD3FDDA2C /* Pods-DiningBuddy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiningBuddy.release.xcconfig"; path = "Pods/Target Support Files/Pods-DiningBuddy/Pods-DiningBuddy.release.xcconfig"; sourceTree = "<group>"; };
+		A90CB3865C9BD06EF860F560 /* Pods-DiningBuddy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DiningBuddy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DiningBuddy/Pods-DiningBuddy.debug.xcconfig"; sourceTree = "<group>"; };
 		BD89D52138F440E044EF2831 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -178,7 +181,7 @@
 			files = (
 				6639D4111A75438B0087E5B9 /* MessageUI.framework in Frameworks */,
 				66C793C919DE162A007AC4BC /* CoreLocation.framework in Frameworks */,
-				C627ED681D0E3D39AA10B8B8 /* libPods.a in Frameworks */,
+				A9D9E9458170765F4794D12E /* libPods-DiningBuddy.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +359,8 @@
 			children = (
 				1E21FF89B20747CBFF35A990 /* Pods.debug.xcconfig */,
 				8079B7616C6BB681EEA7F6E1 /* Pods.release.xcconfig */,
+				A90CB3865C9BD06EF860F560 /* Pods-DiningBuddy.debug.xcconfig */,
+				887D3D840A96B21CD3FDDA2C /* Pods-DiningBuddy.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -364,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				BD89D52138F440E044EF2831 /* libPods.a */,
+				6E1E584D4A7E8ECEB6556E1E /* libPods-DiningBuddy.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -375,12 +381,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 66AB534C19C5104D00F4877A /* Build configuration list for PBXNativeTarget "DiningBuddy" */;
 			buildPhases = (
-				4EBF8FFCAAC55E52AF2A6BE8 /* Check Pods Manifest.lock */,
+				4EBF8FFCAAC55E52AF2A6BE8 /* [CP] Check Pods Manifest.lock */,
 				66AB532219C5104D00F4877A /* Sources */,
 				66AB532319C5104D00F4877A /* Frameworks */,
 				66AB532419C5104D00F4877A /* Resources */,
-				194F3DF3257998A13BD8B3F4 /* Copy Pods Resources */,
-				C92983A788BB2A9330DAB513 /* Embed Pods Frameworks */,
+				194F3DF3257998A13BD8B3F4 /* [CP] Copy Pods Resources */,
+				C92983A788BB2A9330DAB513 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -512,49 +518,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		194F3DF3257998A13BD8B3F4 /* Copy Pods Resources */ = {
+		194F3DF3257998A13BD8B3F4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DiningBuddy/Pods-DiningBuddy-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/InAppSettingsKit/InAppSettingsKit.bundle,
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DiningBuddy/Pods-DiningBuddy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4EBF8FFCAAC55E52AF2A6BE8 /* Check Pods Manifest.lock */ = {
+		4EBF8FFCAAC55E52AF2A6BE8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DiningBuddy-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C92983A788BB2A9330DAB513 /* Embed Pods Frameworks */ = {
+		C92983A788BB2A9330DAB513 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DiningBuddy/Pods-DiningBuddy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -711,12 +724,13 @@
 		};
 		66AB534D19C5104D00F4877A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E21FF89B20747CBFF35A990 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = A90CB3865C9BD06EF860F560 /* Pods-DiningBuddy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z2QL6X8GU7;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -730,12 +744,13 @@
 		};
 		66AB534E19C5104D00F4877A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8079B7616C6BB681EEA7F6E1 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 887D3D840A96B21CD3FDDA2C /* Pods-DiningBuddy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Z2QL6X8GU7;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
