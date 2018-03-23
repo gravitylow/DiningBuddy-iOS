@@ -46,6 +46,40 @@
                 [temp addObject:item];
             }
         }
+        // Uncomment for demo
+//        FeedItem *item1 = [[FeedItem alloc] init];
+//        item1.uuid = [SettingsService getUUID];
+//        item1.feedback = @"Pretty long lines today, lots of open seats though";
+//        item1.detail = @"Pretty long lines today, lots of open seats though";
+//        item1.target = self.location;
+//        item1.crowded = [NSNumber numberWithInteger:1];
+//        item1.minutes = [NSNumber numberWithInteger:4];
+//        item1.time = [NSNumber numberWithLongLong:[SettingsService getTime]];
+//        item1.send_time = [NSNumber numberWithLongLong:[SettingsService getTime]];
+//        item1.pinned = [NSNumber numberWithInteger:0];
+//        [temp addObject:item1];
+//        FeedItem *item2 = [[FeedItem alloc] init];
+//        item2.uuid = [SettingsService getUUID];
+//        item2.feedback = @"Mr. Greg is the man!";
+//        item2.detail = @"Mr. Greg is the man!";
+//        item2.target = self.location;
+//        item2.crowded = [NSNumber numberWithInteger:-1];
+//        item2.minutes = [NSNumber numberWithInteger:-1];
+//        item2.time = [NSNumber numberWithLongLong:[SettingsService getTime] - 1000 * 60 * 7];
+//        item2.send_time = [NSNumber numberWithLongLong:[SettingsService getTime]];
+//        item2.pinned = [NSNumber numberWithInteger:0];
+//        [temp addObject:item2];
+//        FeedItem *item3 = [[FeedItem alloc] init];
+//        item3.uuid = [SettingsService getUUID];
+//        item3.feedback = @"TENDER TUESDAY IS WORTH THE WAIT!";
+//        item3.detail = @"TENDER TUESDAY IS WORTH THE WAIT!";
+//        item3.target = self.location;
+//        item3.crowded = [NSNumber numberWithInteger:1];
+//        item3.minutes = [NSNumber numberWithInteger:1];
+//        item3.time = [NSNumber numberWithLongLong:[SettingsService getTime] - 1000 * 60 * 15];
+//        item3.send_time = [NSNumber numberWithLongLong:[SettingsService getTime]];
+//        item3.pinned = [NSNumber numberWithInteger:0];
+//        [temp addObject:item3];
         self.data = temp;
         [self.tableView reloadData];
         [self.combinedFeedViewController.feedBoxViewController checkFeedbackAnimated:YES];

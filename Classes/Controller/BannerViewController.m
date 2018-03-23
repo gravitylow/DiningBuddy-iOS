@@ -51,6 +51,17 @@
 }
 
 - (void)updateViewWithLocationInfo:(InfoItem *)locationInfo {
+    // Uncomment for demo
+//    if ([self.location isEqualToString:@"Regattas"]) {
+//        locationInfo.people = [NSNumber numberWithInteger:74];
+//        locationInfo.crowded = [NSNumber numberWithInteger:1];
+//    } else if ([self.location isEqualToString:@"Commons"]) {
+//        locationInfo.people = [NSNumber numberWithInteger:98];
+//        locationInfo.crowded = [NSNumber numberWithInteger:2];
+//    } else if ([self.location isEqualToString:@"Einsteins"]) {
+//        locationInfo.people = [NSNumber numberWithInteger:37];
+//        locationInfo.crowded = [NSNumber numberWithInteger:0];
+//    }
     UIImage *image = [self getProfileImageForInfo:locationInfo];
     self.cardView.profileImageView.image = image;
 }
